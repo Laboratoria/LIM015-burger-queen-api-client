@@ -482,7 +482,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 ## 4. Consideraciones
 
-Este proyecto es individual, pero se debe "resolver" de a pares. Recuerda que deberas de consumir una
+Este proyecto se puede realizar individual o en parejas. Recuerda que deberas de consumir una
 API que desarrollaran tus compañeras, sin embargo no debes esperar a que esta API
 este terminada para empezar a codear, puedes utilizar herramientas
 como [nock](https://github.com/nock/nock), [json-server](https://www.npmjs.com/package/json-server)
