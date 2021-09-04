@@ -495,8 +495,8 @@ La lógica del proyecto debe estar implementada completamente en JavaScript
 (ES6+), HTML y CSS y empaquetada de manera automatizada.
 
 En este proyecto Sí está permitido usar librerías o frameworks
-(debes elegir entre [React](https://reactjs.org/) o
-[Angular](https://angular.io/)).
+(debes elegir entre [React](https://reactjs.org/), 
+[Angular](https://angular.io/) o [Vue](https://vuejs.org/)) .
 
 La aplicación debe ser un _Single Page App_. Los pedidos los tomaremos desde una
 _tablet_, pero **no queremos una app nativa**, sino una web app que sea
@@ -674,6 +674,7 @@ para mantener actualizado el menú.
 
 * [React](https://reactjs.org/)
 * [Angular](https://angular.io/)
+* [Vue](https://vuejs.org/)
 
 ### Herramientas
 
