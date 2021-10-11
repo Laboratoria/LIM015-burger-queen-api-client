@@ -1,0 +1,25 @@
+{
+  "name": "lim015-burger-queen-api-client",
+  "version": "1.0.0",
+  "description": "burgen queen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NINOSKA2000/LIM015-burger-queen-api-client.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Natalia Espinoza Barrientos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NINOSKA2000/LIM015-burger-queen-api-client/issues"
+  },
+  "homepage": "https://github.com/NINOSKA2000/LIM015-burger-queen-api-client#readme",
+  "dependencies": {
+    "tar": "^6.1.11"
+  }
+}
