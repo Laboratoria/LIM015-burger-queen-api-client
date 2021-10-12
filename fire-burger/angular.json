@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": false
+    "analytics": "41c5893f-bdce-4f9c-ac51-f65012c88d21"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "burger-queen-app": {
+    "fire-burger": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/burger-queen-app",
+            "outputPath": "dist/fire-burger",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "burger-queen-app:build:production"
+              "browserTarget": "fire-burger:build:production"
             },
             "development": {
-              "browserTarget": "burger-queen-app:build:development"
+              "browserTarget": "fire-burger:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "burger-queen-app:build"
+            "browserTarget": "fire-burger:build"
           }
         },
         "test": {
@@ -105,5 +105,5 @@
       }
     }
   },
-  "defaultProject": "burger-queen-app"
+  "defaultProject": "fire-burger"
 }
