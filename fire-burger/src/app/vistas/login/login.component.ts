@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onLogin(e){
-    console.log(e)
+  onLogin(form:any){
+    console.log(form)
   }
 
 }
