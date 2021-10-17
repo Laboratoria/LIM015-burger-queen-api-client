@@ -1,0 +1,21 @@
+.nav--wrapper{
+    background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30%;
+    font-size:18px;
+}
+.navicon--burger{
+    width:60px;
+    height: 60px;
+}
+.navicon--calamardo{
+    width: 80px;
+    height: 80px;
+}
+.nav--text{
+    padding-left: 10px;
+}
+
