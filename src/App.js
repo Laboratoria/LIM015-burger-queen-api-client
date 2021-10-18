@@ -11,11 +11,10 @@ import './css/Login.css';
 import './css/Waiter.css'
 import Login from './components/Login';
 import Chef from './components/Chef';
-import Orders from './components/Orders';
 import Admi from './components/Admi';
-import Waiter from './components/Waiter';
-
-
+import WaiterNav from './components/WaiterNav';
+import PickItems from './components/PickItems';
+import BoxSelectItems from './components/BoxSelectItems';
 
 function App() {
   return (
@@ -27,14 +26,17 @@ function App() {
         </Route>
 
         <Route path="/waiter">
-          <Waiter />
+          <WaiterNav />
+          <PickItems />
+          <BoxSelectItems />
+
         </Route>
 
         <Route path="/orders">
-          <Orders />
+          <WaiterNav />
         </Route>
 
-        <Route path="/chef">
+        <Route path="/orderlist">
           <Chef />
         </Route>
 

@@ -29,70 +29,65 @@ const Login = () => {
 
 
   return (
-    <Fragment>
+    <div className="App bg-scroll bg-cover h-screen flex px-4 sm:px-0 mx-auto">
 
-      <div className="App">
+      <section className="sm:mx-auto my-auto bg-gray-900 bg-opacity-60 shadow-xl rounded-3xl py-4">
 
-        <section className="login--wrapper--gray">
+        <div className="cangreburgertitle">
+          <h1>Welcome to
+            Cangre Burger</h1>
+        </div>
 
-          <div className="cangreburgertitle">
-            <h1>Welcome to
-              Cangre Burger</h1>
+        <div className="login__options">
+          <h2 className='enter_as '> ENTER AS:</h2>
+          <div className='characters--wrapper'>
+
+            <div>
+              <img className="characters--image" src={admi} alt="logo" />
+              <p className="text--options"> ADMI</p>
+            </div>
+
+            <div className="calamardo">
+              <img className="characters--image" src={waiter} alt="logo" />
+              <p className="text--options"> WAITER</p>
+            </div>
+
+            <div>
+              <img className="characters--image" src={chef} alt="logo" />
+              <p className="text--options"> CHEF</p>
+            </div>
+
+          </div>
+        </div>
+
+        <form onSubmit={enviarDatos} className="text-center">
+          <div>
+            <input className='input input--email'
+              type={"text"}
+              placeholder={"Email"}
+              name={"email"}
+              onChange={handInputChange}
+              required
+            />
           </div>
 
-          <div className="login__options">
-            <h2 className='enter_as '> ENTER AS:</h2>
-            <div className='characters--wrapper'>
-
-              <div>
-                <img className="characters--image" src={admi} alt="logo" />
-                <p className="text--options"> ADMI</p>
-              </div>
-
-              <div className="calamardo">
-                <img className="characters--image" src={waiter} alt="logo" />
-                <p className="text--options"> WAITER</p>
-              </div>
-
-              <div>
-                <img className="characters--image" src={chef} alt="logo" />
-                <p className="text--options"> CHEF</p>
-              </div>
-
-            </div>
+          <div>
+            <input className='input input--password'
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handInputChange}
+              required
+            />
           </div>
 
-          <form onSubmit={enviarDatos}>
-            <div>
-              <input className='input input--email'
-                type={"text"}
-                placeholder={"Email"}
-                name={"email"}
-                onChange={handInputChange}
-                required
-              />
-            </div>
+          <div>
+            <button className='input button--login' type="submit"> LOG IN </button>
+          </div>
+        </form>
+      </section>
 
-            <div>
-              <input className='input input--password'
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={handInputChange}
-                required
-              />
-            </div>
-
-            <div>
-              <button className='input button--login' type="submit"> LOG IN </button>
-            </div>
-          </form>
-        </section>
-      </div>
-
-
-
-    </Fragment>
+    </div>
   );
 };
 export default Login;
