@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const PAdmi = (props) => {
 
     console.log(props.lerolero);

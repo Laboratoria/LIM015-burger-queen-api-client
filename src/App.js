@@ -29,7 +29,7 @@ function App() {
         <Route path="/waiter">
           <WaiterNav />
           <PickItems />
-          <BoxSelectItems />
+          <BoxSelectItems/>
 
         </Route>
 
