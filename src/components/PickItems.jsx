@@ -1,20 +1,36 @@
 import Button from './Button'
-import CustomerName from './CustomerName';
+import BoxSelectItems from './BoxSelectItems';
+import ProductBox from './ProductBox';
 
 const PickItems = () => {
-    return (
+  return (
+    <div className="flex flex-row h-80">
+      <div>
         <div>
-            <div>
-                <Button type={'primary'} name={'VIEW ORDER'} />
-            </div>
-            <div>
-                <Button type={'secondary'} name={'BREAKFAST'} />
-                <Button type={'tertiary'} name={'LUNCH'} />
-            </div>
+          <Button type={'primary'} name={'VIEW ORDER'} />
+        </div>
+        <div>
+          <Button type={'secondary'} name={'BREAKFAST'} />
+          <Button type={'tertiary'} name={'LUNCH'} />
 
-            {/* <CustomerName /> */}
+          <BoxSelectItems>
+            <ProductBox />
+            <ProductBox />
+            <ProductBox />
+            <ProductBox />
+          </BoxSelectItems>
+        </div>
 
-        </div >
-    )
+
+        {/* <CustomerName /> */}
+
+
+
+      </div >
+      <div>
+        <h1>Hola</h1>
+      </div>
+    </div>
+  )
 }
 export default PickItems;

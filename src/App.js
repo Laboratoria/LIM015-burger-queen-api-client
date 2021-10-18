@@ -14,7 +14,6 @@ import Chef from './components/Chef';
 import Admi from './components/Admi';
 import WaiterNav from './components/WaiterNav';
 import PickItems from './components/PickItems';
-import BoxSelectItems from './components/BoxSelectItems';
 
 function App() {
   return (
@@ -28,7 +27,6 @@ function App() {
         <Route path="/waiter">
           <WaiterNav />
           <PickItems />
-          <BoxSelectItems />
 
         </Route>
 

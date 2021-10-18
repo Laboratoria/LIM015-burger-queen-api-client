@@ -1,7 +1,7 @@
-import ProductCard from './ProductCard'
-const BoxSelectItems = () => {
+const BoxSelectItems = ({ children }) => {
     return (
-        <div className="bg-white-500 shadow-xl h-80 m-2.5 rounded-2xl">
+        <div className="bg-red-200 grid-cols-2 gap-4">
+            {children}
         </div>
     )
 }
