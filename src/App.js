@@ -16,6 +16,7 @@ import Waiter from './components/Waiter';
 
 
 
+
 function App() {
   return (
     <Router>
@@ -60,5 +61,6 @@ function App() {
 
   );
 }
+
 
 export default App;
