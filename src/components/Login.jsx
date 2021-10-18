@@ -3,8 +3,6 @@ import admi from '../img/admi.svg';
 import chef from '../img/chef.svg';
 import waiter from '../img/waiter.svg';
 
-
-
 const Login = () => {
   const [datos, setDatos] = useState({
     email: "",
@@ -15,57 +13,68 @@ const Login = () => {
   const handInputChange = (e) => {
     //console.log(e.target.value);
     setDatos({
-        ...datos,
-        [e.target.name]:e.target.value
+      ...datos,
+      [e.target.name]: e.target.value
     })
   };
 
-  const enviarDatos=(e) => {
-     e.preventDefault();
-     //verificacion del ruteo según sus opciones 
+  const enviarDatos = (e) => {
+    e.preventDefault();
+    //verificacion del ruteo según sus opciones 
 
-     console.log(datos.email + datos.password);
-     window.open("/waiter", "_self");
+    console.log(datos.email + datos.password);
+    window.open("/waiter", "_self");
   }
 
 
 
   return (
-    <Fragment>
-      <section className="containerlogin  ">
-        <h1>Welcome to Cangre Burger</h1>
-       <div className="optionEnterAS">
+    <div className="App bg-scroll bg-cover h-screen flex px-4 sm:px-0 mx-auto">
 
-           <h2> ENTER AS:</h2>
+      <section className="sm:mx-auto my-auto bg-gray-900 bg-opacity-60 shadow-xl rounded-3xl py-4">
+
+        <div className="cangreburgertitle">
+          <h1>Welcome to
+            Cangre Burger</h1>
+        </div>
+
+        <div className="login__options">
+          <h2 className='enter_as '> ENTER AS:</h2>
+          <div className='characters--wrapper'>
+
             <div>
-             <div> <img src={admi} className="App-logo" alt="logo" /> 
-             <p> ADMI</p>
-             </div>
-             <div> <img src={waiter} className="App-logo" alt="logo" />
-             <p> WAITER</p>
-              </div>
-             <div><img src={chef} className="App-logo" alt="logo" />
-             <p> CHEF</p>
-             </div>
-
+              <img className="characters--image" src={admi} alt="logo" />
+              <p className="text--options"> ADMI</p>
             </div>
-       </div>
 
-        <form  onSubmit={enviarDatos}>
+            <div className="calamardo">
+              <img className="characters--image" src={waiter} alt="logo" />
+              <p className="text--options"> WAITER</p>
+            </div>
+
+            <div>
+              <img className="characters--image" src={chef} alt="logo" />
+              <p className="text--options"> CHEF</p>
+            </div>
+
+          </div>
+        </div>
+
+        <form onSubmit={enviarDatos} className="text-center">
           <div>
-            <input
-              type="text"
-              placeholder="email"
-              name="email"
+            <input className='input input--email'
+              type={"text"}
+              placeholder={"Email"}
+              name={"email"}
               onChange={handInputChange}
               required
             />
           </div>
 
           <div>
-            <input
+            <input className='input input--password'
               type="password"
-              placeholder="password"
+              placeholder="Password"
               name="password"
               onChange={handInputChange}
               required
@@ -73,11 +82,12 @@ const Login = () => {
           </div>
 
           <div>
-            <button type="submit"> LOGIN IN </button>
+            <button className='input button--login' type="submit"> LOG IN </button>
           </div>
         </form>
       </section>
-    </Fragment>
+
+    </div>
   );
 };
 export default Login;
