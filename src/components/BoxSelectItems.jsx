@@ -1,17 +1,10 @@
-import ProductCard from './ProductCard';
-
-
-const BoxSelectItems = () => {
+const BoxSelectItems = ({ children }) => {
     return (
-        <section> 
-       <ProductCard />
 
-        <div className="bg-white-500 shadow-xl h-80 m-2.5 rounded-2xl">
-       
-
+        <div className="bg-white-200 shadow grid grid-cols-3 grid-rows-3 mt-10 rounded-2xl p-4 mx-8">
+            {children}
+            {/* {children2} */}
         </div>
-        </section>
-
     )
 }
 export default BoxSelectItems;
