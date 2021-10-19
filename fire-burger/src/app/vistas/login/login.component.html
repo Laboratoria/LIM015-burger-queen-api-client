@@ -1,23 +1,33 @@
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+<body>
+  <div class="container">
+  <div class="row">
+    <div class="col bg">
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="assets/logoBurguerQueen.png" id="icon" alt="User Icon" />
     </div>
+    <div class="col">
+      <div class="text-end">
+        <img src="./assets/LogoBQ.png" width="55" alt="">
+      </div>
+      <h2 class="fw-bold text-center py-5">Iniciar Sesión</h2>
 
-    <!-- Login Form -->
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-      <input type="text" id="login" class="fadeIn second"  placeholder="login" formControlName="usuario">
-      <input type="text" id="password" class="fadeIn third" placeholder="password" formControlName="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+      <!-- LOGIN -->
+       <form class="logIn-form" [formGroup]="loginFormYup"  (ngSubmit)="login()">
+         <div class="mb-4">
+           <label for="email" class="form-label">Correo electrónico</label>
+           <input  type="email" class="form-control" name="email" formControlName="email" placeholder= "usuario">
+          </div> 
+          <div class="mb-4">
+            <label for="email" class="form-label">Contraseña</label>
+            <input  type="password" class="form-control" name="password" formControlName="password" placeholder="password">
+         </div>
+         <div class="d-grid">
+            <button class="btn btn-primary" type="submit">Ingresar</button> 
+          </div>
+          <div class="my-3">
+           <span><a href="#">Recuperar Password</a></span>
+         </div>
+        </form>
+      </div>
     </div>
-
   </div>
-</div>
+</body>
