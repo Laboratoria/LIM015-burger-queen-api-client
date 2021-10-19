@@ -1,16 +1,12 @@
-import React, { Fragment } from 'react';
+
 const CustomerName = () => {
     return (
-        <Fragment>
-            <div className="flex">
 
-                <p className="text-xs">CUSTOMER NAME :</p>
+        <div className="pt-16 flex justify-center items-center text-2xl">
+            <p className="">CUSTOMER NAME:</p>
+            <input className="border rounded-lg	border-gray-900	 w-44 h-9 ml-2" type={'text'} placeholder={'Insert Name'} />
+        </div>
 
-                <input className="text-xs" type={'text'} placeholder={'Insert Name'} />
-
-            </div>
-
-        </Fragment>
     )
 }
 export default CustomerName;

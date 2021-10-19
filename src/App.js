@@ -15,6 +15,7 @@ import Admi from './components/Admi';
 import WaiterNav from './components/WaiterNav';
 import PickItems from './components/PickItems';
 
+
 function App() {
   return (
     <Router>
@@ -48,5 +49,6 @@ function App() {
 
   );
 }
+
 
 export default App;
