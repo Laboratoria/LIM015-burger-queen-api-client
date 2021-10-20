@@ -1,32 +1,31 @@
 <body>
   <div class="container">
-  <div class="row">
-    <div class="col bg">
-
-    </div>
-    <div class="col">
-      <div class="text-end">
-        <img src="./assets/LogoBQ.png" width="55" alt="">
+  <div class="mainContainer row">
+    <div class="container col">
+      <div>
+        <img src="./assets/BurgerQueen.png" class="img-fluid" width="" alt="">
       </div>
-      <h2 class="fw-bold text-center py-5">Iniciar Sesión</h2>
+    </div>
+    <div class="container col">
 
-      <!-- LOGIN -->
-       <form class="logIn-form" [formGroup]="loginFormYup"  (ngSubmit)="login()">
-         <div class="mb-4">
-           <label for="email" class="form-label">Correo electrónico</label>
-           <input  type="email" class="form-control" name="email" formControlName="email" placeholder= "usuario">
-          </div> 
-          <div class="mb-4">
-            <label for="email" class="form-label">Contraseña</label>
-            <input  type="password" class="form-control" name="password" formControlName="password" placeholder="password">
-         </div>
-         <div class="d-grid">
-            <button class="btn btn-primary" type="submit">Ingresar</button> 
-          </div>
-          <div class="my-3">
-           <span><a href="#">Recuperar Password</a></span>
-         </div>
-        </form>
+      <div class="containerLogin bg-light rounded-3" >
+        <h1 class="fw-bold text-center py-3">INICIAR SESIÓN</h1>
+
+        <!-- LOGIN -->
+         <form class="logIn-form" [formGroup]="loginFormYup"  (ngSubmit)="login()">
+           <div class="mb-4">
+             <input  type="email" class="form-control inputLogin" name="email" formControlName="email" placeholder= "Usuario">
+            </div> 
+            <div class="mb-4">
+              <input  type="password" class="form-control inputLogin" name="password" formControlName="password" placeholder="Contraseña">
+           </div>
+           <div class="d-grid rounded-3 py-3">
+              <button class="btn btn-primary" type="submit">Ingresar</button> 
+            </div>
+          </form>
+      </div>
+      
+     
       </div>
     </div>
   </div>
