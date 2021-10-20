@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import logoutbtn from '../img/logoutbtn.svg';
+
 const ProductBox = () => {
     return (
         <Fragment>
