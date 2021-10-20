@@ -1,15 +1,23 @@
-import React, { Fragment } from 'react';
-import logoutbtn from '../img/logoutbtn.svg';
+import PropTypes from 'prop-types';
 
-const ProductBox = () => {
+
+const ProductBox = ({ image, title, price, handleClick }) => {
     return (
-        <Fragment>
-            <div className='bg-gray-200 rounded-2xl w-28 h-28 box-border shadow-xl m-3'>
-                <img className='' src={logoutbtn} alt={''} />
-                <p className=''>Coffee</p>
-                <p className=''>$5.00</p>
-            </div>
-        </Fragment>
+
+        <div className='bg-gray-200 rounded-2xl w-28 h-28 box-border shadow-xl m-3' onClick={handleClick}>
+            <img className='' src={''} alt={''} />
+            <p className=''>{title}</p>
+            <p className=''>{price}</p>
+        </div>
+
     )
 }
+
+ProductBox.propTypes = {
+    image: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    handleClick: PropTypes.func,
+};
+
 export default ProductBox;

@@ -10,10 +10,10 @@ import {
 import './css/Login.css';
 import './css/Waiter.css'
 import Login from './components/Login';
-import Chef from './components/Chef';
 import Admi from './components/Admi';
-import WaiterNav from './components/WaiterNav';
-import PickItems from './components/PickItems';
+import WaiterFirstView from './components/WaiterFirstView';
+import PreviewCompletedOrders from './components/PreviewCompletedOrders';
+import DeliveredOrdersPreview from './components/DeliveredOrdersPreview';
 
 
 function App() {
@@ -26,17 +26,15 @@ function App() {
         </Route>
 
         <Route path="/waiter">
-          <WaiterNav />
-          <PickItems />
-
+          <WaiterFirstView />
         </Route>
 
-        <Route path="/orders">
-          <WaiterNav />
+        <Route path="/completed">
+          <PreviewCompletedOrders />
         </Route>
 
-        <Route path="/orderlist">
-          <Chef />
+        <Route path="/delivered">
+          <DeliveredOrdersPreview />
         </Route>
 
         <Route path="/admi">
