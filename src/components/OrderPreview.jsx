@@ -1,36 +1,124 @@
-import React, { Fragment } from 'react';
-import Button from './Button'
+import React, { useState } from 'react';
+import Button from "./Button";
+import iconAdd from "../img/iconAdd.svg";
+import iconNegative from "../img/iconNegative.svg";
+//import iconDelete from "../img/iconDelete.svg";
+
+
+const ListaOrder = (data) => {
+  console.log(data.orders);
+
+  return (
+        data.orders.map((dat) => (
+
+        <div className="md: flex flex-col  items-center text-lg " key={dat.id}>
+          <div className=" grid grid-rows-2 grid-flow-col gap-2">
+            <div className="p-2 mt-2 text-blue-400" > order: {dat.order}</div>
+            <div className="p-2 mt-2"> waiter: {dat.waiter}</div>
+            <div className="p-2 mt-2 row-span-3 justify-center flex items-center"> Time Order : {dat.timeOrder}</div>
+           
+          </div>
+
+          <table className="table-fixed">
+            <thead>
+              <tr className="  divide-x divide-blue-300 text-center">
+                <th className=" grid col-span-3 ">PRODUCT</th>
+                <th> - </th>
+                <th className="">AMOUNT</th>
+                <th> + </th>
+                <th className="">PRICE</th>
+              </tr>
+            </thead>
+
+            <tbody className="bg-red text-center">
+              {dat.products.map((list) => (
+                <tr key={list.id}>
+                  <td>{list.product} </td>
+                  <td>
+                    <img className="" src={iconNegative} alt={""} />{" "}
+                  </td>
+                  <td>{list.amount} </td>
+                  <td>
+                    <img className="" src={iconAdd} alt={""} />{" "}
+                  </td>
+                  <td>{list.price} </td>
+                  <td>
+                  <img className="" src={iconAdd} alt={""} />{" "}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div>{dat.notes}</div>
+
+          <div>{dat.total}</div>
+        </div>
+      ))
+    
+  );
+};
+
+
+
+
+
 const OrderPreview = () => {
-    return (
-        <Fragment>
 
-            <div className="bg-white-200 shadow mt-20 rounded-2xl p-4 ml-10 mx-8">
-                <div>
-                    <p>ORDER N0001</p>
-                    <p>WAITER: JUAN</p>
-                </div>
+  const dataOrders = [
+    {
+      id: "1p",
+      name: "Tania",
+      image: " img1",
+      type: "cofee",
+      order: " N° 0001",
+      timeOrder: "13/10/2021 13:00 PM",
+      notes: " esta nota es para tania",
+      waiter: "juan",
+      total: "20$",
+      products: [
+        {
+          id: "produc1",
+          product: "produc1",
+          price: "1$",
+          amount: " Q1",
+        },
+        {
+          id: "produc2",
+          product: "produ2",
+          price: "2$",
+          amount: "Q2",
+        },
+        {
+            id: "produc3",
+            product: "produc3",
+            price: "3$",
+            amount: "Q3",
+          },
+          {
+            id: "produc3",
+            product: "produc3",
+            price: "3$",
+            amount: "Q4",
+          }
 
-                <div>
-                    <p>TIME ORDER : 13/10/21 13:00PM</p>
-                    {/* <p></p> */}
-                </div>
+      ],
+    },
+  ];
 
-                <div>
-                    <p>PRODUCT</p>
-                    <p>ITEMS</p>
-                    <p>PRICE</p>
-                </div>
 
-                <textarea>Notes:</textarea>
+  const [orders, setOrders] = useState(dataOrders);
 
-                <div>
-                    <p>TOTAL $59</p>
-                </div>
-                <Button />
-                <Button />
+  return (
+    <div className="bg-white-200 shadow mt-20 rounded-2xl p-4 ml-10 mx-8">
+      <div></div>
+      <ListaOrder orders={orders} />
+      <div>
+        <Button />
+        <Button />
+      </div>
+    </div>
+  );
+};
 
-            </div>
-        </Fragment >
-    )
-}
 export default OrderPreview;
