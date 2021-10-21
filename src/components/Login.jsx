@@ -18,30 +18,8 @@ const Login = () => {
     })
   };
 
-  const enviarDatos = (e) => {
-    e.preventDefault();
-
-    //verificacion del ruteo según sus opciones 
-
-    //console.log(datos.email + datos.password);
-    //window.open("/waiter", "_self");
-  }
-
-
-  const selecCharacters =(select) => {
-   
-  if (select==="admi"){
-    window.open("/admi", "_self");
-
-  }else if (select==="waiter"){
-    window.open("/waiter", "_self");
-
-  }else if(select==="chef"){
-   // window.open("/chef", "_self");
-  }
-  }
-
-
+ 
+  
 
   return (
     <div className="App bg-scroll bg-cover h-screen flex px-4 sm:px-0 mx-auto">
@@ -85,7 +63,7 @@ const Login = () => {
           </div>
         </div>
 
-        <form onSubmit={enviarDatos} className="text-center">
+        <form className="text-center">
           <div>
             <input className='input input--email'
               type={"text"}
