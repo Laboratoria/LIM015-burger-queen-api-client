@@ -14,7 +14,7 @@ import Admi from './components/Admi';
 import WaiterFirstView from './components/WaiterFirstView';
 import PreviewCompletedOrders from './components/PreviewCompletedOrders';
 import DeliveredOrdersPreview from './components/DeliveredOrdersPreview';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 function App() {
