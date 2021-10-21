@@ -58,19 +58,29 @@ const Login = () => {
           <h2 className='enter_as '> ENTER AS:</h2>
           <div className='characters--wrapper'>
 
-            <div className="cursor-pointer hover:bg-purple-700" onClick={selecCharacters("admi")}>
-              <img className="characters--image  " src={admi} alt="logo" />
-              <p className="text--options  focus:outline-none focus:ring-2 focus:ring-teal-600"> ADMI</p>
+            <div className='flex flex-col'>
+              <img className="characters--image" src={admi} alt="logo" />
+              <div className='flex flex-row items-center gap-2 pl-4'>
+                <input type='radio'></input>
+                <p className="text--options text--options  focus:outline-none focus:ring-2 focus:ring-teal-600"> ADMI</p>
+              </div>
             </div>
 
-            <div className="calamardo cursor-pointer" /*onClick={selecCharacters("waiter")}*/>
-              <img className="characters--image" src={waiter} alt="logo" />
-              <p className="text--options"> WAITER</p>
+            <div className='flex flex-col' >
+              <img className='characters--image' src={waiter} alt="logo" />
+              <div className='flex flex-row items-center gap-2 pl-2'>
+                <input type='radio'></input>
+                <p className='text--options'> WAITER</p>
+              </div>
             </div>
 
-            <div className="cursor-pointer" /*onClick={selecCharacters("chef")}*/>
+            <div className='flex flex-col'>
               <img className="characters--image" src={chef} alt="logo" />
-              <p className="text--options"> CHEF</p>
+              <div className='flex flex-row items-center gap-2 px-4'>
+                <input type='radio'></input>
+                <p className="text--options"> CHEF</p>
+              </div>
+
             </div>
 
           </div>
@@ -103,7 +113,7 @@ const Login = () => {
         </form>
       </section>
 
-    </div>
+    </div >
   );
 };
 export default Login;
