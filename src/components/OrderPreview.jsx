@@ -21,11 +21,11 @@ const ListaOrder = (data) => {
 
           <table>
             <thead>
-              <tr className="  divide-x divide-blue-300 text-center">
+              <tr className=" text-center">
                 <th className="w-1/2 ">PRODUCT</th>
-                <th> (-) </th>
+                <th> <span className='text-teal-500 px-14'>|</span></th>
                 <th className="">AMOUNT</th>
-                <th> (+) </th>
+                <th> <span className='text-teal-500 px-14'>|</span></th>
                 <th className="w-1/2">PRICE</th>
               </tr>
             </thead>
@@ -38,12 +38,12 @@ const ListaOrder = (data) => {
                     <img className="" src={iconNegative} alt={""} />{" "}
                   </td>
                   <td>{list.amount} </td>
-                  <td>
-                    <img className="" src={iconAdd} alt={""} />{" "}
+                  <td className="items-end">
+                    <img  src={iconAdd} alt={""} />{" "}
                   </td>
                   <td>{list.price} </td>
-                  <td>
-                  <img className="" src={iconAdd} alt={""} />{" "}
+                  <td >
+                  <img className="text-left" src={iconAdd} alt={""} />{" "}
                   </td>
                 </tr>
               ))}

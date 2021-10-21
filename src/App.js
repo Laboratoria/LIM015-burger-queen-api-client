@@ -37,6 +37,10 @@ function App() {
           <DeliveredOrdersPreview />
         </Route>
 
+        <Route path="/chef">
+          
+        </Route>
+
         <Route path="/admi">
           <Admi />
         </Route>

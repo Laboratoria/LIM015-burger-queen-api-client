@@ -20,10 +20,26 @@ const Login = () => {
 
   const enviarDatos = (e) => {
     e.preventDefault();
+
     //verificacion del ruteo según sus opciones 
 
-    console.log(datos.email + datos.password);
+    //console.log(datos.email + datos.password);
+    //window.open("/waiter", "_self");
+  }
+
+
+  const selecCharacters =(select) => {
+   
+  if (select==="admi"){
+    window.open("/admi", "_self");
+
+  }else if (select==="waiter"){
     window.open("/waiter", "_self");
+
+  }else if(select==="chef"){
+   // window.open("/chef", "_self");
+  }
+
   }
 
 
@@ -42,17 +58,17 @@ const Login = () => {
           <h2 className='enter_as '> ENTER AS:</h2>
           <div className='characters--wrapper'>
 
-            <div>
-              <img className="characters--image" src={admi} alt="logo" />
-              <p className="text--options"> ADMI</p>
+            <div className="cursor-pointer hover:bg-purple-700" onClick={selecCharacters("admi")}>
+              <img className="characters--image  " src={admi} alt="logo" />
+              <p className="text--options  focus:outline-none focus:ring-2 focus:ring-teal-600"> ADMI</p>
             </div>
 
-            <div className="calamardo">
+            <div className="calamardo cursor-pointer" /*onClick={selecCharacters("waiter")}*/>
               <img className="characters--image" src={waiter} alt="logo" />
               <p className="text--options"> WAITER</p>
             </div>
 
-            <div>
+            <div className="cursor-pointer" /*onClick={selecCharacters("chef")}*/>
               <img className="characters--image" src={chef} alt="logo" />
               <p className="text--options"> CHEF</p>
             </div>
