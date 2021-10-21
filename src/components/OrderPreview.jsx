@@ -19,18 +19,18 @@ const ListaOrder = (data) => {
            
           </div>
 
-          <table className="table-fixed">
+          <table>
             <thead>
-              <tr className="  divide-x divide-blue-300 text-center">
-                <th className=" grid col-span-3 ">PRODUCT</th>
-                <th> - </th>
+              <tr className=" text-center">
+                <th className="w-1/2 ">PRODUCT</th>
+                <th> <span className='text-teal-500 px-14'>|</span></th>
                 <th className="">AMOUNT</th>
-                <th> + </th>
-                <th className="">PRICE</th>
+                <th> <span className='text-teal-500 px-14'>|</span></th>
+                <th className="w-1/2">PRICE</th>
               </tr>
             </thead>
 
-            <tbody className="bg-red text-center">
+            <tbody className=" text-center">
               {dat.products.map((list) => (
                 <tr key={list.id}>
                   <td>{list.product} </td>
@@ -38,22 +38,31 @@ const ListaOrder = (data) => {
                     <img className="" src={iconNegative} alt={""} />{" "}
                   </td>
                   <td>{list.amount} </td>
-                  <td>
-                    <img className="" src={iconAdd} alt={""} />{" "}
+                  <td className="items-end">
+                    <img  src={iconAdd} alt={""} />{" "}
                   </td>
                   <td>{list.price} </td>
-                  <td>
-                  <img className="" src={iconAdd} alt={""} />{" "}
+                  <td >
+                  <img className="text-left" src={iconAdd} alt={""} />{" "}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
 
-          <div>{dat.notes}</div>
+          <form action="">
+          <textarea   className="bg-amber-100  p-1 my-2 text-lg" >NOTES:</textarea>
+          </form>
+          <div className=" p-6">{dat.total}</div>
 
-          <div>{dat.total}</div>
-        </div>
+         <div className="flex flex-row">
+         <Button type={'secondary'} name={'CANCEL'} />
+          <Button type={'secondary'} name={'SEND TO KITCHEN'} />
+         </div>
+
+      </div>
+      
+
       ))
     
   );
@@ -96,7 +105,7 @@ const OrderPreview = () => {
             amount: "Q3",
           },
           {
-            id: "produc3",
+            id: "produc4",
             product: "produc3",
             price: "3$",
             amount: "Q4",

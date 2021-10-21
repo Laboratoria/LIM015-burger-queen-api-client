@@ -105,7 +105,7 @@ const Login = () => {
             </div>
             {error ? (
               <div>
-                <p>Please, complete all fields</p>
+                <p className='text-red-500 text-sm text-lg'>Please, complete all fields</p>
               </div>
             ) : null}
 

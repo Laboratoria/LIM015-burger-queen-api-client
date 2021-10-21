@@ -41,17 +41,24 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .characters--wrapper{
     display: flex;
     align-items: center;
     padding: 2em;
     justify-content: space-around;
 }
+
+
+
 .characters--image{
     text-align: center;
     width: 100px;
     height: 100px;
 }
+
+
+
 .calamardo{
     padding: 0 2em;
 }
