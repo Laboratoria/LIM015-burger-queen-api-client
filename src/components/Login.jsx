@@ -39,7 +39,6 @@ const Login = () => {
   }else if(select==="chef"){
    // window.open("/chef", "_self");
   }
-
   }
 
 
