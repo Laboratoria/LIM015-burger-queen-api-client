@@ -1,41 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from 'react-router-dom'
+import getToken from "../Authentication/auth";
 import admi from '../img/admi.svg';
 import chef from '../img/chef.svg';
 import waiter from '../img/waiter.svg';
 
 const Login = () => {
-  const [data, setData] = useState({
+
+  const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
   const [option, setOption] = useState('');
+
   const [redirect, setRedirect] = useState(false);
+
   const [error, setError] = useState(false);
 
+  const [datauser, setDatauser] = useState({});
 
+  useEffect(() => {
+    if (datauser.email) {
+      if (datauser.email === form.email && form.password && option === 'admin' && datauser.roles.admin) {
+        setRedirect(true);
+      }
+    }
+  }, [datauser.email]);
 
   const handleSelectOption = (event) => {
-    console.log(event.target.value);
     setOption(event.target.value);
   }
 
   const handInputChange = (e) => {
-    //console.log(e.target.value);
-    setData({
-      ...data,
+    setForm({
+      ...form,
       [e.target.name]: e.target.value
     })
   };
 
-  const sendForm = (e) => {
+  const sendForm = async (e) => {
     e.preventDefault();
-    if (data.email && data.password && option) {
-      setRedirect(true);
+    if (form.email && form.password && option) {
+      try {
+        const response = await getToken('admin@localhost')
+        setDatauser(response) // actualizacion de un estado es async
+
+      } catch (error) {
+        console.log(error.message);
+      }
     } else {
-      setError(true)
+      setError(true);
     }
+    // if (data.email && data.password && option) {
+    //setRedirect(true)};
+    // if (datauser.email === data.email && data.password && option === 'admin' && datauser.roles.admin) {
+    //   setRedirect(true);
+    // }
+    // else {
+    //   setError(true)
+    // }
   }
 
   return (
@@ -43,7 +67,6 @@ const Login = () => {
       <Redirect to={`/${option}`} />
     ) : (
       <div className="App bg-scroll bg-cover h-screen flex px-4 sm:px-0 mx-auto" >
-
         <section className="sm:mx-auto my-auto bg-gray-900 bg-opacity-60 shadow-xl rounded-3xl py-4">
 
           <div className="cangreburgertitle">
@@ -58,7 +81,7 @@ const Login = () => {
               <div className='flex flex-col'>
                 <img className="characters--image" src={admi} alt="logo" />
                 <div className='flex flex-row items-center gap-2 pl-4'>
-                  <input type='radio' name={'role'} value={'admi'} onClick={handleSelectOption} />
+                  <input type='radio' name={'role'} value={'admin'} onClick={handleSelectOption} />
                   <p className="text--options"> ADMI</p>
                 </div>
               </div>
@@ -105,7 +128,7 @@ const Login = () => {
             </div>
             {error ? (
               <div>
-                <p className='text-red-500 text-sm text-lg'>Please, complete all fields</p>
+                <p className='text-red-500 text-sm text-lg pb-2'>Please, complete all fields</p>
               </div>
             ) : null}
 
