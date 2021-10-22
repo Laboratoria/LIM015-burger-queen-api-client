@@ -1,14 +1,12 @@
+$body-bg: #000;
+$body-color: #111;
 
-$principal: red !important; 
-
-$primary: $principal !important;
+$primary: #C13E22;
+$secondary: #FFBD15;
 
 .btn-primary {
-    color: rgb(17, 15, 15) !important;
-    background-color: $principal !important;
-    border-color: $principal !important;
+    color: #fff;
+    background-color: $primary;
+    border-color: $primary;
 }
-
-@import "../node_modules/bootstrap/scss/bootstrap";
-
 
