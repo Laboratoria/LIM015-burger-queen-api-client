@@ -42,7 +42,7 @@ function App() {
 
         </Route>
 
-        <Route path="/admi">
+        <Route path="/admin">
           <Admi />
         </Route>
 
