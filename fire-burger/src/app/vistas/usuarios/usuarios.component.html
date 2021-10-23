@@ -1,32 +1,90 @@
-<nav class="navbar navbar-light bg-light">
-  <div class="container-lg">
-    <form class="container-fluid row">
-      <div class="col-2">
-        <a class="navbar-brand" href="#">
-          <img src="./assets/FireBurger.png" alt="" width="100" />
-        </a>
-      </div>
-      <div class="col-9 d-flex flex-row justify-content-end align-items-end">
-        <button class="btn btn-outline-success me-2" type="button">
-          Main button
-        </button>
-        <button class="btn btn-outline-success me-2" type="button">
-          Main button
-        </button>
-      </div>
-      <div class="col-1 d-flex flex-row justify-content-end align-items-start">
-        <i class="fas fa-sign-out-alt"></i>
-      </div>
-    </form>
-  </div>
-  <div>
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-light bg-transparent">
+      <form class="container-fluid row">
+        <div class="col-2">
+          <a class="navbar-brand" href="#">
+            <img src="./assets/FireBurger.png" alt="" width="150" />
+          </a>
         </div>
-      </nav>
+        <div class="col-9 d-flex flex-row justify-content-end align-items-end">
+          <button class="btn btn-outline-primary me-2" type="button">
+            USUARIOS
+          </button>
+          <button class="btn btn-outline-primary me-2" type="button">
+            PRODUCTOS
+          </button>
+        </div>
+        <div class="col-1 d-flex flex-row justify-content-end align-items-start">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+      </form>
+    </nav>
+    <nav class="navbar navbar-light bg-transparent d-flex justify-content-center">
+        <form class="d-flex searcher">
+          <input class="searchBar form-control me-2" type="search" placeholder="Buscar usuario" aria-label="Search">
+          <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i>
+          </button>
+        </form>
+    </nav>
   </div>
-</nav>
+<div class="d-flex justify-content-center m-3">
+    <button class="btn btn-info" type="button" s data-bs-toggle="modal" data-bs-target="#exampleModal">NUEVO USUARIO</button>
+</div>
+ 
+
+<div class="container d-flex justify-content-center">
+<table class="table mt-3">
+  <thead class="customTable fs-4 text-center">
+      <th>Usuario</th>
+      <th>Contraseña</th>
+      <th>Cargo</th>
+      <th></th>
+  </thead>
+  <tbody>
+    <tr class="text-center">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td >
+        <button class="icons"><i class="far fa-edit fs-4"></i> </button>
+        <button class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">AGREGAR USUARIO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue"> 
+          <div class="mb-3">
+            <input class="form-control me-2" type="text" formControlName="usuario" placeholder="Usuario" aria-label="Usuario">
+          </div>
+          <div class="mb-3">
+            <input class="form-control me-2" type="text" formControlName="cargo" placeholder="Cargo" aria-label="Cargo">
+          </div>
+          <div class="mb-3">
+            <input class="form-control me-2" type="text" formControlName="contraseña" placeholder="Contraseña" aria-label="Contraseña">
+          </div>
+        </form>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
