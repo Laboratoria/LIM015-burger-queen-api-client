@@ -1,3 +1,50 @@
+.searcher {
+    width: 60%;
+}
+
 .fa-sign-out-alt{
     font-size: 2rem;
+}
+
+.fas, .far {
+    color: white;
+}
+
+.icons{
+    background-color: transparent;
+    border: none;
+    margin: 0 0.5em;
+}
+
+.btn-info {
+    display: block;
+}
+
+.btn {
+    color: white; 
+}
+
+.table {
+    color: white; 
+    font-weight: 400;
+    width: 80%;
+}
+
+
+
+.customTable > th {
+    width: 25%;
+}
+
+.searchBar{
+    background-color: rgba(242,183,5,0.2);
+    border-color: white; 
+    color: white;
+    border-width: 1px;
+    border-radius:15px;
+    }
+    
+.searchBar:focus {
+    border-color: white;
+    box-shadow: none;
 }

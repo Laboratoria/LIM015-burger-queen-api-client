@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-usuarios',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-
-  constructor() { }
+   
+  formValue !: FormGroup;
+  constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formValue = this.formbuilder.group({
+      usuario : [''],
+      cargo : [''],
+      contraseña: [''],
+    })
   }
 
 }
