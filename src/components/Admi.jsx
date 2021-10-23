@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from "react";
+import axios from  "axios";
+
+
 
 
 const PAdmi = (props) => {
@@ -46,6 +50,7 @@ const PAdmi = (props) => {
 }
 
 
+
 const Admi = () => {
 
     const usersData = [
@@ -56,7 +61,22 @@ const Admi = () => {
     
       const [users, setUsers] = useState( usersData);
 
-    
+  /*const url=
+
+ const getData =() => {
+ axios.get(url).
+
+ }
+
+
+ useEffect(() => {
+ 
+
+ },[])*/
+ 
+
+
+  
     return (
       <div className="container">
         <h1>CRUD App with Hooks</h1>
@@ -75,6 +95,7 @@ const Admi = () => {
 
   
   export default Admi;
+
 
 
 

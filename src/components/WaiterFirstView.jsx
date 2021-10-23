@@ -14,6 +14,8 @@ const WaiterFirstView = () => {
   const [userOrder, setuserOrder] = useState('[]');
 
 
+
+
   return (
     <Fragment>
 
@@ -36,7 +38,6 @@ const WaiterFirstView = () => {
             <Button type={'secondary'} name={'BREAKFAST'} />
             <Button type={'tertiary'} name={'LUNCH'} />
           </div >
-
 
 
           <BoxSelectItems>
