@@ -1,13 +1,16 @@
 
 import React, { useEffect, useState } from "react";
-import axios from  "axios";
+//import axios from  "axios";
+
+
+import {getUser} from  "../Authentication/auth"
 
 
 
 
 const PAdmi = (props) => {
 
-    console.log(props.lerolero);
+    //console.log(props.lerolero);
 
     return (
       
@@ -25,8 +28,8 @@ const PAdmi = (props) => {
             props.lerolero.length>0? 
             props.lerolero.map( (user) => (
             <tr key={user.id}>
-                <td> {user.name}</td>
-                <td>{user.username}</td>
+                <td> {user.email}</td>
+                <td>{user.email}</td>
                 <td>
                 <button className="button muted-button">Edit</button>
                 <button className="button muted-button">Delete</button>
@@ -51,36 +54,63 @@ const PAdmi = (props) => {
 
 
 
+
+
+
+const baseUrl = "https://burger-queenn.herokuapp.com/users"
+
+
 const Admi = () => {
 
-    const usersData = [
-        { id: 1, name: 'Tania', username: 'floppydiskette' },
-        { id: 2, name: 'Craig', username: 'siliconeidolon' },
-        { id: 3, name: 'Ben', username: 'benisphere' },
-      ] 
+  const tokenN = localStorage.getItem("token");
+  console.log(tokenN);
+
+  /*const data=[{
+    "id":"id1",
+    "email":"ninoskachef1@cgr.com",
+    "password":"Chef1$",
+    "roles":{
+        "admi":"true",
+        "name":"Admin"}
+    },{
+    "id":"id2",
+    "email":"alisoncheff1@cgr.com",
+    "password":"Chef+nf1$",
+    "roles":{
+        "admi":"false",
+        "name":"chef"}
+    },
+    {
+    "id":"id2",
+    "email":"waiterda1@cgr.com",
+    "password":"waiter1$",
+    "roles":{
+        "admi":"false",
+        "name":"waiter"}
+      
+    }]*/
+
     
-      const [users, setUsers] = useState( usersData);
 
-  /*const url=
+const [users, setUsers] = useState( []);
 
- const getData =() => {
- axios.get(url).
+const petitionGet = async () =>{
+  const data = await getUser(baseUrl);
+setUsers(data.data);
+//setUsers(data);
+//console.log(data);
 
- }
+}
+
+useEffect( () =>{
+petitionGet();
+},[]);
 
 
- useEffect(() => {
- 
-
- },[])*/
- 
-
-
-  
-    return (
-      <div className="container">
-        <h1>CRUD App with Hooks</h1>
-        <div className="flex-row">
+return (
+  <div className="container">
+    <h1>CRUD App with Hooks</h1>
+      <div className="flex-row">
           <div className="flex-large">
             <h2>Add user</h2>
           </div>
@@ -89,7 +119,7 @@ const Admi = () => {
             <PAdmi lerolero={users} />
           </div>
         </div>
-      </div>
+  </div>
     )
   }
 

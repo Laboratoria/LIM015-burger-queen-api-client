@@ -1,69 +1,54 @@
-
-//import { getDefaultNormalizer } from "@testing-library/react";
 import axios from "axios";
-import Cookies from 'universal-cookie';
 
-// import jwtDecode from 'jwt-decode'
-
-let url = 'https://burger-queen-an.herokuapp.com/auth' //endpoint
+let url = "https://burger-queenn.herokuapp.com/auth"; //endpoint
 
 const body = {
-    email: 'admin@localhost',
-    password: 'changeme'
-}
+  email: "admin@localhost",
+  password: "changeme",
+};
+
+const getTokenN = async (url, body) => {
+  const apiResponse = await axios.post(url, body);
+  const tokenData = apiResponse.data.token;
+  localStorage.setItem("token", tokenData);
+  const token = localStorage.getItem("token");
+  //console.log(token);
+
+  return token;
+};
 
 
-console.log( "token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjc4NWExMDBlMDdmZmZkNTIyNmVjOSIsImlhdCI6MTYzNDk1NDI3NCwiZXhwIjoxNjM1MDQwNjc0fQ.Fb4qZ0LyfLIkLr5yceFqLVdtVwLHP2P5rfbb0II8670");
+//get data of user with email.
+export const getUserEmail = async (email) => {
+  const token = await getTokenN(url, body);
+  //console.log(token);
+  const concatPath = `https://burger-queenn.herokuapp.com/users/${email}`;
+  const response = await axios.get(concatPath, {
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+  });
+  console.log(response.data);
 
-const getToken = async (email) => {
-    const apiResponse = await axios.post(url, body) 
-        const token = apiResponse.data.token;
-        
-        const cookies = new Cookies();
-        cookies.set('myToken', {token}, { path: '/' });
-        const tokenN = cookies.get('myToken')
-    
-
-    /*
-     axios.post("https://burger-queen-an.herokuapp.com/users", {
-
-        headers: {
-        'Authorization': 'Bearer ' + tokenN,
-        'Content-Type': 'application/json'
-        },
-        body: {
-         "email":"matias82@gmail.com",
-         "password":"Natias13$",
-         "roles":{"chef":true}
-    
-        },
-
-     }).then( res => console.log(res))*/
-
-     
-    
-    // info to authentication
-    switch (apiResponse.status) {
-        case 200:
-            const path = (`https://burger-queen-an.herokuapp.com/users/${email}`)
-           // console.log(path, 'path');
-            const response = await axios.get(path, {
-                headers: {
-                    'Authorization': 'Bearer ' + apiResponse.data.token,
-                    'Content-Type': 'application/json'
-                }
-            })
-
-            console.log(response.data, 'rspdata');
-            return response.data
-
-        case 404:
-            // code block
-            break;
-        default:
-        // code block
-    }
-}
-export default getToken;
+  return response.data;
+};
 
 
+//get data of users
+
+export const getUser = async (path) => {
+  const apiResponse = await axios.post(url, body);
+  const tokenN = apiResponse.data.token;
+  return await axios
+    .get(path, { headers: { Authorization: `Bearer ${tokenN}` } })
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((err) => console.log(err));
+};
+
+getUser("https://burger-queenn.herokuapp.com/users").then((r) =>
+  console.log(r)
+);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from 'react-router-dom'
-import getToken from "../Authentication/auth";
+import {getUserEmail} from "../Authentication/auth";
 import admi from '../img/admi.svg';
 import chef from '../img/chef.svg';
 import waiter from '../img/waiter.svg';
@@ -21,9 +21,23 @@ const Login = () => {
   const [datauser, setDatauser] = useState({});
 
   useEffect(() => {
+    //console.log(datauser.roles.name);
+
+    const condicionData=datauser.email === form.email && form.password   && form.password===datauser.password;
+
     if (datauser.email) {
-      if (datauser.email === form.email && form.password && option === 'admin' && datauser.roles.admin) {
+      if ( condicionData && option ==='admin' && datauser.roles.admin  ) {
+        console.log("admin");
         setRedirect(true);
+      }else if(condicionData && option ==='waiter' && !datauser.roles.admin /*&& datauser.roles.name==="waiter"*/){
+        console.log("waiter");
+
+        setRedirect(true);
+      }else if (condicionData && option === 'chef' && !datauser.roles.admin /*&& datauser.roles.name==="chef"*/){
+        console.log("chef");
+        setRedirect(true);
+      }else {
+        setError(true);
       }
     }
   }, [datauser.email]);
@@ -43,7 +57,7 @@ const Login = () => {
     e.preventDefault();
     if (form.email && form.password && option) {
       try {
-        const response = await getToken('admin@localhost')
+        const response = await getUserEmail(form.email)
         setDatauser(response) // actualizacion de un estado es async
 
       } catch (error) {
@@ -52,14 +66,7 @@ const Login = () => {
     } else {
       setError(true);
     }
-    // if (data.email && data.password && option) {
-    //setRedirect(true)};
-    // if (datauser.email === data.email && data.password && option === 'admin' && datauser.roles.admin) {
-    //   setRedirect(true);
-    // }
-    // else {
-    //   setError(true)
-    // }
+    
   }
 
   return (
@@ -128,7 +135,7 @@ const Login = () => {
             </div>
             {error ? (
               <div>
-                <p className='text-red-500 text-sm text-lg pb-2'>Please, complete all fields</p>
+                <p className='text-red-500 text-sm text-lg pb-2'>Please, complete all fields , selection the  correct options  and correct credentials </p>
               </div>
             ) : null}
 
