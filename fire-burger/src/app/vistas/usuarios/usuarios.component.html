@@ -73,17 +73,32 @@
             <input class="form-control me-2" type="text" formControlName="usuario" placeholder="Usuario" aria-label="Usuario">
           </div>
           <div class="mb-3">
-            <input class="form-control me-2" type="text" formControlName="cargo" placeholder="Cargo" aria-label="Cargo">
+            <input class="form-control me-2" type="password" formControlName="contraseña" placeholder="Contraseña" aria-label="Contraseña">
           </div>
           <div class="mb-3">
-            <input class="form-control me-2" type="text" formControlName="contraseña" placeholder="Contraseña" aria-label="Contraseña">
+            <select class="form-select" formControlName="cargo" aria-label="Cargo">
+              <option selected>Selecciona cargo</option>
+              <option value="1">Mesero</option>
+              <option value="2">Cocinero</option>
+              <option value="3">Administrador</option>
+            </select>
+            <!-- <input class="form-control me-2" type="text" formControlName="cargo" placeholder="Cargo" aria-label="Cargo"> -->
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" formControlName="admin" type="checkbox" value="" id="flexCheckAdmin">
+              <label class="form-check-label" for="flexCheckAdmin">
+                Administrador
+              </label>
+            </div>
+            <!-- <input class="form-control me-2" type="text" formControlName="admin" placeholder="Administrador" aria-label="Administrador"> -->
           </div>
         </form>
   
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Añadir</button>
+        <button type="button" id= "cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" (click) = "postUserDetails()" class="btn btn-primary">Añadir</button>
       </div>
     </div>
   </div>
