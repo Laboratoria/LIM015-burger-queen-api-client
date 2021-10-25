@@ -41,6 +41,7 @@ const WaiterFirstView = () => {
 
 
           <BoxSelectItems>
+            
             {products.map(product => <ProductBox image={ChefSVG} title={product.description} price={product.price} />)}
 
           </BoxSelectItems>

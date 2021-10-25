@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import Button from "./Button";
 import iconAdd from "../img/iconAdd.svg";
+import {getProducts} from "../Authentication/auth"
 import iconNegative from "../img/iconNegative.svg";
 //import iconDelete from "../img/iconDelete.svg";
 
 
 const ListaOrder = (data) => {
+
   console.log(data.orders);
 
   return (
@@ -74,6 +76,7 @@ const ListaOrder = (data) => {
 
 const OrderPreview = () => {
 
+  
   const dataOrders = [
     {
       id: "1p",
@@ -113,10 +116,34 @@ const OrderPreview = () => {
 
       ],
     },
-  ];
-
-
+  ]; 
+  
+  
+  
   const [orders, setOrders] = useState(dataOrders);
+
+  const [product, setProduct] = useState([]);
+
+  const url="https://burger-queenn.herokuapp.com/Products"
+
+  const productGet = async () =>{
+    const data = await getProducts(url);
+    setProduct(data.data);
+    console.log(product);
+    }
+
+
+
+
+
+
+    
+
+  useEffect( () =>{
+    productGet();
+    },[]);
+
+
 
   return (
     <div className="bg-white-200 shadow mt-20 rounded-2xl p-4 ml-10 mx-8">

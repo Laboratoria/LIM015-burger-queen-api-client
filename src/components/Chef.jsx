@@ -1,6 +1,27 @@
+
+import NavOpcion from './nav';
+import React, { Fragment } from "react";
+import chef from '../img/chef.svg';
+
+
+
 const Chef = () => {
+
     return (
-        <h1>Aqui va Chef </h1>
+       <Fragment>
+        <NavOpcion 
+        imgOption={chef}
+        option="CHEF"
+        />
+
+
+        <section>
+        
+       <h1>Aqui va Chef </h1>
+        </section>
+
+        </Fragment>
+        
     )
 }
 export default Chef;
