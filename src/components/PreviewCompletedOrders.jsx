@@ -1,11 +1,20 @@
-import WaiterNav from './WaiterNav';
+import NavOpcion from './nav';
+import waiter from '../img/waiter.svg';
+import burgerimg from '../img/burgerimg.svg'
+
+
 import React, { Fragment } from 'react';
 import ListOfCompletedOrders from './ListOfCompletedOrders';
 
 const PreviewCompletedOrders = () => {
     return (
         <Fragment>
-            <WaiterNav />
+            <NavOpcion 
+                imgHome={burgerimg}
+                home="ORDERS"
+                imgOption={waiter}
+                option="ADMI"
+            />
             <div className='bg-white-200 shadow mt-10 rounded-2xl p-4 ml-10 mx-8 justify-center flex flex-column text-center'>
 
                 <div className='flex flex-row justify-center mb-4 mt-2'>

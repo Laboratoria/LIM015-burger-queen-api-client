@@ -1,32 +1,50 @@
+
 import React, { useEffect, useState } from "react";
+=======
+import React, { useEffect, useState, Fragment } from "react";
+import NavOpcion from './nav';
+import admi from '../img/admi.svg';
+import Button from './Button';
+//import iconDelete from "../img/iconDelete.svg";
+import iconNegative from "../img/iconNegative.svg";
+import iconAddUser from "../img/iconAddUser.svg";
+
+
 //import axios from  "axios";
 import { getUser } from "../Authentication/auth"
 
+
 const PAdmi = (props) => {
 
-  //console.log(props.lerolero);
+    //console.log(props.lerolero);
 
-  return (
-
-    <table>
-
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
+    return (
+      
+    <table className="divide-y divide-blue-300  ">
+          
+    <thead >
+      <tr className=" bg-emerald-200  p-4">
+        <th className="flex flex-row  gap-2 px-8 "> <img className="" src={iconAddUser} alt={""} /> USERS </th>
+        <th className=" px-4 ">CHARGE</th>
+        <th className="px-4 ">Actions</th>
+      </tr>
+    </thead>
+    <tbody  className=" ">
         {
-          props.lerolero.length > 0 ?
-            props.lerolero.map((user) => (
-              <tr key={user.id}>
-                <td> {user.email}</td>
-                <td>{user.email}</td>
-                <td>
-                  <button className="button muted-button">Edit</button>
-                  <button className="button muted-button">Delete</button>
+            props.lerolero.length>0? 
+            props.lerolero.map( (user) => (
+            <tr key={user.id} >
+                <td className=" px-4"> {user.email}</td>
+                {user.roles.name?
+                <td>{user.roles.name}</td>:
+                <td>admin</td>
+                }
+                <td className="flex flex-row  gap-2 justify-center  ">
+                                
+                <div > <img className="" src={iconNegative} alt={""} /> </div>
+                <div> <img className="" src={iconNegative} alt={""} /> </div>
+               
+
                 </td>
               </tr>
 
@@ -47,15 +65,9 @@ const PAdmi = (props) => {
 }
 
 
-
-
-
-
 const baseUrl = "https://burger-queenn.herokuapp.com/users"
 
-
 const Admi = () => {
-
   const tokenN = localStorage.getItem("token");
   console.log(tokenN);
 
@@ -85,8 +97,9 @@ const Admi = () => {
     }]*/
 
 
+const [users, setUsers] = useState( []);
 
-  const [users, setUsers] = useState([]);
+
 
   const petitionGet = async () => {
     const data = await getUser(baseUrl);
@@ -101,24 +114,44 @@ const Admi = () => {
   }, []);
 
 
-  return (
-    <div className="container">
-      <h1>CRUD App with Hooks</h1>
-      <div className="flex-row">
-        <div className="flex-large">
-          <h2>Add user</h2>
-        </div>
-        <div className="flex-large">
-          <h2>View users</h2>
-          <PAdmi lerolero={users} />
-        </div>
-      </div>
+
+return (
+  <Fragment>
+
+    <NavOpcion 
+  imgOption={admi}
+  option="ADMI"
+   />
+
+
+
+  <div className="container ">
+
+    <div>
+    <Button type={'primary'} name={'USERS'} />
+    <Button type={'secondary'} name={'PRODUCTS'} />
+
     </div>
-  )
-}
 
 
-export default Admi;
+      <div className="flex-row">
+
+
+          <div className="bg-white-200 shadow mt-2 rounded-2xl  ml-10 mx-4 p-4">
+            
+            <PAdmi lerolero={users} />
+          </div>
+        </div>
+  </div>
+  </Fragment>
+  
+    )
+  }
+
+
+  
+  export default Admi;
+
 
 
 

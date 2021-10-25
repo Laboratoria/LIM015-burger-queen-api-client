@@ -61,7 +61,10 @@ const WaiterFirstView = () => {
 
 
           <BoxSelectItems>
+
             {products.map(product => <ProductBox key={product.id} product={product} />)}
+
+           
           </BoxSelectItems>
         </div>
 

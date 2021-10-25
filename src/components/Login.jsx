@@ -29,11 +29,14 @@ const Login = () => {
       if (condicionData && option === 'admin' && datauser.roles.admin) {
         console.log("admin");
         setRedirect(true);
+
       } else if (condicionData && option === 'waiter' && !datauser.roles.admin && datauser.roles.name === "waiter") {
         console.log("waiter");
 
         setRedirect(true);
       } else if (condicionData && option === 'chef' && !datauser.roles.admin /*&& datauser.roles.name==="chef"*/) {
+
+     
         console.log("chef");
         setRedirect(true);
       } else {

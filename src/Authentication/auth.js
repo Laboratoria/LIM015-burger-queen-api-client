@@ -57,3 +57,26 @@ getUser("https://burger-queenn.herokuapp.com/users").then((r) =>
     console.log(r)
 );
 
+
+
+// get data of products 
+
+export const getProducts = async (path) => {
+  const apiResponse = await axios.post(url, body);
+  const tokenN = apiResponse.data.token;
+  return await axios
+    .get(path, { headers: { Authorization: `Bearer ${tokenN}` } })
+    .then((data) => {
+     // console.log(data);
+      return data;
+    })
+    .catch((err) => console.log(err));
+};
+
+
+
+
+/*getProducts("https://burger-queenn.herokuapp.com/Products").then((r) =>
+  console.log(r)
+);*/
+
