@@ -1,21 +1,5 @@
-.fa-sign-out-alt{
-    font-size: 2rem;
-}
-
-.fas, .far {
-    color: white;
-}
-
-.icons{
-    background-color: transparent;
-    border: none;
-    margin: 0 0.5em;
-}
-
-.btn-info {
-    display: block;
-}
-
-.btn {
+.table {
     color: white; 
+    font-weight: 250;
+    width: 50%;
 }

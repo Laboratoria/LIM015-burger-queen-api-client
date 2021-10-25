@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { EmailValidator } from '@angular/forms';
 
 
 @Injectable({
@@ -27,7 +28,18 @@ export class AuthService {
   }
 
   postUser(data : any){
-    return this.http.post<any>('https://fireburguer.herokuapp.com/users', data)
+    let body = {
+      'email': 'admin2@localhost',
+      'password': '123456'
+      // 'roles': ''
+      // 'roles.admin': ''
+    }
+    let token = localStorage.getItem('token')
+    const config = {
+      headers: { token: token }
+  };
+   
+    return this.http.post('https://fireburguer.herokuapp.com/users', body)
     .pipe(map((res:any)=>{
       return res;
     }))

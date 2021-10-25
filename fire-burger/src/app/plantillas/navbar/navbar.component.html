@@ -1,1 +1,37 @@
-<p>navbar works!</p>
+<div class="container">
+  <nav class="navbar navbar-light bg-transparent">
+    <form class="container-fluid row">
+      <div class="col-2">
+        <a class="navbar-brand" href="#">
+          <img src="./assets/FireBurger.png" alt="" width="150" />
+        </a>
+      </div>
+      <div class="col-9 d-flex flex-row justify-content-end align-items-end">
+        <button
+          class="btn btn-outline-primary me-2"
+          routerLink="/menu"
+          type="button"
+        >
+          MENÚ
+        </button>
+        <button
+          class="btn btn-outline-primary me-2"
+          routerLink="/ordenes-listas"
+          type="button"
+        >
+          ÓRDENES
+        </button>
+        <button
+          class="btn btn-outline-primary me-2"
+          routerLink="/historial"
+          type="button"
+        >
+          HISTORIAL
+        </button>
+      </div>
+      <div class="col-1 d-flex flex-row justify-content-end align-items-start">
+        <i class="fas fa-sign-out-alt" (click)="btnLogout()"></i>
+      </div>
+    </form>
+  </nav>
+</div>

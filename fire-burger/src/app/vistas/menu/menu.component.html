@@ -1,27 +1,19 @@
 <app-navbar></app-navbar>
-<div class="container">
-    <nav class="navbar navbar-light bg-transparent">
-      <form class="container-fluid row">
-        <div class="col-2">
-          <a class="navbar-brand" href="#">
-            <img src="./assets/FireBurger.png" alt="" width="150" />
-          </a>
-        </div>
-        <div class="col-9 d-flex flex-row justify-content-end align-items-end">
-          <button class="btn btn-outline-primary me-2" type="button">
-            MENÚ
-          </button>
-          <button class="btn btn-outline-primary me-2" RouterLink="/ordenes-listas"
-          type="button">
-            ÓRDENES
-          </button>
-          <button class="btn btn-outline-primary me-2" type="button">
-            HISTORIAL
-          </button>
-        </div>
-        <div class="col-1 d-flex flex-row justify-content-end align-items-start">
-          <i class="fas fa-sign-out-alt" (click)="btnLogout()"></i>
-        </div>
-      </form>
-    </nav>
+<div class='container row'>
+  <div class="container col">
+    <table class="table mt-3">
+      <thead class="menuTable fs-2 text-center">
+        <th>Desayunos</th>
+        <th>Almuerzos</th>
+        <th>Bebidas</th>
+      </thead>
+    </table>
+  </div>
+  <div class="container col">
+    <div
+      class="containerLogin bg-light rounded-3"
+      style="--bs-bg-opacity: 0.28">
+      <h1 class="fw-bold text-center py-3">ORDEN</h1>
+    </div>
+  </div>
 </div>
