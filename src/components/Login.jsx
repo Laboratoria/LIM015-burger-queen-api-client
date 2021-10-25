@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from 'react-router-dom'
-import {getUserEmail} from "../Authentication/auth";
+import { getUserEmail, loginAuth } from "../Authentication/auth";
 import admi from '../img/admi.svg';
 import chef from '../img/chef.svg';
 import waiter from '../img/waiter.svg';
@@ -16,31 +16,31 @@ const Login = () => {
 
   const [redirect, setRedirect] = useState(false);
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
 
   const [datauser, setDatauser] = useState({});
 
   useEffect(() => {
     //console.log(datauser.roles.name);
-
-    const condicionData=datauser.email === form.email && form.password   && form.password===datauser.password;
+    // && form.password === datauser.password
+    const condicionData = (datauser.email === form.email) && form.password;
 
     if (datauser.email) {
-      if ( condicionData && option ==='admin' && datauser.roles.admin  ) {
+      if (condicionData && option === 'admin' && datauser.roles.admin) {
         console.log("admin");
         setRedirect(true);
-      }else if(condicionData && option ==='waiter' && !datauser.roles.admin /*&& datauser.roles.name==="waiter"*/){
+      } else if (condicionData && option === 'waiter' && !datauser.roles.admin && datauser.roles.name === "waiter") {
         console.log("waiter");
 
         setRedirect(true);
-      }else if (condicionData && option === 'chef' && !datauser.roles.admin /*&& datauser.roles.name==="chef"*/){
+      } else if (condicionData && option === 'chef' && !datauser.roles.admin /*&& datauser.roles.name==="chef"*/) {
         console.log("chef");
         setRedirect(true);
-      }else {
+      } else {
         setError(true);
       }
     }
-  }, [datauser.email]);
+  }, [datauser]);
 
   const handleSelectOption = (event) => {
     setOption(event.target.value);
@@ -57,16 +57,17 @@ const Login = () => {
     e.preventDefault();
     if (form.email && form.password && option) {
       try {
+        await loginAuth({ email: form.email, password: form.password })
         const response = await getUserEmail(form.email)
         setDatauser(response) // actualizacion de un estado es async
 
       } catch (error) {
-        console.log(error.message);
+        setError(error.message)
       }
     } else {
-      setError(true);
+      setError('Please, complete all fields , selection the  correct options  and correct credentials');
     }
-    
+
   }
 
   return (
@@ -135,7 +136,7 @@ const Login = () => {
             </div>
             {error ? (
               <div>
-                <p className='text-red-500 text-sm text-lg pb-2'>Please, complete all fields , selection the  correct options  and correct credentials </p>
+                <p className='text-red-500 text-sm text-lg pb-2'>{error}</p>
               </div>
             ) : null}
 

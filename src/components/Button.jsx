@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Button = ({ type, name }) => {
 
   const buttonStyles = {
@@ -12,3 +14,7 @@ const Button = ({ type, name }) => {
 }
 export default Button;
 
+Button.propTypes = {
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
+}

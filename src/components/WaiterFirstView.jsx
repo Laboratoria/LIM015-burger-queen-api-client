@@ -3,18 +3,38 @@ import BoxSelectItems from './BoxSelectItems';
 import ProductBox from './ProductBox';
 import OrderPreview from './OrderPreview'
 import CustomerName from './CustomerName'
-import ChefSVG from '../img/chef.svg'
 import WaiterNav from './WaiterNav';
-import { products } from '../mocks'
-import { useState, Fragment } from 'react';
 
+// import { products } from '../mocks'
+import { Fragment, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const WaiterFirstView = () => {
 
-  const [userOrder, setuserOrder] = useState('[]');
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    getProducts()
+  }, [])
 
+  /* useEffect debe ejecutarse de manera sincrona */
 
+  let urlProducts = "https://burger-queenn.herokuapp.com/products";
+
+  const token = localStorage.getItem("token");
+
+  const getProducts = async () => {
+    const concatUrl = `${urlProducts}`
+    const response = await axios.get(concatUrl, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+    });
+
+    //console.log(response.data, 'dataproducts');
+    setProducts(response.data)
+  };
 
   return (
     <Fragment>
@@ -41,8 +61,7 @@ const WaiterFirstView = () => {
 
 
           <BoxSelectItems>
-            {products.map(product => <ProductBox image={ChefSVG} title={product.description} price={product.price} />)}
-
+            {products.map(product => <ProductBox key={product.id} product={product} />)}
           </BoxSelectItems>
         </div>
 
