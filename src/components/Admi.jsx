@@ -1,3 +1,6 @@
+
+import React, { useEffect, useState } from "react";
+=======
 import React, { useEffect, useState, Fragment } from "react";
 import NavOpcion from './nav';
 import admi from '../img/admi.svg';
@@ -6,9 +9,9 @@ import Button from './Button';
 import iconNegative from "../img/iconNegative.svg";
 import iconAddUser from "../img/iconAddUser.svg";
 
-//import axios from  "axios";
 
-import {getUser} from  "../Authentication/auth"
+//import axios from  "axios";
+import { getUser } from "../Authentication/auth"
 
 
 const PAdmi = (props) => {
@@ -41,23 +44,24 @@ const PAdmi = (props) => {
                 <div > <img className="" src={iconNegative} alt={""} /> </div>
                 <div> <img className="" src={iconNegative} alt={""} /> </div>
                
-                </td>
-            </tr>
-     
-            ) ):
 
-           (
-            <tr> 
+                </td>
+              </tr>
+
+            )) :
+
+            (
+              <tr>
                 <td colSpan={3}> No USERS</td>
-            </tr>
-           )
+              </tr>
+            )
 
         }
-      
-    </tbody>
-  </table>
-        
-    )
+
+      </tbody>
+    </table>
+
+  )
 }
 
 
@@ -92,19 +96,23 @@ const Admi = () => {
       
     }]*/
 
+
 const [users, setUsers] = useState( []);
 
-const petitionGet = async () =>{
-  const data = await getUser(baseUrl);
-setUsers(data.data);
-//setUsers(data);
-//console.log(data);
 
-}
 
-useEffect( () =>{
-petitionGet();
-},[]);
+  const petitionGet = async () => {
+    const data = await getUser(baseUrl);
+    setUsers(data.data);
+    //setUsers(data);
+    //console.log(data);
+
+  }
+
+  useEffect(() => {
+    petitionGet();
+  }, []);
+
 
 
 return (
@@ -143,6 +151,7 @@ return (
 
   
   export default Admi;
+
 
 
 
