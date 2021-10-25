@@ -24,7 +24,8 @@ import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
     OrdenesListasComponent,
     OrdenesPendientesComponent,
     ProductosComponent,
-    UsuariosComponent
+    UsuariosComponent,
+
   ],
   imports: [
     BrowserModule,

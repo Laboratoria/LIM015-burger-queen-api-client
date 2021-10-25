@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../servicios/auth/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
+  
   constructor(private AuthService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -41,4 +43,6 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+  
 }
