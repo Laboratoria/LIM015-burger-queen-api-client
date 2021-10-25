@@ -24,7 +24,7 @@ export class UsuariosComponent implements OnInit {
       cargo : [''],
       admin : [''],
     })
-    this.getAllUsers();
+    //this.getAllUsers();
   }
   postUserDetails(){
     this.userModelObject.usuario = this.formValue.value.usuario;
@@ -44,10 +44,12 @@ export class UsuariosComponent implements OnInit {
         alert("Ups, ocurrió un error");
       })
   }
-  getAllUsers(){
+
+  
+ /* getAllUsers(){
     this.auth.getUser()
-    .subscribe(res=>{
+    .subscribe(res: any =>{
     this.userData = res;
     })
-  }
+  }*/
 }

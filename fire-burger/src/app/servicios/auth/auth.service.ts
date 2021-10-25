@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -35,16 +35,21 @@ export class AuthService {
       // 'roles.admin': ''
     }
     let token = localStorage.getItem('token')
+    //const headers = new HttpHeaders({'Authorization': `Bearer ${token}`})
     const config = {
-      headers: { token: token }
-  };
-   
-    return this.http.post('https://fireburguer.herokuapp.com/users', body)
-    .pipe(map((res:any)=>{
-      return res;
+    headers: {'Authorization': `Bearer ${token}`}
+    };
+    console.log(token);
+    
+    return this.http.get('https://fireburguer.herokuapp.com/users',config)
+    .pipe(map((res)=>{
+      return  console.log(res);
     }))
-  } 
-  getUser(){
+  }
+  
+  
+
+  /*getUser(){
     return this.http.get<any>('https://fireburguer.herokuapp.com/users')
     .pipe(map((res:any)=>{
       return res;
@@ -61,5 +66,5 @@ export class AuthService {
     .pipe(map((res:any)=>{
       return res;
     }))
-  } 
+  } */
 }
