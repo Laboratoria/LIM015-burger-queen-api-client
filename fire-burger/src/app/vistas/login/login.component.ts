@@ -8,7 +8,7 @@ import { AuthService } from '../../servicios/auth/auth.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    loginFormYup = new FormGroup({
+    loginForm = new FormGroup({
     email: new FormControl('',Validators.required),
     password : new FormControl('',Validators.required)
   })
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
-    this.AuthService.Auth(this.loginFormYup.value).subscribe(obs=> console.log(obs))
+    this.AuthService.Auth(this.loginForm.value).subscribe(obs=> console.log(obs))
     //console.log(this.loginFormYup.value);
   }
 }

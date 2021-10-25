@@ -13,20 +13,22 @@ export class UsuariosComponent implements OnInit {
    
   formValue !: FormGroup;
   userModelObject : UserModel = new UserModel();
+  userData !: any;
   constructor(private formbuilder: FormBuilder,
     private auth : AuthService) { }
 
   ngOnInit(): void {
     this.formValue = this.formbuilder.group({
       usuario : [''],
-      contraseña: [''],
+      contrasena: [''],
       cargo : [''],
       admin : [''],
     })
+    this.getAllUsers();
   }
   postUserDetails(){
     this.userModelObject.usuario = this.formValue.value.usuario;
-    this.userModelObject.contraseña = this.formValue.value.contraseña;
+    this.userModelObject.contrasena = this.formValue.value.contrasena;
     this.userModelObject.cargo = this.formValue.value.cargo;
     this.userModelObject.admin = this.formValue.value.admin;
 
@@ -40,7 +42,12 @@ export class UsuariosComponent implements OnInit {
     },
       err=>{
         alert("Ups, ocurrió un error");
-      }
-    )
+      })
+  }
+  getAllUsers(){
+    this.auth.getUser()
+    .subscribe(res=>{
+    this.userData = res;
+    })
   }
 }

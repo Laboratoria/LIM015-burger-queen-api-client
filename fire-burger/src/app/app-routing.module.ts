@@ -7,6 +7,7 @@ import { OrdenesListasComponent } from './vistas/ordenes-listas/ordenes-listas.c
 import { OrdenesPendientesComponent } from './vistas/ordenes-pendientes/ordenes-pendientes.component';
 import { ProductosComponent } from './vistas/productos/productos.component';
 import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 export const routingComponents = [LoginComponent,
   HistorialComponent,
   MenuComponent,

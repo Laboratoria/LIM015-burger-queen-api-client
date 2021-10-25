@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -14,12 +15,17 @@ export class AuthService {
     'email': '',
     'password': ''
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   Auth(user: any): Observable<any> {
     this.objectAuth['email']= user.email;
     this.objectAuth['password']= user.password;
     return this.http.post(this.Url, this.objectAuth);
   }
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
+
   postUser(data : any){
     return this.http.post<any>('https://fireburguer.herokuapp.com/users', data)
     .pipe(map((res:any)=>{

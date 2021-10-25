@@ -36,17 +36,20 @@
 <div class="container d-flex justify-content-center">
 <table class="table mt-3">
   <thead class="customTable fs-4 text-center">
+      <th>Id</th>  
       <th>Usuario</th>
       <th>Contraseña</th>
       <th>Cargo</th>
-      <th></th>
+      <th>Administrador</th>
   </thead>
   <tbody>
-    <tr class="text-center">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td >
+    <tr *ngFor="let row of userData" class="text-center">
+      <td>{{row.id}}</td>
+      <td>{{row.usuario}}</td>
+      <td>{{row.contrasena}}</td>
+      <td>{{row.cargo}}</td>
+      <td>{{row.administrador}}</td>
+      <td>
         <button class="icons"><i class="far fa-edit fs-4"></i> </button>
         <button class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
       </td>
@@ -73,7 +76,7 @@
             <input class="form-control me-2" type="text" formControlName="usuario" placeholder="Usuario" aria-label="Usuario">
           </div>
           <div class="mb-3">
-            <input class="form-control me-2" type="password" formControlName="contraseña" placeholder="Contraseña" aria-label="Contraseña">
+            <input class="form-control me-2" type="password" formControlName="contrasena" placeholder="Contraseña" aria-label="Contraseña">
           </div>
           <div class="mb-3">
             <select class="form-select" formControlName="cargo" aria-label="Cargo">
