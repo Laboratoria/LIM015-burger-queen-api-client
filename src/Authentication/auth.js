@@ -33,13 +33,9 @@ export const getUserEmail = async (email) => {
             "Content-Type": "application/json",
         },
     });
-    /*console.log(response.data);*/
 
     return response.data;
 };
-
-
-
 
 //get data of users
 
@@ -55,23 +51,16 @@ export const getUser = async (path) => {
         .catch((err) => console.log(err));
 };
 
-
-/*getUser("https://burger-queenn.herokuapp.com/users").then((r) =>
-    console.log(r)
-);*/
-
-
-
 // get data of products 
 
-export const getProducts = async (urlProduct) => {
+export const apiRequestToGetProducts = async (urlProduct) => {
     const token = localStorage.getItem("token");
-       
-  return  await axios.get(urlProduct, {
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
-      },
+
+    return await axios.get(urlProduct, {
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
     });
 
 }

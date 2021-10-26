@@ -1,15 +1,11 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from "./Button";
 import iconAdd from "../img/iconAdd.svg";
-import {getProducts} from "../Authentication/auth"
+import { apiRequestToGetProducts } from "../Authentication/auth"
 import iconNegative from "../img/iconNegative.svg";
 //import iconDelete from "../img/iconDelete.svg";
 
-
 const ListaOrder = (data) => {
-
-  //console.log(data.orders);
-
 
   return (
     data.orders.map((dat) => (
@@ -77,7 +73,7 @@ const ListaOrder = (data) => {
 
 const OrderPreview = () => {
 
-  
+
   const dataOrders = [
     {
       id: "1p",
@@ -117,27 +113,27 @@ const OrderPreview = () => {
 
       ],
     },
-  ]; 
-  
-  
-  
+  ];
+
+
+
   const [orders, setOrders] = useState(dataOrders);
 
   const [product, setProduct] = useState([]);
 
-  const url="https://burger-queenn.herokuapp.com/Products"
+  const url = "https://burger-queenn.herokuapp.com/Products"
 
-  const productGet = async () =>{
-    const data = await getProducts(url);
+  const productGet = async () => {
+    const data = await apiRequestToGetProducts(url);
     setProduct(data.data);
-    console.log(product);
-    }
+    //console.log(product);
+  }
 
 
 
-  useEffect( () =>{
+  useEffect(() => {
     productGet();
-    },[]);
+  }, []);
 
 
 
