@@ -27,13 +27,7 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-  postUser(data : any){
-    let body = {
-      'email': 'admin2@localhost',
-      'password': '123456'
-      // 'roles': ''
-      // 'roles.admin': ''
-    }
+   getUser(){
     let token = localStorage.getItem('token')
     //const headers = new HttpHeaders({'Authorization': `Bearer ${token}`})
     const config = {
@@ -47,24 +41,31 @@ export class AuthService {
     }))
   }
   
-  
+  postUser(data : any): Observable<any>{
+    console.log(data);
+    let token = localStorage.getItem('token')
+    let body = {
+      'email': data.usuario,
+      'password': data.constrasena,
+      'roles': data.cargo,
+      'roles.admin': false
+    }
+    const config = {
+      headers: {'Authorization': `Bearer ${token}`}
+      };
+  return this.http.post<any>('https://fireburguer.herokuapp.com/users', body , config);
+  } 
 
-  /*getUser(){
-    return this.http.get<any>('https://fireburguer.herokuapp.com/users')
-    .pipe(map((res:any)=>{
-      return res;
-    }))
-  } 
-  updateUser(data : any, id : number){
-    return this.http.put<any>('https://fireburguer.herokuapp.com/users/'+id, data)
-    .pipe(map((res:any)=>{
-      return res;
-    }))
-  } 
-  deleteUser(id : number){
-    return this.http.delete<any>('https://fireburguer.herokuapp.com/users/'+ id)
-    .pipe(map((res:any)=>{
-      return res;
-    }))
-  } */
+  // updateUser(data : any, id : number){
+  //   return this.http.put<any>('https://fireburguer.herokuapp.com/users/'+id, data)
+  //   .pipe(map((res:any)=>{
+  //     return res;
+  //   }))
+  // } 
+  // deleteUser(id : number){
+  //   return this.http.delete<any>('https://fireburguer.herokuapp.com/users/'+ id)
+  //   .pipe(map((res:any)=>{
+  //     return res;
+  //   }))
+  // }
 }
