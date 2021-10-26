@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
-import { UserModel } from './usuarios.model';
+import { UserRequest } from './usuarios.model';
 
 
 @Component({
@@ -12,26 +12,22 @@ import { UserModel } from './usuarios.model';
 export class UsuariosComponent implements OnInit {
    
   formValue !: FormGroup;
-  userModelObject : UserModel = new UserModel();
+  userModelObject : UserRequest = {email: '', password: ''};
   userData !: any;
   constructor(private formbuilder: FormBuilder,
     private auth : AuthService) { }
 
   ngOnInit(): void {
     this.formValue = this.formbuilder.group({
-      usuario : [''],
-      contrasena: [''],
-      cargo : [''],
-      admin : [''],
+      email : [''],
+      password: ['']
     })
-    //this.getAllUsers();
+    this.getUsers();
   }
   postUserDetails(){
-    this.userModelObject.usuario = this.formValue.value.usuario;
-    this.userModelObject.contrasena = this.formValue.value.contrasena;
-    this.userModelObject.cargo = this.formValue.value.cargo;
-    this.userModelObject.admin = this.formValue.value.admin;
-
+    this.userModelObject.email = this.formValue.value.email;
+    this.userModelObject.password = this.formValue.value.password;
+  
     this.auth.postUser(this.userModelObject)
     .subscribe(res=>{
       console.log(res);
@@ -43,9 +39,15 @@ export class UsuariosComponent implements OnInit {
       err=>{
         alert("Ups, ocurrió un error");
       })
+    console.log(this.userModelObject);
+    
   }
 
-  
+  getUsers(){
+    this.auth.getUser().subscribe(result => {
+      console.log(result);
+    })
+  }
  /* getAllUsers(){
     this.auth.getUser()
     .subscribe(res: any =>{
