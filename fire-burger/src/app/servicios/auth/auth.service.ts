@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { EmailValidator } from '@angular/forms';
+import { UserRequest } from 'src/app/vistas/usuarios/usuarios.model';
 
 
 @Injectable({
@@ -41,19 +42,13 @@ export class AuthService {
     }))
   }
   
-  postUser(data : any): Observable<any>{
+  postUser(data : UserRequest): Observable<any>{
     console.log(data);
     let token = localStorage.getItem('token')
-    let body = {
-      'email': data.usuario,
-      'password': data.constrasena,
-      'roles': data.cargo,
-      'roles.admin': false
-    }
     const config = {
       headers: {'Authorization': `Bearer ${token}`}
       };
-  return this.http.post<any>('https://fireburguer.herokuapp.com/users', body , config);
+  return this.http.post<any>('https://fireburguer.herokuapp.com/users', data , config);
   } 
 
   // updateUser(data : any, id : number){
