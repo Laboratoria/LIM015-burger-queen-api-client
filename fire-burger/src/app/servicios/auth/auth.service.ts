@@ -41,6 +41,7 @@ export class AuthService {
     }))
   }
   
+
   postUser(data : any): Observable<any>{
     console.log(data);
     let token = localStorage.getItem('token')

@@ -1,25 +1,5 @@
 <body>
   <div class="container">
-    <nav class="navbar navbar-light bg-transparent">
-      <form class="container-fluid row">
-        <div class="col-2">
-          <a class="navbar-brand" href="#">
-            <img src="./assets/FireBurger.png" alt="" width="150" />
-          </a>
-        </div>
-        <div class="col-9 d-flex flex-row justify-content-end align-items-end">
-          <button class="btn btn-outline-primary me-2" type="button">
-            USUARIOS
-          </button>
-          <button class="btn btn-outline-primary me-2" type="button">
-            PRODUCTOS
-          </button>
-        </div>
-        <div class="col-1 d-flex flex-row justify-content-end align-items-start">
-          <i class="fas fa-sign-out-alt"></i>
-        </div>
-      </form>
-    </nav>
     <nav class="navbar navbar-light bg-transparent d-flex justify-content-center">
         <form class="d-flex searcher">
           <input class="searchBar form-control me-2" type="search" placeholder="Buscar usuario" aria-label="Search">
@@ -34,8 +14,7 @@
 
 <div class="container d-flex justify-content-center">
 <table class="table mt-3">
-  <thead class="customTable fs-4 text-center">
-      <th>Id</th>  
+  <thead class="customTable fs-4 text-center">  
       <th>Usuario</th>
       <th>Contraseña</th>
       <th>Cargo</th>
@@ -43,7 +22,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of userData" class="text-center">
-      <td>{{row.id}}</td>
       <td>{{row.usuario}}</td>
       <td>{{row.contrasena}}</td>
       <td>{{row.cargo}}</td>
@@ -72,10 +50,10 @@
       <div class="modal-body">
         <form [formGroup]="formValue"> 
           <div class="mb-3">
-            <input class="form-control me-2" type="text" formControlName="usuario" placeholder="Usuario" aria-label="Usuario">
+            <input class="form-control me-2" type="text" formControlName="email" placeholder="Usuario" aria-label="Usuario">
           </div>
           <div class="mb-3">
-            <input class="form-control me-2" type="password" formControlName="contrasena" placeholder="Contraseña" aria-label="Contraseña">
+            <input class="form-control me-2" type="password" formControlName="password" placeholder="Contraseña" aria-label="Contraseña">
           </div>
           <div class="mb-3">
             <select class="form-select" formControlName="cargo" aria-label="Cargo">
@@ -88,7 +66,7 @@
           </div>
           <div class="mb-3">
             <div class="form-check">
-              <input class="form-check-input" formControlName="admin" type="checkbox" value="" id="flexCheckAdmin">
+              <input class="form-check-input" formControlName="admin" type="checkbox" value="true" id="flexCheckAdmin">
               <label class="form-check-label" for="flexCheckAdmin">
                 Administrador
               </label>
