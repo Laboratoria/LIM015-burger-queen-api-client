@@ -16,8 +16,8 @@ const NavOpcion = (props ) => {
                     <strong className=''>{props.option}</strong>
                 </div>
 
-                <div className="flex items-center text-xs sm:text-lg">
-                    <img className="h-8 sm:h-12" src={logoutbtn} alt="logout icon" />
+                <div className="flex items-center text-xs sm:text-lg" >
+                    <img className="h-8 sm:h-12" src={logoutbtn} alt="logout icon"  />
                     <strong className='px-2'>LOGOUT</strong>
                 </div>
             </div>

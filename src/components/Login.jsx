@@ -29,14 +29,11 @@ const Login = () => {
       if (condicionData && option === 'admin' && datauser.roles.admin) {
         console.log("admin");
         setRedirect(true);
-
       } else if (condicionData && option === 'waiter' && !datauser.roles.admin && datauser.roles.name === "waiter") {
         console.log("waiter");
 
         setRedirect(true);
-      } else if (condicionData && option === 'chef' && !datauser.roles.admin /*&& datauser.roles.name==="chef"*/) {
-
-     
+      } else if (condicionData && option === 'chef' && !datauser.roles.admin && datauser.roles.name === "chef") {
         console.log("chef");
         setRedirect(true);
       } else {
@@ -61,6 +58,7 @@ const Login = () => {
     if (form.email && form.password && option) {
       try {
         await loginAuth({ email: form.email, password: form.password })
+        
         const response = await getUserEmail(form.email)
         setDatauser(response) // actualizacion de un estado es async
 
@@ -116,7 +114,6 @@ const Login = () => {
 
             </div>
           </div>
-
           <form onSubmit={sendForm} className="text-center">
             <div>
               <input className='input input--email'

@@ -135,11 +135,6 @@ const OrderPreview = () => {
 
 
 
-
-
-
-    
-
   useEffect( () =>{
     productGet();
     },[]);

@@ -1,6 +1,5 @@
 
-import React, { useEffect, useState } from "react";
-=======
+
 import React, { useEffect, useState, Fragment } from "react";
 import NavOpcion from './nav';
 import admi from '../img/admi.svg';
