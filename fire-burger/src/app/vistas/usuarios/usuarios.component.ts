@@ -22,7 +22,7 @@ export class UsuariosComponent implements OnInit {
       email : [''],
       password: ['']
     })
-    //this.getAllUsers();
+    this.getUsers();
   }
   postUserDetails(){
     this.userModelObject.email = this.formValue.value.email;
@@ -43,7 +43,11 @@ export class UsuariosComponent implements OnInit {
     
   }
 
-  
+  getUsers(){
+    this.auth.getUser().subscribe(result => {
+      console.log(result);
+    })
+  }
  /* getAllUsers(){
     this.auth.getUser()
     .subscribe(res: any =>{

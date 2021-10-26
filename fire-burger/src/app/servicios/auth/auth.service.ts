@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { EmailValidator } from '@angular/forms';
 import { UserRequest } from 'src/app/vistas/usuarios/usuarios.model';
 
 
@@ -28,19 +27,15 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-   getUser(){
+   getUser(): Observable<UserRequest[]>{
     let token = localStorage.getItem('token')
     //const headers = new HttpHeaders({'Authorization': `Bearer ${token}`})
     const config = {
     headers: {'Authorization': `Bearer ${token}`}
     };
     console.log(token);
-    
-    return this.http.get('https://fireburguer.herokuapp.com/users',config)
-    .pipe(map((res)=>{
-      return  console.log(res);
-    }))
-  }
+    return this.http.get<UserRequest[]>('https://fireburguer.herokuapp.com/users',config);
+    }
   
   postUser(data : UserRequest): Observable<any>{
     console.log(data);
