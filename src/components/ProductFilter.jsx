@@ -1,15 +1,14 @@
 
-
 import ProductBox from './ProductBox';
-import Button from './Button';
 import { useState ,useEffect } from 'react';
 
 //filter
 
 
 const ProductFilter = ( products) => {
-
     
+
+
     const [productLunch,setproductLunch]=useState([]);
     const [accompaniments,setAccompaniments]=useState([]);
     const [drinks,setDrinks]=useState([]);
@@ -22,32 +21,45 @@ const ProductFilter = ( products) => {
     console.log(productLunch, accompaniments, drinks);
     },[])
 
-
     return (
-        <div>
-            <div>
+        <div className="flex flex-col">
+
+            <p> Hamburgers</p>
+
+            <div className=" grid grid-cols-2 grid-rows-1">
                 {  productLunch.map(product => <ProductBox product={product} />)}
           
             </div>
-          <Button type={'tertiary'} name={"ACCOMPANIMENTS"} onClick={() => console.log()} />    
+            <div>
+           
+            <p> accompaniments</p>
 
-           <div>
+            </div>
+            
+           <div className=" grid grid-cols-2 grid-rows-1">
            {  accompaniments.map(product => <ProductBox product={product} />)}
 
            </div>
 
+           <p> drinks</p>
+                    
+          <div className=" grid grid-cols-2 grid-rows-1">
+          {  drinks.map(product => <ProductBox product={product} />)}
 
-           <Button type={'tertiary'} name={"DRINKS"} onClick={() => console.log()} /> 
+          </div>
 
-           {  drinks.map(product => <ProductBox product={product} />)}
-
+          
         </div>
 
 
        
     )
+
 }
 
 
 
 export default ProductFilter;
+
+
+
