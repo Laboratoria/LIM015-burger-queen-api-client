@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/servicios/auth/auth.service';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { UserI } from './usuarios.model';
 
 
