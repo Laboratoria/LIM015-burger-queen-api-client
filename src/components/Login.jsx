@@ -21,20 +21,14 @@ const Login = () => {
   const [datauser, setDatauser] = useState({});
 
   useEffect(() => {
-    //console.log(datauser.roles.name);
-    // && form.password === datauser.password
-    const condicionData = (datauser.email === form.email) && form.password;
+    const isUserMatch = (datauser.email === form.email) && form.password;
 
     if (datauser.email) {
-      if (condicionData && option === 'admin' && datauser.roles.admin) {
-        console.log("admin");
+      if (isUserMatch && option === 'admin' && datauser.roles.admin) {
         setRedirect(true);
-      } else if (condicionData && option === 'waiter' && !datauser.roles.admin && datauser.roles.name === "waiter") {
-        console.log("waiter");
-
+      } else if (isUserMatch && option === 'waiter' && !datauser.roles.admin && datauser.roles.name === "waiter") {
         setRedirect(true);
-      } else if (condicionData && option === 'chef' && !datauser.roles.admin && datauser.roles.name === "chef") {
-        console.log("chef");
+      } else if (isUserMatch && option === 'chef' && !datauser.roles.admin && datauser.roles.name === "chef") {
         setRedirect(true);
       } else {
         setError(true);
@@ -58,7 +52,7 @@ const Login = () => {
     if (form.email && form.password && option) {
       try {
         await loginAuth({ email: form.email, password: form.password })
-        
+
         const response = await getUserEmail(form.email)
         setDatauser(response) // actualizacion de un estado es async
 
@@ -82,7 +76,6 @@ const Login = () => {
             <h1>Welcome to
               Cangre Burger</h1>
           </div>
-
           <div className="login__options">
             <h2 className='enter_as '> ENTER AS:</h2>
             <div className='characters--wrapper'>

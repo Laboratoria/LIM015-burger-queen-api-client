@@ -1,6 +1,7 @@
 import burgerimg from '../img/burgerimg.svg'
 import waiter from '../img/waiter.svg'
 import logoutbtn from '../img/logoutbtn.svg'
+import { Link } from 'react-router-dom'
 
 const WaiterNav = () => {
     return (
@@ -15,13 +16,14 @@ const WaiterNav = () => {
                     <img className="h-10 sm:h-16" src={waiter} alt="waiter icon" />
                     <strong className=''>WAITER</strong>
                 </div>
-
-                <div className="flex items-center text-xs sm:text-lg">
-                    <img className="h-8 sm:h-12" src={logoutbtn} alt="logout icon" />
-                    <strong className='px-2'>LOGOUT</strong>
-                </div>
+                <Link to='/'>
+                    <div className="flex items-center text-xs sm:text-lg">
+                        <img className="h-8 sm:h-12" src={logoutbtn} alt="logout icon" />
+                        <strong className='px-2'>LOGOUT</strong>
+                    </div>
+                </Link>
             </div>
-        </nav>
+        </nav >
     )
 }
 export default WaiterNav;
