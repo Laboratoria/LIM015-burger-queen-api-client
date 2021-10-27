@@ -62,5 +62,33 @@ export const apiRequestToGetProducts = async (urlProduct) => {
             "Content-Type": "application/json"
         },
     });
+}
+
+//getUser("https://burger-queenn.herokuapp.com/users").then( r => console.log(r))
+
+//add nwe user 
+
+export const addNewUser= async (urlProduct,dataUser) => {
+    const token = localStorage.getItem("token");
+    console.log(dataUser);
+
+    return axios({
+        url:urlProduct,
+        method:"POST",
+        data:dataUser,
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+    })
+
+/*
+    return await axios.post(urlProduct, {
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        Body:dataUser
+      });*/
 
 }

@@ -6,6 +6,8 @@ import CustomerName from './CustomerName'
 import WaiterNav from './WaiterNav';
 import { apiRequestToGetProducts } from '../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
+import ProductFilter from './ProductFilter';
+
 
 const WaiterFirstView = () => {
 
@@ -73,11 +75,13 @@ const WaiterFirstView = () => {
 
           <BoxSelectItems >
             {
-              (option === " ") ?
-                filterProduct.map(product => <ProductBox product={product} />) :
-
-                filterProduct.map(product => <ProductBox product={product} />)
+              (option ==="Lunch") ?
+              <ProductFilter product={filterProduct} />
+                 : (option ===" " | option ==="Breakfast")?
+                filterProduct.map(product => <ProductBox product={product} />):""
+                             
             }
+            
           </BoxSelectItems>
         </div>
 
