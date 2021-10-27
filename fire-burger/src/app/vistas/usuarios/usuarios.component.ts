@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
-import { UserRequest } from './usuarios.model';
+import { UserI } from './usuarios.model';
 
 
 @Component({
@@ -10,23 +10,27 @@ import { UserRequest } from './usuarios.model';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-   
   formValue !: FormGroup;
-  userModelObject : UserRequest = {email: '', password: ''};
-  userData !: any;
+  userModelObject : UserI = {email: '', password: '', roles:{name:' ', admin: false}};
+  users: UserI[] = [];
+
   constructor(private formbuilder: FormBuilder,
     private auth : AuthService) { }
 
   ngOnInit(): void {
     this.formValue = this.formbuilder.group({
       email : [''],
-      password: ['']
+      password: [''],
+      rolname:[''],
+      admin: false
     })
     this.getUsers();
   }
   postUserDetails(){
     this.userModelObject.email = this.formValue.value.email;
     this.userModelObject.password = this.formValue.value.password;
+    this.userModelObject.roles.name = this.formValue.value.rolname;
+    this.userModelObject.roles.admin = this.formValue.value.admin;
   
     this.auth.postUser(this.userModelObject)
     .subscribe(res=>{
@@ -44,14 +48,8 @@ export class UsuariosComponent implements OnInit {
   }
 
   getUsers(){
-    this.auth.getUser().subscribe(result => {
-      console.log(result);
+    this.auth.getUser().subscribe(res => {
+      this.users = res;
     })
   }
- /* getAllUsers(){
-    this.auth.getUser()
-    .subscribe(res: any =>{
-    this.userData = res;
-    })
-  }*/
 }

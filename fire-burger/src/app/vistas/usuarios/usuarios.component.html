@@ -1,25 +1,5 @@
 <body>
   <div class="container">
-    <nav class="navbar navbar-light bg-transparent">
-      <form class="container-fluid row">
-        <div class="col-2">
-          <a class="navbar-brand" href="#">
-            <img src="./assets/FireBurger.png" alt="" width="150" />
-          </a>
-        </div>
-        <div class="col-9 d-flex flex-row justify-content-end align-items-end">
-          <button class="btn btn-outline-primary me-2" type="button">
-            USUARIOS
-          </button>
-          <button class="btn btn-outline-primary me-2" type="button">
-            PRODUCTOS
-          </button>
-        </div>
-        <div class="col-1 d-flex flex-row justify-content-end align-items-start">
-          <i class="fas fa-sign-out-alt"></i>
-        </div>
-      </form>
-    </nav>
     <nav class="navbar navbar-light bg-transparent d-flex justify-content-center">
         <form class="d-flex searcher">
           <input class="searchBar form-control me-2" type="search" placeholder="Buscar usuario" aria-label="Search">
@@ -34,20 +14,18 @@
 
 <div class="container d-flex justify-content-center">
 <table class="table mt-3">
-  <thead class="customTable fs-4 text-center">
-      <th>Id</th>  
+  <thead class="customTable fs-4 text-center"> 
       <th>Usuario</th>
       <th>Contraseña</th>
       <th>Cargo</th>
       <th>Administrador</th>
   </thead>
   <tbody>
-    <tr *ngFor="let row of userData" class="text-center">
-      <td>{{row.id}}</td>
-      <td>{{row.usuario}}</td>
-      <td>{{row.contrasena}}</td>
-      <td>{{row.cargo}}</td>
-      <td>{{row.administrador}}</td>
+    <tr *ngFor="let user of users" class="text-center">
+      <td>{{user.email}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.roles.name}}</td>
+      <td>{{user.roles.admin}}</td>
       <td>
         <button class="icons"><i class="far fa-edit fs-4"></i> </button>
         <button class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
@@ -77,27 +55,24 @@
           <div class="mb-3">
             <input class="form-control me-2" type="password" formControlName="password" placeholder="Contraseña" aria-label="Contraseña">
           </div>
-          <!-- <div class="mb-3">
-             <select class="form-select"  aria-label="Cargo">
+          <div class="mb-3">
+             <select class="form-select" formControlName="rolname" aria-label="Cargo">
               <option selected>Selecciona cargo</option>
-              <option value="1">Mesero</option>
-              <option value="2">Cocinero</option>
-              <option value="3">Administrador</option>
+              <option value="mesero">Mesero</option>
+              <option value="cocinero">Cocinero</option>
+              <option value="administrador">Administrador</option>
             </select> 
-            <input class="form-control me-2" type="text" formControlName="cargo" placeholder="Cargo" aria-label="Cargo"> 
           </div>
           <div class="mb-3">
             <div class="form-check">
-              <input class="form-check-input" formControlName="admin" type="checkbox" value="" id="flexCheckAdmin">
+              <input class="form-check-input" formControlName="admin" type="checkbox" value="true" id="flexCheckAdmin">
               <label class="form-check-label" for="flexCheckAdmin">
                 Administrador
               </label>
             </div>
-            <input class="form-control me-2" type="text" formControlName="admin" placeholder="Administrador" aria-label="Administrador"> 
-          </div> -->
+          </div>
         </form>
-  
-      </div>
+        </div>
       <div class="modal-footer">
         <button type="button" id= "cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" (click) = "postUserDetails()" class="btn btn-primary">Añadir</button>

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { UserRequest } from 'src/app/vistas/usuarios/usuarios.model';
+import { UserI} from 'src/app/vistas/usuarios/usuarios.model';
 
 
 @Injectable({
@@ -27,17 +27,17 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-   getUser(): Observable<UserRequest[]>{
+   getUser(): Observable<UserI[]>{
     let token = localStorage.getItem('token')
     //const headers = new HttpHeaders({'Authorization': `Bearer ${token}`})
     const config = {
     headers: {'Authorization': `Bearer ${token}`}
     };
     console.log(token);
-    return this.http.get<UserRequest[]>('https://fireburguer.herokuapp.com/users',config);
+    return this.http.get<UserI[]>('https://fireburguer.herokuapp.com/users',config);
     }
   
-  postUser(data : UserRequest): Observable<any>{
+  postUser(data : UserI): Observable<any>{
     console.log(data);
     let token = localStorage.getItem('token')
     const config = {
