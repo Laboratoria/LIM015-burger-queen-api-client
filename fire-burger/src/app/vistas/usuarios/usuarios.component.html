@@ -14,21 +14,22 @@
 
 <div class="container d-flex justify-content-center">
 <table class="table mt-3">
-  <thead class="customTable fs-4 text-center">  
+  <thead class="customTable fs-4 text-center"> 
       <th>Usuario</th>
       <th>Contraseña</th>
       <th>Cargo</th>
       <th>Administrador</th>
+      <th></th>
   </thead>
   <tbody>
-    <tr *ngFor="let row of userData" class="text-center">
-      <td>{{row.usuario}}</td>
-      <td>{{row.contrasena}}</td>
-      <td>{{row.cargo}}</td>
-      <td>{{row.administrador}}</td>
+    <tr *ngFor="let user of users" class="text-center">
+      <td>{{user.email}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.roles.name}}</td>
+      <td>{{user.roles.admin}}</td>
       <td>
         <button class="icons"><i class="far fa-edit fs-4"></i> </button>
-        <button class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
+        <button (click) = "deleteUser(user._id)" class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
       </td>
     </tr>
   </tbody>
@@ -55,14 +56,13 @@
           <div class="mb-3">
             <input class="form-control me-2" type="password" formControlName="password" placeholder="Contraseña" aria-label="Contraseña">
           </div>
-          <!-- <div class="mb-3">
-             <select class="form-select"  aria-label="Cargo">
+          <div class="mb-3">
+             <select class="form-select" formControlName="rolname" aria-label="Cargo">
               <option selected>Selecciona cargo</option>
-              <option value="1">Mesero</option>
-              <option value="2">Cocinero</option>
-              <option value="3">Administrador</option>
+              <option value="mesero">Mesero</option>
+              <option value="cocinero">Cocinero</option>
+              <option value="administrador">Administrador</option>
             </select> 
-            <input class="form-control me-2" type="text" formControlName="cargo" placeholder="Cargo" aria-label="Cargo"> 
           </div>
           <div class="mb-3">
             <div class="form-check">
@@ -71,11 +71,9 @@
                 Administrador
               </label>
             </div>
-            <input class="form-control me-2" type="text" formControlName="admin" placeholder="Administrador" aria-label="Administrador"> 
-          </div> -->
+          </div>
         </form>
-  
-      </div>
+        </div>
       <div class="modal-footer">
         <button type="button" id= "cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" (click) = "postUserDetails()" class="btn btn-primary">Añadir</button>
