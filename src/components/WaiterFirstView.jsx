@@ -104,12 +104,9 @@ useEffect( ()=>{
           filterProduct.map(product => <ProductBox key={product.id}   product={product} />) : 
           
           filterProduct.map(product => <ProductBox key={product.id}   product={product} />)
-              
+        
           }
         
-          
-        
-           
           </BoxSelectItems>
         </div>
 
