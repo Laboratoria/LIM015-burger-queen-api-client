@@ -16,7 +16,7 @@
 <table class="table mt-3">
   <thead class="customTable fs-4 text-center"> 
       <th>Usuario</th>
-      <th>Contraseña</th>
+      <!-- <th>Contraseña</th> -->
       <th>Cargo</th>
       <th>Administrador</th>
       <th></th>
@@ -24,7 +24,7 @@
   <tbody>
     <tr *ngFor="let user of users" class="text-center">
       <td>{{user.email}}</td>
-      <td>{{user.password}}</td>
+      <!-- <td>{{user.password}}</td> -->
       <td>{{user.roles.name}}</td>
       <td>{{user.roles.admin}}</td>
       <td>
@@ -58,12 +58,13 @@
           </div>
           <div class="mb-3">
              <select class="form-select" formControlName="rolname" aria-label="Cargo">
-              <option selected>Selecciona cargo</option>
+              <option class="text-dark" [ngValue]="null" [selected]="true">Open this select menu</option>
               <option value="mesero">Mesero</option>
               <option value="cocinero">Cocinero</option>
               <option value="administrador">Administrador</option>
             </select> 
           </div>
+          
           <div class="mb-3">
             <div class="form-check">
               <input class="form-check-input" formControlName="admin" type="checkbox" value="true" id="flexCheckAdmin">

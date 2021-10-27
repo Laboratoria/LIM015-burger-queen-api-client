@@ -11,8 +11,9 @@ import { UserI } from './usuarios.model';
 })
 export class UsuariosComponent implements OnInit {
   formValue !: FormGroup;
-  userModelObject : UserI = {email: '', password: '', roles:{name:' ', admin: false}};
+  userModelObject : UserI = {email: '', password: '', roles:{name:'seleccione la categoria', admin: false}};
   users: UserI[] = [];
+  prueba: string = "prueba";
 
   constructor(private formbuilder: FormBuilder,
     private auth : AuthService) { }
@@ -21,7 +22,7 @@ export class UsuariosComponent implements OnInit {
     this.formValue = this.formbuilder.group({
       email : [''],
       password: [''],
-      rolname:[''],
+      rolname:['seleccione la categoria'],
       admin: false
     })
     this.getUsers();
@@ -39,6 +40,7 @@ export class UsuariosComponent implements OnInit {
       let ref = document.getElementById('cancel')
       ref?.click();
       this.formValue.reset();
+      this.getUsers();
     },
       err=>{
         alert("Ups, ocurrió un error");
@@ -56,5 +58,6 @@ export class UsuariosComponent implements OnInit {
   deleteUser(id: any){
     this.auth.deleteOneUser(id).subscribe(res =>
       alert('Usuario eliminado'));
+      this.getUsers();
   }
 }

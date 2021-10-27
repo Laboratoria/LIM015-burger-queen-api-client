@@ -19,6 +19,7 @@ export class AuthService {
     this.objectAuth['password'] = user.password;
     return this.http.post(this.Url, this.objectAuth);
   }
+  
   logout() {
     localStorage.clear();
     this.router.navigate(['login']);
