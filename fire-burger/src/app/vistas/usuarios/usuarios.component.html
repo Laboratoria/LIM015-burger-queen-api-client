@@ -28,7 +28,7 @@
       <td>{{user.roles.admin}}</td>
       <td>
         <button class="icons"><i class="far fa-edit fs-4"></i> </button>
-        <button class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
+        <button (click) = "deleteUser(user._id)" class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
       </td>
     </tr>
   </tbody>

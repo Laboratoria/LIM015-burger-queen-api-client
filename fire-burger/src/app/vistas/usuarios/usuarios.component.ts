@@ -52,4 +52,9 @@ export class UsuariosComponent implements OnInit {
       this.users = res;
     })
   }
+
+  deleteUser(id: any){
+    this.auth.deleteOneUser(id).subscribe(res =>
+      alert('Usuario eliminado'));
+  }
 }
