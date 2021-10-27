@@ -4,72 +4,46 @@ import ProductBox from './ProductBox';
 import OrderPreview from './OrderPreview'
 import CustomerName from './CustomerName'
 import WaiterNav from './WaiterNav';
-import {getProducts} from '../Authentication/auth';
+import { apiRequestToGetProducts } from '../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
-
-
-// import { products } from '../mocks'
-
-//import axios from 'axios';
-
-
 
 const WaiterFirstView = () => {
 
-  const [products, setProducts] = useState([]);
+  let urlProducts = "https://burger-queenn.herokuapp.com/products";
 
-  const filterBreak=products.filter((prod) => prod.type==="Breakfast");
-
-  const [filterProduct,setfilterProduct]=useState(filterBreak);
-
-  const [option, setOption] = useState('');
+  const [products, setProducts] = useState([]); /* all products */
+  const [filterProduct, setFilterProduct] = useState([]);
+  const [option, setOption] = useState('Breakfast');
 
   useEffect(() => {
-    getProd();
-    
+    getProducts();
   }, [])
 
-
-useEffect( ()=>{
-  optionSelection();
-},[])
-
+  useEffect(() => {
+    if (products.length) {
+      const filterBreak = products.filter((prod) => prod.type === "Breakfast");
+      setFilterProduct(filterBreak);
+    }
+  }, [products])
 
   /* useEffect debe ejecutarse de manera sincrona */
 
-  let urlProducts = "https://burger-queenn.herokuapp.com/products";
-
-
-  const getProd = async () => {
-     const response =await getProducts(urlProducts)
-     console.log(response.data, 'dataproducts');
-     setProducts(response.data)
+  const getProducts = async () => {
+    const response = await apiRequestToGetProducts(urlProducts)
+    setProducts(response.data)
   };
 
+  const handleSelectedOption = (option) => {
+    setOption(option)
+    const filterBreak = products.filter((prod) => prod.type === "Breakfast");
+    if (option === "Breakfast") {
+      setFilterProduct(filterBreak);
 
-
-  const optionSelection = ( opcion)=>{
-    setOption(opcion);
-
-    if(opcion==="Breakfast"){
-      
-      const filterBreakfast=products.filter((prod) => prod.type===opcion);
-      console.log(filterBreakfast,"filtrado");
-      console.log(option);
-      console.log(opcion);
-      setfilterProduct(filterBreakfast);
-      
-    } else if(opcion==='Lunch'){
-
-      const filterLunch=products.filter((prod) => prod.type!=="Breakfast");
-      console.log(filterLunch,"filtrado lucnh");
-      console.log(option);
-      console.log(opcion);
-     setfilterProduct(filterLunch);
+    } else if (option === 'Lunch') {
+      const filterLunch = products.filter((prod) => prod.type !== "Breakfast");
+      setFilterProduct(filterLunch);
     }
-    }
-
-
+  }
 
   return (
     <Fragment>
@@ -90,26 +64,22 @@ useEffect( ()=>{
 
         <div>
           <div className="mx-8">
-            
-            <Button   type={'secondary'} name={"BREAKFAST"}  onClick={ () => optionSelection ('Breakfast')} /> 
-            <Button  type={'tertiary'} name={"LUNCH"}  onClick={ () => optionSelection ('Lunch')} />
 
-             
+            <Button type={'secondary'} name={"BREAKFAST"} onClick={() => handleSelectedOption('Breakfast')} />
+            <Button type={'tertiary'} name={"LUNCH"} onClick={() => handleSelectedOption('Lunch')} />
+
+
           </div >
 
           <BoxSelectItems >
-          
-          {    
-          (option===" " ) ?
-          filterProduct.map(product => <ProductBox key={product.id}   product={product} />) : 
-          
-          filterProduct.map(product => <ProductBox key={product.id}   product={product} />)
-        
-          }
-        
+            {
+              (option === " ") ?
+                filterProduct.map(product => <ProductBox product={product} />) :
+
+                filterProduct.map(product => <ProductBox product={product} />)
+            }
           </BoxSelectItems>
         </div>
-
 
         <div>
           <OrderPreview />
