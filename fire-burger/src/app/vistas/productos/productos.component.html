@@ -1,0 +1,67 @@
+<body>
+    <div class="container">
+      <nav class="navbar navbar-light bg-transparent d-flex justify-content-center">
+          <form class="d-flex searcher">
+            <input class="searchBar form-control me-2" type="search" placeholder="Buscar usuario" aria-label="Search">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i>
+            </button>
+          </form>
+      </nav>
+    </div>
+  <div class="d-flex justify-content-center m-3">
+      <button class="btn btn-info" type="button" s data-bs-toggle="modal" data-bs-target="#exampleModal">NUEVO PRODUCTO</button>
+  </div>
+   
+  
+  <div class="container d-flex justify-content-center">
+  <table class="table mt-3">
+    <thead class="customTable fs-4 text-center">
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th></th>
+    </thead>
+    <tbody>
+      <tr class="text-center">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td >
+          <button class="icons"><i class="far fa-edit fs-4"></i> </button>
+          <button class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </body>
+  
+  
+  <!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">CREAR PRODUCTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue"> 
+            <div class="mb-3">
+              <input class="form-control me-2" type="text" formControlName="producto" placeholder="Producto" aria-label="Producto">
+            </div>
+            <div class="mb-3">
+              <input class="form-control me-2" type="text" formControlName="precio" placeholder="Precio" aria-label="Precio">
+            </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Añadir</button>
+        </div>
+      </div>
+    </div>
+  </div>

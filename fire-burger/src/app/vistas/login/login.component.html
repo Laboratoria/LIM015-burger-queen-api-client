@@ -1,0 +1,28 @@
+<body>
+  <div class="container">
+  <div class="mainContainer row">
+    <div class="container col">
+      <div>
+        <img src="./assets/FireBurger.png" class="img-fluid" width="" alt="">
+      </div>
+    </div>
+    <div class="container col">
+      <div class="containerLogin bg-light rounded-3" style="--bs-bg-opacity: .28;" >
+        <h1 class="fw-bold text-center py-3">INICIAR SESIÓN</h1>
+        <!-- LOGIN -->
+         <form class="logIn-form" [formGroup]="loginForm"  (ngSubmit)="login()">
+           <div class="mb-4">
+             <input  type="email" class="form-control inputLogin" name="email" formControlName="email" placeholder= "Usuario">
+            </div> 
+            <div class="mb-4">
+              <input  type="password" class="form-control inputLogin" name="password" formControlName="password" placeholder="Contraseña">
+           </div>
+           <div class="d-grid rounded-3 py-3">
+              <button class="btn btn-primary" type="submit">Ingresar</button> 
+            </div>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,22 @@
+*{
+    color: white; 
+}
+
+.mainContainer{
+ display: flex; 
+ flex-direction: row;
+ align-items: center;
+ height:100vh;
+}
+
+.containerLogin{
+  padding: 1.5em 2em;
+}
+
+.inputLogin{
+  font-size: 1.5rem !important;
+}
+
+.btn {
+  font-size: 1.5rem !important; 
+}
