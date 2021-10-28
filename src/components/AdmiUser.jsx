@@ -11,20 +11,20 @@ import { getUser } from "../Authentication/auth";
 
 import ModalAddUser  from "./Modal";
 
-const PAdmi = (props) => {
-  //console.log(props.lerolero);
+const PAdmi = ({users,getUsers}) => {
+  
+ 
 
   const [showModal, setShowModal] = useState(false);
 
 
   return (
 
-
     <Fragment>
 
      <div>
      {showModal ? ( 
-       <ModalAddUser />
+       <ModalAddUser  getUsers={getUsers} />
      ) : ""}
 
      </div>
@@ -44,8 +44,8 @@ const PAdmi = (props) => {
           </tr>
         </thead>
         <tbody className=" ">
-          {props.lerolero.length > 0 ? (
-            props.lerolero.map((user) => (
+          {users.length > 0 ? (
+            users.map((user) => (
               <tr key={user.id}>
                 <td className=" px-4"> {user.email}</td>
                 {user.roles.name ? <td>{user.roles.name}</td> : <td>admin</td>}
@@ -94,7 +94,7 @@ const AdmiUser = () => {
     <Fragment>
                
         <div className="flex-row flex justify-center">
-            <PAdmi lerolero={users} />
+            <PAdmi users={users}  getUsers={petitionGet} />
         </div>
     
     </Fragment>

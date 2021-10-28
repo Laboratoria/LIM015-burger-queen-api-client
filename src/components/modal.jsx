@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
-
 import { addNewUser } from "../Authentication/auth";
 
 
-const ModalAddUser = ( ) => {
+
+const ModalAddUser = ({getUsers} ) => {
 
   const [form, setForm] = useState({
     email: "",
@@ -32,12 +31,14 @@ const ModalAddUser = ( ) => {
 
   const sendForm = async (e) => {
     e.preventDefault();
-    console.log(form);
-
+    //console.log(form);
     const urlUser = "https://burger-queenn.herokuapp.com/users";
     await addNewUser(urlUser, form);
-      console.log("hackerrang");
+    await getUsers();
+     // console.log("hackerrang");
   };
+
+ 
 
 
 
