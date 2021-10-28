@@ -3,7 +3,7 @@ import BoxSelectItems from "./BoxSelectItems";
 //import ProductBox from './ProductBox';
 
 import OrderPreview from './OrderPreview'
-import CustomerName from './CustomerName'
+
 import WaiterNav from './WaiterNav';
 import { apiRequestToGetProducts } from '../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
@@ -15,17 +15,12 @@ const WaiterFirstView = () => {
   let urlProducts = "https://burger-queenn.herokuapp.com/products";
   const [products, setProducts] = useState([]); /* all products */
 
-  const [option, setOption] = useState(" ");
-
   const [customerName, setCustomerName] = useState('');
 
   const employeeName = localStorage.getItem('namelogged');
   console.log(employeeName);
 
   const [getEmployeeName, setGetEmployeeName] = useState(employeeName);
-
-
-  const [products, setProducts] = useState([]); /* all products */
 
   const [option, setOption] = useState(true);
 
@@ -69,7 +64,7 @@ const WaiterFirstView = () => {
               onClick={() => setOption(true)}
             />
             <Button
-              type={"tertiary"}
+              type={"secondary"}
               name={"LUNCH"}
               onClick={() => setOption(false)}
             />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 
-import Button from "./Button";
+
 //import iconDelete from "../img/iconDelete.svg";
 import iconNegative from "../img/iconNegative.svg";
 import iconAddUser from "../img/iconAddUser.svg";
