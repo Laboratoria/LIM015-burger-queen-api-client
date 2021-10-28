@@ -8,26 +8,30 @@ import { apiRequestToGetProducts } from '../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
 import ProductFilter from './ProductFilter';
 import ProductBreak from './ProductBreak'
+import ListOrder from './ListOrder';
 
 
 const WaiterFirstView = () => {
 
   let urlProducts = "https://burger-queenn.herokuapp.com/products";
+  const [products, setProducts] = useState([]); /* all products */
 
-  const getProducts = async () => {
-    const response = await apiRequestToGetProducts(urlProducts)
-    setProducts(response.data)
-  };
+  const [option, setOption] = useState(" ");
+
+  const [customerName, setCustomerName] = useState('');
+
+  const employeeName = localStorage.getItem('namelogged');
+  console.log(employeeName);
+
+  const [getEmployeeName, setGetEmployeeName] = useState(employeeName);
+
+
 
   useEffect(() => {
     getProducts();
-    
-  }, [ ])
 
-  const [products, setProducts] = useState([]); /* all products */
- 
-  const [option, setOption] = useState(" ");
-  
+  }, [])
+
   useEffect(() => {
     if (products.length) {
       setProducts(products);
@@ -36,15 +40,15 @@ const WaiterFirstView = () => {
   }, [products])
 
   /* useEffect debe ejecutarse de manera sincrona */
+  const getProducts = async () => {
+    const response = await apiRequestToGetProducts(urlProducts)
+    setProducts(response.data)
+  };
 
 
-
-const handleSelectedOption = (option) => {
-  setOption(option);
-}
-
-  console.log(option);
-  console.log(products);
+  const handleSelectedOption = (option) => {
+    setOption(option);
+  }
 
   return (
     <Fragment>
@@ -58,7 +62,10 @@ const handleSelectedOption = (option) => {
           </div>
 
           <div className="w-full">
-            <CustomerName />
+            <div className="pt-16 flex justify-center items-center text-2xl">
+              <p className="">CUSTOMER NAME: { }</p>
+              <input className="border rounded-lg	border-gray-900	 w-44 h-9 ml-2" onChange={(e) => setCustomerName(e.target.value)} type={'text'} placeholder={'Insert Name'} />
+            </div>
           </div>
 
         </div>
@@ -73,23 +80,23 @@ const handleSelectedOption = (option) => {
           </div >
 
           <BoxSelectItems  >
-    
+
             {
-              (option ==="Lunch") ?
+              (option === "Lunch") ?
 
-              <ProductFilter  product={products} />
-                 : (option ==="Breakfast" )?
+                <ProductFilter product={products} />
+                : (option === "Breakfast") ?
 
-                 <ProductBreak  product={products}/>
-                :""
-              
+                  <ProductBreak product={products} />
+                  : ""
+
             }
-            
+
           </BoxSelectItems>
         </div>
 
         <div>
-          <OrderPreview />
+          <ListOrder />
         </div>
       </div >
     </Fragment>
