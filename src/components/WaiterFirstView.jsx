@@ -1,20 +1,34 @@
 import Button from "./Button";
 import BoxSelectItems from "./BoxSelectItems";
 //import ProductBox from './ProductBox';
-import OrderPreview from "./OrderPreview";
-import CustomerName from "./CustomerName";
-import WaiterNav from "./WaiterNav";
-import { apiRequestToGetProducts } from "../Authentication/auth";
-import { Fragment, useEffect, useState } from "react";
-import ProductFilter from "./ProductFilter";
-import ProductBreak from "./ProductBreak";
+
+import OrderPreview from './OrderPreview'
+import CustomerName from './CustomerName'
+import WaiterNav from './WaiterNav';
+import { apiRequestToGetProducts } from '../Authentication/auth'
+import { Fragment, useEffect, useState } from 'react';
+import ProductFilter from './ProductFilter';
+import ProductBreak from './ProductBreak'
+import ListOrder from './ListOrder';
 
 const WaiterFirstView = () => {
   let urlProducts = "https://burger-queenn.herokuapp.com/products";
+  const [products, setProducts] = useState([]); /* all products */
+
+  const [option, setOption] = useState(" ");
+
+  const [customerName, setCustomerName] = useState('');
+
+  const employeeName = localStorage.getItem('namelogged');
+  console.log(employeeName);
+
+  const [getEmployeeName, setGetEmployeeName] = useState(employeeName);
+
 
   const [products, setProducts] = useState([]); /* all products */
 
   const [option, setOption] = useState(true);
+
 
   useEffect(() => {
     getProducts();
@@ -28,6 +42,7 @@ const WaiterFirstView = () => {
   console.log(option);
   console.log(products);
 
+
   return (
     <Fragment>
       <WaiterNav />
@@ -39,7 +54,10 @@ const WaiterFirstView = () => {
           </div>
 
           <div className="w-full">
-            <CustomerName />
+            <div className="pt-16 flex justify-center items-center text-2xl">
+              <p className="">CUSTOMER NAME: { }</p>
+              <input className="border rounded-lg	border-gray-900	 w-44 h-9 ml-2" onChange={(e) => setCustomerName(e.target.value)} type={'text'} placeholder={'Insert Name'} />
+            </div>
           </div>
         </div>
 
@@ -64,11 +82,12 @@ const WaiterFirstView = () => {
               ) : (
                 <ProductFilter product={products} />
               ))}
+
           </BoxSelectItems>
         </div>
 
         <div>
-          <OrderPreview />
+          <ListOrder />
         </div>
       </div>
     </Fragment>
