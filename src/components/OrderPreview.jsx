@@ -2,6 +2,7 @@ import Button from "./Button";
 import iconAdd from "../img/iconAdd.svg";
 import { apiRequestToGetProducts } from "../Authentication/auth"
 import iconNegative from "../img/iconNegative.svg";
+import iconDelete from "../img/iconDelete.svg";
 //import iconDelete from "../img/iconDelete.svg";
 
 const OrderPreview = (data) => {
@@ -41,7 +42,7 @@ const OrderPreview = (data) => {
                 </td>
                 <td>{list.price} </td>
                 <td >
-                  <img className="text-left" src={iconAdd} alt={""} />{" "}
+                  <img  src={iconDelete} alt={""} />{" "}
                 </td>
               </tr>
             ))}

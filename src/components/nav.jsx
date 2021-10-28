@@ -2,6 +2,7 @@ import logoutbtn from '../img/logoutbtn.svg';
 
 
 const NavOpcion = (props ) => {
+    
     return (
         <nav>
             <div className="bg-gradient-to-r from-green-200 via-yellow-100 to-green-200 h-14 sm:h-20 flex justify-between items-center py-4" >

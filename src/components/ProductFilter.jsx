@@ -4,10 +4,14 @@ import { useState, useEffect } from 'react';
 
 //filter
 
-const ProductFilter = (products) => {
-    const [productLunch, setproductLunch] = useState([]);
-    const [accompaniments, setAccompaniments] = useState([]);
-    const [drinks, setDrinks] = useState([]);
+
+const ProductFilter = ( products) => {
+    
+
+    const [productLunch,setproductLunch]=useState([]);
+    const [accompaniments,setAccompaniments]=useState([]);
+    const [drinks,setDrinks]=useState([]);
+    
 
     useEffect(() => {
         setproductLunch(products.product.filter((prod) => prod.type === "Lunch"));
