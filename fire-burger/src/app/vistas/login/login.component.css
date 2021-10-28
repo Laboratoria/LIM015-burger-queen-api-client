@@ -1,5 +1,5 @@
 *{
-    color: white; 
+    color: black; 
 }
 
 .mainContainer{
@@ -15,12 +15,11 @@
 
 .inputLogin{
   font-size: 1.5rem !important;
+  background: transparent;
+  border: none;
+  border-bottom:yellow;
 }
 
 .btn {
   font-size: 1.5rem !important; 
-}
-
-.logIn-form{
-  color: #0000;
 }

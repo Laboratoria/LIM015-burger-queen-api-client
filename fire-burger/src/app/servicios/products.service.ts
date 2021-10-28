@@ -11,7 +11,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getProduct(): Observable<ProductI[]> {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     //const headers = new HttpHeaders({'Authorization': `Bearer ${token}`})
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -25,7 +25,7 @@ export class ProductsService {
 
   postProduct(data: ProductI): Observable<any> {
     console.log(data);
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
@@ -37,7 +37,7 @@ export class ProductsService {
   }
 
   deleteOneProduct(uid : any){
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
