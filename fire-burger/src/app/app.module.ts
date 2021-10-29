@@ -13,6 +13,9 @@ import { OrdenesListasComponent } from './vistas/ordenes-listas/ordenes-listas.c
 import { OrdenesPendientesComponent } from './vistas/ordenes-pendientes/ordenes-pendientes.component';
 import { ProductosComponent } from './vistas/productos/productos.component';
 import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
+import { ActualizarProductoComponent } from './modales/actualizar-producto/actualizar-producto.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -25,14 +28,15 @@ import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
     OrdenesPendientesComponent,
     ProductosComponent,
     UsuariosComponent,
-
+    ActualizarProductoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

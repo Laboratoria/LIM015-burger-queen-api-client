@@ -48,6 +48,10 @@ export class UsuariosComponent implements OnInit {
     console.log(this.userModelObject);
     
   }
+  
+  cancelUserDetails(){
+    this.formValue.reset();
+  }
 
   getUsers(){
     this.auth.getUser().subscribe(res => {

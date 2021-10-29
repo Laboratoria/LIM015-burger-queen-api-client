@@ -9,7 +9,7 @@
     </nav>
   </div>
 <div class="d-flex justify-content-center m-3">
-    <button class="btn btn-info" type="button" s data-bs-toggle="modal" data-bs-target="#exampleModal">NUEVO PRODUCTO</button>
+    <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">NUEVO PRODUCTO</button>
 </div>
 
 <div class="container d-flex justify-content-center">
@@ -23,13 +23,13 @@
   <tbody>
     <tr *ngFor="let product of products" class="text-center">
       <td>{{product.name}}</td>
-      <td>{{product.price}}</td>
+      <td>{{product.price | currency:'PEN': 'symbol'}}</td>
       <td>{{product.type}}</td>
       <td>
-        <button class="icons"><i class="far fa-edit fs-4"></i> </button>
+        <button (click) = "editItem(product)" class="icons" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="far fa-edit fs-4"></i> </button>
         <button (click) = "deleteProduct(product._id)" class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
       </td>
-    </tr>
+    </tr>|
   </tbody>
 </table>
 </div>
