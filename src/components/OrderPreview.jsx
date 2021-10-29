@@ -3,18 +3,52 @@ import iconAdd from "../img/iconAdd.svg";
 import { apiRequestToGetProducts } from "../Authentication/auth"
 import iconNegative from "../img/iconNegative.svg";
 import iconDelete from "../img/iconDelete.svg";
+import { useState } from "react/cjs/react.development";
 //import iconDelete from "../img/iconDelete.svg";
 
-const OrderPreview = (data) => {
+
+
+const CartOrder =({selectedProduct,setSelectedProduct})=>{
+
+  console.log(selectedProduct);
+
+return (
+<tbody className=" tex-center">
+            { selectedProduct.flat().map((list) => (
+              <tr key={list._id}>
+                <td>{list.name} </td>
+                <td>
+                  <img className="" src={iconNegative} alt={""} />{" "}
+                </td>
+                <td> { } </td>
+                <td className="items-end">
+                  <img src={iconAdd} alt={""} />{" "}
+                </td>
+                <td> {"$"}{list.price} </td>
+                <td >
+                  <img  src={iconDelete} alt={""} />{" "}
+                </td>
+              </tr>
+            ))}
+</tbody>
+
+)}
+
+
+const OrderPreview = ({selectedProduct,setSelectedProduct,customerName}) => {
+
+  
+  const employeeName = localStorage.getItem('namelogged');
 
   return (
-    data.orders.map((dat) => (
-
-      <div className="md: flex flex-col  items-center text-lg " key={dat.id}>
+  
+      <div className="md: flex flex-col  items-center text-lg " >
         <div className=" grid grid-rows-2 grid-flow-col gap-2">
-          <div className="p-2 mt-2 text-blue-400" > order: {dat.order}</div>
-          <div className="p-2 mt-2"> waiter: {dat.waiter}</div>
-          <div className="p-2 mt-2 row-span-3 justify-center flex items-center"> Time Order : {dat.timeOrder}</div>
+          <div className="p-2 mt-2 text-blue-400" > order: { }</div>
+          <div className="p-2 mt-2"> waiter: {employeeName}</div>
+          <div className="p-2 mt-2"> customerName: {customerName}</div>
+
+          <div className="p-2 mt-2 row-span-3 justify-center flex items-center"> Time Order : { }</div>
 
         </div>
 
@@ -29,30 +63,15 @@ const OrderPreview = (data) => {
             </tr>
           </thead>
 
-          <tbody className=" text-center">
-            {dat.products.map((list) => (
-              <tr key={list.id}>
-                <td>{list.product} </td>
-                <td>
-                  <img className="" src={iconNegative} alt={""} />{" "}
-                </td>
-                <td>{list.amount} </td>
-                <td className="items-end">
-                  <img src={iconAdd} alt={""} />{" "}
-                </td>
-                <td>{list.price} </td>
-                <td >
-                  <img  src={iconDelete} alt={""} />{" "}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          <CartOrder  selectedProduct={selectedProduct}
+                 setSelectedProduct={setSelectedProduct}/>
+              
         </table>
 
         <form action="">
           <textarea className="bg-amber-100  p-1 my-2 text-lg" value='Notes:'></textarea>
         </form>
-        <div className=" p-6">{dat.total}</div>
+        <div className=" p-6"> total: { }</div>
 
         <div className="flex flex-row">
           <Button type={'secondary'} name={'CANCEL'} />
@@ -61,10 +80,7 @@ const OrderPreview = (data) => {
 
       </div>
 
-
-    ))
-
-  );
+      );
 };
 
 export default OrderPreview;

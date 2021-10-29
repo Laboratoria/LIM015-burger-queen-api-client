@@ -1,50 +1,68 @@
 
 import ProductBox from './ProductBox';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 //filter
 
 
-const ProductFilter = ( products) => {
-    
+const ProductFilter = ({products,productType,selectedProduct,setSelectedProduct}) => {
 
+ console.log(products);
+
+    //const [selectedProduct,setSelectedProduct]=useState([]);
+        
+   
+    /*
     const [productLunch,setproductLunch]=useState([]);
     const [accompaniments,setAccompaniments]=useState([]);
-    const [drinks,setDrinks]=useState([]);
+    const [drinks,setDrinks]=useState([]);*/
     
 
-    useEffect(() => {
-        setproductLunch(products.product.filter((prod) => prod.type === "Lunch"));
-        setAccompaniments(products.product.filter((prod) => prod.type === "Accompaniments"));
-        setDrinks(products.product.filter((prod) => prod.type === "Drinks"));
+      const type0=products.filter((prod) => prod.type === productType[0]);
+      const type1 =products.filter((prod) => prod.type === productType[1]);
+      const type2=products.filter((prod) => prod.type === productType[2]);
 
-        console.log(productLunch, accompaniments, drinks);
-    }, [])
-
+  
     return (
+        
         <div className="flex flex-col text-xl text-center">
-
-            <p> Hamburgers</p>
+    
+            <p> {productType[0]}</p>
 
             <div className=" grid grid-cols-2 grid-rows-1">
-                {productLunch.map(product => <ProductBox product={product} />)}
+                {type0.map(product => 
+                <ProductBox
+                key={product._id}
+                products={products}
+                 product={product} 
+                 selectedProduct={selectedProduct}
+                 setSelectedProduct={setSelectedProduct}
+                   />)}
 
             </div>
             <div>
 
-                <p> Accompaniments</p>
+                <p> {productType[1]}</p>
 
             </div>
 
             <div className=" grid grid-cols-2 grid-rows-1">
-                {accompaniments.map(product => <ProductBox product={product} />)}
+                {type1.map(product => <ProductBox key={product._id}
+                products={products}
+                 product={product} 
+                 selectedProduct={selectedProduct}
+                 setSelectedProduct={setSelectedProduct} />)}
 
             </div>
 
-            <p> Drinks</p>
+            <p> {productType[2]}</p>
 
             <div className=" grid grid-cols-2 grid-rows-1">
-                {drinks.map(product => <ProductBox product={product} />)}
+                {type2.map(product => <ProductBox key={product._id}
+                products={products}
+                 product={product} 
+                 selectedProduct={selectedProduct}
+                 setSelectedProduct={setSelectedProduct} />)}
 
             </div>
 
@@ -54,6 +72,7 @@ const ProductFilter = ( products) => {
 
 
     )
+
 
 }
 

@@ -8,8 +8,9 @@ import WaiterNav from './WaiterNav';
 import { apiRequestToGetProducts } from '../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
 import ProductFilter from './ProductFilter';
-import ProductBreak from './ProductBreak'
-import ListOrder from './ListOrder';
+//import ProductBreak from './ProductBreak'
+
+
 
 const WaiterFirstView = () => {
   let urlProducts = "https://burger-queenn.herokuapp.com/products";
@@ -17,10 +18,7 @@ const WaiterFirstView = () => {
 
   const [customerName, setCustomerName] = useState('');
 
-  const employeeName = localStorage.getItem('namelogged');
-  console.log(employeeName);
-
-  const [getEmployeeName, setGetEmployeeName] = useState(employeeName);
+  const [selectedProduct,setSelectedProduct]=useState([]);
 
   const [option, setOption] = useState(true);
 
@@ -34,10 +32,7 @@ const WaiterFirstView = () => {
     setProducts(response.data);
   };
 
-  console.log(option);
-  console.log(products);
-
-
+  
   return (
     <Fragment>
       <WaiterNav />
@@ -71,18 +66,32 @@ const WaiterFirstView = () => {
           </div>
 
           <BoxSelectItems>
-            {products.length > 0 &&
+            {products.length > 0 && 
               (option ? (
-                <ProductBreak product={products} />
+                <ProductFilter  products={products} selectedProduct={selectedProduct}
+                setSelectedProduct={setSelectedProduct} productType={["Coffee","Sandwichs","Juices"]}
+                />
               ) : (
-                <ProductFilter product={products} />
+                <ProductFilter products={products}  selectedProduct={selectedProduct}
+                setSelectedProduct={setSelectedProduct} productType={["Lunch","Accompaniments","Drinks"]} />
               ))}
 
           </BoxSelectItems>
         </div>
 
         <div>
-          <ListOrder />
+
+        {/* lista de ordenes */}
+        <div className="bg-white-200 shadow mt-20 rounded-2xl p-4 ml-10 mx-8">
+            <div></div>
+            <OrderPreview selectedProduct={selectedProduct}
+                setSelectedProduct={setSelectedProduct}  customerName={customerName}  />
+            <div>
+                <Button />
+                <Button />
+            </div>
+        </div>
+            
         </div>
       </div>
     </Fragment>
