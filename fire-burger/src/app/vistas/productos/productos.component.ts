@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActualizarProductoComponent } from 'src/app/modales/actualizar-producto/actualizar-producto.component';
 import { ProductsService } from 'src/app/servicios/products.service';
 import { ProductI } from '../../vistas/productos/productos.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-productos',
@@ -12,8 +12,8 @@ import { ProductI } from '../../vistas/productos/productos.model';
 })
 export class ProductosComponent implements OnInit {
   formValue!: FormGroup;
-  productModelObject: ProductI = { name: '', price: 0, type: '' };
-  products: ProductI[] = [];
+  public product: ProductI = { name: '', price: 0, type: '' };
+  public products: ProductI[] = [];
 
   constructor(
     private formbuilder: FormBuilder,
@@ -30,11 +30,11 @@ export class ProductosComponent implements OnInit {
     this.getProducts();
   }
   postProduct() {
-    this.productModelObject.name = this.formValue.value.name;
-    this.productModelObject.price = this.formValue.value.price;
-    this.productModelObject.type = this.formValue.value.type;
+    this.product.name = this.formValue.value.name;
+    this.product.price = this.formValue.value.price;
+    this.product.type = this.formValue.value.type;
 
-    this.api.postProduct(this.productModelObject).subscribe(
+    this.api.postProduct(this.product).subscribe(
       (res) => {
         console.log(res);
         alert('¡Producto agregado!');
@@ -47,7 +47,7 @@ export class ProductosComponent implements OnInit {
         alert('Ups, ocurrió un error');
       }
     );
-    console.log(this.productModelObject);
+    console.log(this.product);
   }
 
   getProducts() {
@@ -62,17 +62,15 @@ export class ProductosComponent implements OnInit {
       .subscribe((res) => alert('Producto eliminado'));
   }
 
-  editItem(productModelObject: ProductI) {
-    const ref = this.modalService.open(ActualizarProductoComponent);
-    ref.componentInstance.productModelObject = productModelObject;
 
-    ref.result.then(
-      (yes) => {
-        console.log('Ok Click');
-      },
-      (cancel) => {
-        console.log('Cancel Click');
-      }
-    );
-  }
+openEditModal() {
+  const modalRef = this.modalService.open(ActualizarProductoComponent);
+  modalRef.componentInstance.product= this.product;
+  modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
+    console.log(receivedEntry);
+  })
 }
+
+}
+
+ 

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ProductsService } from 'src/app/servicios/products.service';
-import { ProductI } from '../../vistas/productos/productos.model'
+ import { ProductsService } from 'src/app/servicios/products.service';
+ import { ProductI } from '../../vistas/productos/productos.model';
 
 
 @Component({
@@ -11,23 +11,28 @@ import { ProductI } from '../../vistas/productos/productos.model'
   styleUrls: ['./actualizar-producto.component.css'],
 })
 export class ActualizarProductoComponent implements OnInit {
-  editForm!: FormGroup;
-  selectedProduct: ProductI = { name: '', price: 0, type: '' };
-  products: ProductI[] = [];
 
-  constructor(public modal: NgbActiveModal, private formBuilder: FormBuilder, private api: ProductsService) {}
+  @Input() public product! : ProductI;
+  @Output() passEntry: EventEmitter<any> = new EventEmitter();
+
+  editForm!: FormGroup;
+  // products: ProductI[] = [];
+
+  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, private api: ProductsService) {}
   ngOnInit(){
-    this.setForm();
-  }
-  private setForm() {
-    console.log(this.selectedProduct);
+    console.log("Hola",this.product);
     this.editForm = this.formBuilder.group({
-    name: [this.selectedProduct.name],
-    price: [this.selectedProduct.price, Validators.required],
-    type: [this.selectedProduct.type, Validators.required],
-  });
+      name: [this.product.name],
+      price: [this.product.price, Validators.required],
+      type:[this.product.type, Validators.required]
+    })
+  }
+  updateProduct() {
+    this.activeModal.close(this.product);
+  }
+
 }
-}
+
 //   ngOnInit(): void {
 //     this.formValue = this.formbuilder.group({
 //       name: [''],
