@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 const BoxSelectItems = ({ children }) => {
     return (
 
-        <div className="bg-white-200 shadow grid grid-cols-1 grid-rows-1 gap-x-16 mt-10 rounded-2xl p-2 mx-8">
+        <div className="bg-white-200 shadow flex flew-row gap-x-16 mt-10 rounded-2xl p-2 mx-8">
             {children}
         </div>
     )
