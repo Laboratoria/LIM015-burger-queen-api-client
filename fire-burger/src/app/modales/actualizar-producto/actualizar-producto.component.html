@@ -1,72 +1,30 @@
-<!-- Modal Edit-->
-<ng-template #content let-modal>
-<div
-  class="modal fade"
-  id="modalEdit"
-  tabindex="-1"
-  aria-labelledby="modalEdit"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalEditLabel">EDITAR PRODUCTO</h5>
-        <button
-          type="button"
-          (click)="modal.dismiss()"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="editForm">
-          <div class="mb-3">
-            <input
-              class="form-control me-2"
-              type="text"
-              formControlName="name"
-              placeholder="Producto"
-              aria-label="Producto"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              class="form-control me-2"
-              type="number"
-              formControlName="price"
-              placeholder="Precio"
-              aria-label="Precio"
-            />
-          </div>
-          <div class="mb-3">
-            <select
-              class="form-select"
-              formControlName="type"
-              aria-label="Categoría"
-            >
-              <option selected>Selecciona categoría</option>
-              <option value="Desayunos">Desayunos</option>
-              <option value="Almuerzos">Almuerzos</option>
-              <option value="Bebidas">Bebidas</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          id="cancel"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Cancelar
-        </button>
-        <button type="button"  class="btn btn-primary">
-          Modificar
-        </button>
-      </div>
-    </div>
-  </div>
+<div class="modal-header">
+  <h5 class="modal-title" id="modalEditLabel">EDITAR PRODUCTO</h5>
+  <button type="button" class="btn-close"  aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
-</ng-template>
+<div class="modal-body">
+  <form [formGroup]="editForm">
+    <div class="mb-3">
+      <input formControlName="name" class="form-control me-2" type="text" placeholder="Producto" aria-label="Producto"/>
+    </div>
+    <div class="mb-3">
+      <input formControlName="price" class="form-control me-2" type="number" placeholder="Precio" aria-label="Precio"/>
+    </div>
+    <div class="mb-3">
+      <select formControlName="type" class="form-select"  aria-label="Categoría">
+        <option selected>Selecciona categoría</option>
+        <option  value="Desayunos">Desayunos</option>
+        <option value="Almuerzos">Almuerzos</option>
+        <option value="Bebidas">Bebidas</option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button (click)="activeModal.dismiss('Cross click')" type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+    Cancelar
+  </button>
+  <button (click)="updateProduct()" type="button" class="btn btn-primary">
+    Modificar
+  </button>
+</div>

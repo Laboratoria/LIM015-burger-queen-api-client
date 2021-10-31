@@ -26,7 +26,7 @@
       <td>{{product.price | currency:'PEN': 'symbol'}}</td>
       <td>{{product.type}}</td>
       <td>
-        <button (click) = "editItem(product)" class="icons" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="far fa-edit fs-4"></i> </button>
+        <button (click)="openEditModal()" class="icons" data-bs-toggle="modal"><i class="far fa-edit fs-4"></i> </button>
         <button (click) = "deleteProduct(product._id)" class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
       </td>
     </tr>|
