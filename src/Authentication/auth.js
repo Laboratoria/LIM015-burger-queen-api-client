@@ -66,29 +66,61 @@ export const apiRequestToGetProducts = async (urlProduct) => {
 
 //getUser("https://burger-queenn.herokuapp.com/users").then( r => console.log(r))
 
-//add nwe user 
 
-export const addNewUser= async (urlProduct,dataUser) => {
+
+//add new user or product 
+
+export const petitionPostAdd= async (urlUP,data) => {
     const token = localStorage.getItem("token");
-    console.log(dataUser);
-
+    
     return axios({
-        url:urlProduct,
+        url:urlUP,
         method:"POST",
-        data:dataUser,
+        data:data,
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
         },
     })
 
-/*
-    return await axios.post(urlProduct, {
+
+}
+
+
+
+
+//delete user or product 
+
+export const petitionDelete= async (urlUP,idUP) => {
+    const token = localStorage.getItem("token");
+   
+    return axios({
+        url:urlUP+idUP,
+        method:"DELETE",
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
         },
-        Body:dataUser
-      });*/
-
+    })
 }
+
+
+
+
+
+//edit user or product 
+export const petitionPutEdit= async (urlUP,idUP,newData) => {
+    const token = localStorage.getItem("token");
+   
+    return axios({
+        url:urlUP+idUP,
+        method:"PUT",
+        data:newData,
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+    })
+}
+
+

@@ -2,6 +2,7 @@ import React from "react";
 import NavOpcion from "./WaiterView/Nav";
 import admi from "../img/admi.svg";
 import AdmiUser from "./AdmiUser";
+import AdmiProduct from "./AdmiProduct";
 
 import { useState, Fragment } from "react";
 
@@ -71,15 +72,9 @@ const Tabs = ({ color }) => {
 
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                  <p>
-                    Completely synergize resource taxing relationships via
-                    premier niche markets. Professionally cultivate one-to-one
-                    customer service with robust ideas.
-                    <br />
-                    <br />
-                    Dynamically innovate resource-leveling customer service for
-                    state of the art customer service.
-                  </p>
+
+                  <AdmiProduct/>
+                 
                 </div>
 
               </div>

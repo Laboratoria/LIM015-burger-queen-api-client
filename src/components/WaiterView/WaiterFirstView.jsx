@@ -8,11 +8,9 @@ import ProductFilter from './ProductFilter';
 //import ProductBreak from './ProductBreak'
 
 
-
 const WaiterFirstView = () => {
-  let urlProducts = "https://burger-queenn.herokuapp.com/products";
+  const urlProducts = "https://burger-queenn.herokuapp.com/products";
   const [products, setProducts] = useState([]); /* all products */
-
   const [customerName, setCustomerName] = useState('');
 
   const [selectedProduct, setSelectedProduct] = useState([]);
