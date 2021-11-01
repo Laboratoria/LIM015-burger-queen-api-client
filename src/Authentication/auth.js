@@ -66,6 +66,7 @@ export const apiRequestToGetProducts = async (urlProduct) => {
 
 //getUser("https://burger-queenn.herokuapp.com/users").then( r => console.log(r))
 
+
 //add nwe user 
 
 export const addNewUser= async (urlProduct,dataUser) => {
@@ -82,13 +83,42 @@ export const addNewUser= async (urlProduct,dataUser) => {
         },
     })
 
-/*
-    return await axios.post(urlProduct, {
+
+}
+
+
+
+
+//delete user or product 
+
+export const deleteUser= async (urlUser,idUser) => {
+    const token = localStorage.getItem("token");
+    console.log(idUser);
+    return axios({
+        url:urlUser+idUser,
+        method:"DELETE",
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
         },
-        Body:dataUser
-      });*/
-
+    })
 }
+
+
+//edit user 
+
+export const petitionPutEdit= async (urlUser,idUser,newData) => {
+    const token = localStorage.getItem("token");
+    console.log(idUser);
+    return axios({
+        url:urlUser+idUser,
+        method:"PUT",
+        data:newData,
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+    })
+}
+
+
