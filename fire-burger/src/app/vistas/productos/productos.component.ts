@@ -12,8 +12,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductosComponent implements OnInit {
   formValue!: FormGroup;
-  public product: ProductI = { name: '', price: 0, type: '' };
-  public products: ProductI[] = [];
+  public productModal: ProductI = { name: '', price: 0, type: '' };
+  public productsList: ProductI[] = [];
 
   constructor(
     private formbuilder: FormBuilder,
@@ -27,32 +27,32 @@ export class ProductosComponent implements OnInit {
       price: [0],
       type: [''],
     });
-    this.getProducts();
+    this.setProductsList();
   }
   postProduct() {
-    this.product.name = this.formValue.value.name;
-    this.product.price = this.formValue.value.price;
-    this.product.type = this.formValue.value.type;
+    this.productModal.name = this.formValue.value.name;
+    this.productModal.price = this.formValue.value.price;
+    this.productModal.type = this.formValue.value.type;
 
-    this.api.postProduct(this.product).subscribe(
+    this.api.postProduct(this.productModal).subscribe(
       (res) => {
         console.log(res);
         alert('¡Producto agregado!');
         let ref = document.getElementById('cancel');
         ref?.click();
         this.formValue.reset();
-        this.getProducts();
+        this.setProductsList();
       },
       (err) => {
         alert('Ups, ocurrió un error');
       }
     );
-    console.log(this.product);
+    console.log(this.productModal);
   }
 
-  getProducts() {
+  setProductsList() {
     this.api.getProduct().subscribe((res) => {
-      this.products = res;
+      this.productsList = res;
     });
   }
 
@@ -63,13 +63,13 @@ export class ProductosComponent implements OnInit {
   }
 
 
-openEditModal() {
-  const modalRef = this.modalService.open(ActualizarProductoComponent);
-  modalRef.componentInstance.product= this.product;
-  modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
-    console.log(receivedEntry);
-  })
-}
+  openEditModal(product: ProductI) {
+    const modalRef = this.modalService.open(ActualizarProductoComponent);
+    modalRef.componentInstance.product= product;
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
+      console.log(receivedEntry);
+    })
+  }
 
 }
 

@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <body>
   <div class="container">
     <nav class="navbar navbar-light bg-transparent d-flex justify-content-center">
@@ -21,12 +22,12 @@
       <th></th>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products" class="text-center">
+    <tr *ngFor="let product of productsList" class="text-center">
       <td>{{product.name}}</td>
       <td>{{product.price | currency:'PEN': 'symbol'}}</td>
       <td>{{product.type}}</td>
       <td>
-        <button (click)="openEditModal()" class="icons" data-bs-toggle="modal"><i class="far fa-edit fs-4"></i> </button>
+        <button (click)="openEditModal(product)" class="icons" data-bs-toggle="modal"><i class="far fa-edit fs-4"></i> </button>
         <button (click) = "deleteProduct(product._id)" class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
       </td>
     </tr>|
