@@ -10,6 +10,7 @@ import {apiRequestToGetProducts } from "../Authentication/auth";
 
 import ModalProduct from "./ModalProduct";
 
+/*
 
 const PAdmi = ({products,getProducts}) => {
   
@@ -113,7 +114,7 @@ const userSelection =(user,option)=>{
   );
 };
 
-
+*/
 
 
 
@@ -138,7 +139,7 @@ const AdmiProduct= () => {
     <Fragment>
                
         <div className="flex-row flex justify-center">
-            <PAdmi products={products}  getProducts={petitionGet} />
+           products { /*<PAdmi products={products}  getProducts={petitionGet} />*/}
         </div>
         </Fragment>
   );
