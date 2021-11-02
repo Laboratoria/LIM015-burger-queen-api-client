@@ -28,8 +28,9 @@ export class ActualizarProductoComponent implements OnInit {
     })
   }
   updateProduct() {
-    
-    this.activeModal.close(this.product);
+    this.api.updateOneProduct(this.product).subscribe((res=>{
+      this.activeModal.close(this.product);
+    }));
   }
 
 }

@@ -45,10 +45,14 @@ export class ProductsService {
     }
 
   updateOneProduct(uid : any){
+    console.log(uid);
+    
     const token = localStorage.getItem('token');
+    console.log(token);
+    
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}`},
     };
-    return this.http.put<ProductI>('https://fireburguer.herokuapp.com/products/'+ uid, config)
+    return this.http.put<ProductI>('https://fireburguer.herokuapp.com/products/'+ uid._id , {price: 100}, config)
   }  
   }
