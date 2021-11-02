@@ -69,8 +69,7 @@ const Tabs= ({ color }) => {
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
                 <AdmiUser />
 
-      
-                </div>
+                  </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
 
                   <AdmiProduct/>

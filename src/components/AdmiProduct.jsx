@@ -1,69 +1,63 @@
 import React, { useEffect, useState, Fragment } from "react";
-
-
-
 import iconNegative from "../img/iconNegative.svg";
 import iconAddUser from "../img/iconAddUser.svg";
-
 import {apiRequestToGetProducts } from "../Authentication/auth";
-
-
 import ModalProduct from "./ModalProduct";
 
-/*
 
-const PAdmi = ({products,getProducts}) => {
+
+const PAdmiProducts = ({products,getProducts}) => {
   
-
   const [showModal, setShowModal] = useState(false);
- 
   const [modalEdit ,setModalEdit]=useState(false);
   const [modalDelete ,setModalDelete]=useState(false);
   
   const [userSele,setUserSele]=useState([]);  
 
-const userSelection =(user,option)=>{
-   setUserSele(user);
-  (option==="edit")?setModalEdit(true):setModalDelete(true)
-}
+  const userSelection =(user,option)=>{
+    setUserSele(user);
+    (option==="edit")?setModalEdit(true):setModalDelete(true)
+  }
 
-
+  
   return (
 
     <Fragment>
 
      <div>
      {showModal ? ( 
-       < ModalProduct 
-       getUsers={getProducts} 
-       showModal={showModal} 
-       setShowModal={setShowModal}  />
+      < ModalProduct 
+      getUsers={getProducts} 
+      showModal={showModal} 
+      setShowModal={setShowModal}  />
      ) : ""}
-
      </div>
+  
 
     <div>
      { modalEdit?(
      < ModalProduct 
       getUsers={getProducts} 
-       modalEdit={modalEdit} 
-       setModalEdit={setModalEdit}
-       userSele={userSele}
-       />
+      modalEdit={modalEdit} 
+      setModalEdit={setModalEdit}
+      userSele={userSele}
+      />
      ):" "
       }
     </div>
+
     <div>
       {modalDelete?(
         < ModalProduct
         getUsers={getProducts} 
         modalDelete={modalDelete} 
         setModalDelete={setModalDelete}
-         userSele={userSele}
-         />
+        userSele={userSele}
+        />
        ):" "
       }
     </div>
+
 
       <table className="divide-y divide-blue-300  bg-white-200 shadow mt-2 rounded-2xl  ml-10 mx-4 p-4  ">
         <thead>
@@ -80,8 +74,8 @@ const userSelection =(user,option)=>{
           </tr>
         </thead>
         <tbody className=" ">
-          {users.length > 0 ? (
-            users.map((user) => (
+          {products.length > 0 ? (
+            products.map((user) => (
               <tr key={user.id}>
                 <td className=" px-4"> {user.email}</td>
                 {user.roles.name ? <td>{user.roles.name}</td> : <td>admin</td>}
@@ -114,16 +108,13 @@ const userSelection =(user,option)=>{
   );
 };
 
-*/
-
-
 
 
 const AdmiProduct= () => {
   const baseUrl = "https://burger-queenn.herokuapp.com/products";
 
   const [products, setProducts] = useState([]);
-  
+
   const petitionGet = async () => {
     const data = await apiRequestToGetProducts(baseUrl);
     setProducts(data.data);
@@ -133,13 +124,13 @@ const AdmiProduct= () => {
   useEffect(() => {
     petitionGet();
   }, []);
-
+  console.log(products);
 
   return (
     <Fragment>
                
         <div className="flex-row flex justify-center">
-           products { /*<PAdmi products={products}  getProducts={petitionGet} />*/}
+          <PAdmiProducts products={products}  getProducts={petitionGet} />
         </div>
         </Fragment>
   );

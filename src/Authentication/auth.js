@@ -68,6 +68,8 @@ export const apiRequestToGetProducts = async (urlProduct) => {
 
 
 
+
+
 //add new user or product 
 
 export const petitionPostAdd= async (urlUP,data) => {
