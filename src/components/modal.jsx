@@ -1,6 +1,6 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import { petitionPostAdd,petitionDelete,petitionPutEdit} from "../Authentication/auth";
+import { petitionPostAdd, petitionDelete, petitionPutEdit } from "../Authentication/auth";
 
 
 const ModalAddUser = ({
@@ -18,7 +18,7 @@ const ModalAddUser = ({
     password: "",
   });
 
-  const [formEdit,setFormEdit]=useState(form);
+  const [formEdit, setFormEdit] = useState(form);
 
   const [error, setError] = useState("");
 
@@ -28,7 +28,7 @@ const ModalAddUser = ({
 
   const saveChange = (e) => {
     e.preventDefault();
-    
+
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -43,7 +43,7 @@ const ModalAddUser = ({
 
   const saveChangeEdit = (e) => {
     e.preventDefault();
-      setFormEdit({
+    setFormEdit({
       ...formEdit,
       [e.target.name]: e.target.value,
       roles: {
@@ -59,33 +59,33 @@ const ModalAddUser = ({
     deleteUserId();
   }, []);
 
-const deleteUserId = async(id) =>{
-  const urlUser="https://burger-queenn.herokuapp.com/users/"
-  console.log(id); 
-  await petitionDelete(urlUser,id);
-  setModalDelete(false)
-  await getUsers();
-}
+  const deleteUserId = async (id) => {
+    const urlUser = "https://burger-queenn.herokuapp.com/users/"
+    console.log(id);
+    await petitionDelete(urlUser, id);
+    setModalDelete(false)
+    await getUsers();
+  }
 
 
-useEffect(() => {
-  deleteUserId();
-  
-}, []);
+  useEffect(() => {
+    deleteUserId();
 
-useEffect(() => {
-  sendFormEdit();
-  
-}, []);
+  }, []);
 
-const sendFormEdit= async(id) =>{
+  useEffect(() => {
+    sendFormEdit();
 
-  const urlUser="https://burger-queenn.herokuapp.com/users/"
-  console.log(id); 
-  await petitionPutEdit(urlUser,id,formEdit);
-  setModalDelete(false)
-  await getUsers();
-}
+  }, []);
+
+  const sendFormEdit = async (id) => {
+
+    const urlUser = "https://burger-queenn.herokuapp.com/users/"
+    console.log(id);
+    await petitionPutEdit(urlUser, id, formEdit);
+    setModalDelete(false)
+    await getUsers();
+  }
 
 
 
@@ -248,7 +248,7 @@ const sendFormEdit= async(id) =>{
                     </button>
                   </div>
                   {/*body*/}
-                  <form onSubmit={()=> sendFormEdit(userSele._id)} className="text-center">
+                  <form onSubmit={() => sendFormEdit(userSele._id)} className="text-center">
                     <div>
                       <input
                         className="input input--email"
@@ -377,12 +377,12 @@ const sendFormEdit= async(id) =>{
                     </button>
                   </div>
                   <div className=" flex justify-center items-center  ">
-                  
-                   DO YOU WANT TO DELETE THE USER: {userSele && userSele.name} ?
-                
+
+                    DO YOU WANT TO DELETE THE USER: {userSele && userSele.name} ?
+
                   </div>
 
-                              <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                     <button
                       className="bg-lime-300 rounded w-28 sm:h-10 sm:w-40 h-7 ml-2 my-4 text-xs sm:text-base hover: bg-teal-500 shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type={"submit"}

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import WaiterNav from './WaiterNav';
+import WaiterNav from './WaiterView/WaiterNav';
 import ListOfDeliveredOrders from './ListOfDeliveredOrders';
 //import PreviewCompletedOrders from './PreviewCompletedOrders'
 const DeliveredOrdersPreview = () => {

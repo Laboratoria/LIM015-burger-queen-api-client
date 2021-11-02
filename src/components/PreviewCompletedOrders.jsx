@@ -1,4 +1,4 @@
-import NavOpcion from './nav';
+import NavOpcion from './WaiterView/Nav';
 import waiter from '../img/waiter.svg';
 import burgerimg from '../img/burgerimg.svg'
 
@@ -9,7 +9,7 @@ import ListOfCompletedOrders from './ListOfCompletedOrders';
 const PreviewCompletedOrders = () => {
     return (
         <Fragment>
-            <NavOpcion 
+            <NavOpcion
                 imgHome={burgerimg}
                 home="ORDERS"
                 imgOption={waiter}

@@ -9,62 +9,63 @@ import iconAddUser from "../img/iconAddUser.svg";
 import { getUser } from "../Authentication/auth";
 //import { addNewUser } from "../Authentication/auth";
 
-import ModalAddUser  from "./Modal";
+import ModalAddUser from './Modal';
 
-const PAdmi = ({users,getUsers}) => {
-  
+
+const PAdmi = ({ users, getUsers }) => {
+
 
   const [showModal, setShowModal] = useState(false);
- 
-  const [modalEdit ,setModalEdit]=useState(false);
-  const [modalDelete ,setModalDelete]=useState(false);
-  
-  const [userSele,setUserSele]=useState([]);  
+
+  const [modalEdit, setModalEdit] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
+
+  const [userSele, setUserSele] = useState([]);
 
 
 
-const userSelection =(user,option)=>{
-   setUserSele(user);
-  (option==="edit")?setModalEdit(true):setModalDelete(true)
-}
+  const userSelection = (user, option) => {
+    setUserSele(user);
+    (option === "edit") ? setModalEdit(true) : setModalDelete(true)
+  }
 
 
   return (
 
     <Fragment>
 
-     <div>
-     {showModal ? ( 
-       <ModalAddUser  
-       getUsers={getUsers} 
-       showModal={showModal} 
-       setShowModal={setShowModal}  />
-     ) : ""}
+      <div>
+        {showModal ? (
+          <ModalAddUser
+            getUsers={getUsers}
+            showModal={showModal}
+            setShowModal={setShowModal} />
+        ) : ""}
 
-     </div>
+      </div>
 
-    <div>
-     { modalEdit?(
-     <ModalAddUser 
-      getUsers={getUsers} 
-       modalEdit={modalEdit} 
-       setModalEdit={setModalEdit}
-       userSele={userSele}
-       />
-     ):" "
-      }
-    </div>
-    <div>
-      {modalDelete?(
-        <ModalAddUser 
-        getUsers={getUsers} 
-        modalDelete={modalDelete} 
-        setModalDelete={setModalDelete}
-         userSele={userSele}
-         />
-       ):" "
-      }
-    </div>
+      <div>
+        {modalEdit ? (
+          <ModalAddUser
+            getUsers={getUsers}
+            modalEdit={modalEdit}
+            setModalEdit={setModalEdit}
+            userSele={userSele}
+          />
+        ) : " "
+        }
+      </div>
+      <div>
+        {modalDelete ? (
+          <ModalAddUser
+            getUsers={getUsers}
+            modalDelete={modalDelete}
+            setModalDelete={setModalDelete}
+            userSele={userSele}
+          />
+        ) : " "
+        }
+      </div>
 
       <table className="divide-y divide-blue-300  bg-white-200 shadow mt-2 rounded-2xl  ml-10 mx-4 p-4  ">
         <thead>
@@ -89,17 +90,17 @@ const userSelection =(user,option)=>{
                 <td className="flex flex-row  gap-2 justify-center  ">
                   <div>
                     {" "}
-                    <button 
-                    onClick={() => userSelection(user,"edit")}> 
-                    <img className="" src={iconNegative} alt={""} /> EDIT {" "}
+                    <button
+                      onClick={() => userSelection(user, "edit")}>
+                      <img className="" src={iconNegative} alt={""} /> EDIT {" "}
                     </button>
                   </div>
                   <div>
                     {" "}
-                    <button onClick={() => userSelection(user,"delete")}> 
-                      <img className="" src={iconNegative} alt={""} />DELETE{" "} 
-                      </button>
-                    
+                    <button onClick={() => userSelection(user, "delete")}>
+                      <img className="" src={iconNegative} alt={""} />DELETE{" "}
+                    </button>
+
                   </div>
                 </td>
               </tr>
@@ -121,7 +122,7 @@ const AdmiUser = () => {
   const baseUrl = "https://burger-queenn.herokuapp.com/users";
 
   const [users, setUsers] = useState([]);
-  
+
   const petitionGet = async () => {
     const data = await getUser(baseUrl);
     setUsers(data.data);
@@ -135,11 +136,11 @@ const AdmiUser = () => {
 
   return (
     <Fragment>
-               
-        <div className="flex-row flex justify-center">
-            <PAdmi users={users}  getUsers={petitionGet} />
-        </div>
-        </Fragment>
+
+      <div className="flex-row flex justify-center">
+        <PAdmi users={users} getUsers={petitionGet} />
+      </div>
+    </Fragment>
   );
 };
 

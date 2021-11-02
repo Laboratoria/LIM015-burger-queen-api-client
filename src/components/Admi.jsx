@@ -1,15 +1,15 @@
 import React from "react";
-import NavOpcion from "./nav";
+import NavOpcion from "./WaiterView/Nav";
 import admi from "../img/admi.svg";
 import AdmiUser from "./AdmiUser";
 import AdmiProduct from "./AdmiProduct";
 
-import  { useState,Fragment } from "react";
+import { useState, Fragment } from "react";
 
 
-const Tabs= ({ color }) => {
+const Tabs = ({ color }) => {
 
- const [openTab, setOpenTab] = useState(1);
+  const [openTab, setOpenTab] = useState(1);
 
   return (
     <>
@@ -54,20 +54,21 @@ const Tabs= ({ color }) => {
                 href="#link2"
                 role="tablist"
               >
-                 PRODUCTS
+                PRODUCTS
               </a>
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
             </li>
-           
+
           </ul>
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space">
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                <AdmiUser />
+                  <AdmiUser />
+
 
                   </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
@@ -90,16 +91,16 @@ const Admi = () => {
   return (
 
     <Fragment>
-    <NavOpcion imgOption={admi} option="ADMI" />
-    
-    <div>
-       <Tabs color="teal" />
-    </div> 
+      <NavOpcion imgOption={admi} option="ADMI" />
+
+      <div>
+        <Tabs color="teal" />
+      </div>
 
     </Fragment>
 
-  
+
   );
 }
 
-export default Admi ;
+export default Admi;
