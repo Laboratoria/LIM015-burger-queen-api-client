@@ -8,11 +8,16 @@ import { ProductI } from '../vistas/productos/productos.model'
   providedIn: 'root'
 })
 export class ProductsService {
-  constructor(private http: HttpClient) {}
+   
+   
+
+  constructor(private http: HttpClient) {
+    
+
+  }
 
   getProduct(): Observable<ProductI[]> {
     const token = localStorage.getItem('token');
-    //const headers = new HttpHeaders({'Authorization': `Bearer ${token}`})
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };

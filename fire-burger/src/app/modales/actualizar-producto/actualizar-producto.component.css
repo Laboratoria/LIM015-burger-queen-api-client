@@ -1,0 +1,33 @@
+input, select{
+    font-size: 1.5rem !important;
+    background: transparent;
+    border: none;
+    border-bottom: 5px solid #FFBD15;
+  }
+
+  h2 {
+      display:block;
+      width: 100%;
+      text-align: center;
+  }
+  .btn-close {
+      color:white !important;
+  }
+
+  .btn-close:focus {
+    color:white;
+    box-shadow: 0 0 0 0.25rem transparent;
+}
+  
+ input:focus, select:focus {
+    box-shadow: 0 0 0 0.25rem transparent;
+    background-color: transparent;
+    border-bottom: 5px solid #FFBD15;
+  }
+  
+input:-webkit-autofill:focus {
+    background-color: transparent;
+  }
+  
+
+
