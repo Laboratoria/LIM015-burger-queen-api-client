@@ -1,27 +1,34 @@
 import iconAdd from "../../img/iconAdd.svg";
 import iconNegative from "../../img/iconNegative.svg";
-import iconDelete from "../../img/iconDelete.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { Fragment, useState } from 'react';
 
+const CartOrder = ({ selectedProduct }) => {
 
-const CartOrder = ({ selectedProduct, setSelectedProduct }) => {
+  const [quantity, setQuantity] = useState(1)
 
   return (
     <tbody className="tex-center">
+
       {selectedProduct.map((list) => (
         <tr key={list._id}>
+
           <td>{list.name} </td>
           <td>
-            <img src={iconNegative} alt={""} />{" "}
+            <img onClick={() => setQuantity(quantity - 1)} src={iconNegative} alt={""} />
+            {quantity}
+            <img onClick={() => setQuantity(quantity + 1)} src={iconAdd} alt={""} />
           </td>
-          <td>{list.qty} </td>
-          <td className="items-end">
-            <img src={iconAdd} alt={""} />{" "}
-          </td>
-          <td> ${list.price} </td>
+
+          <td> ${(list.price) * quantity}</td>
+
           <td >
-            <img src={iconDelete} alt={""} />{" "}
+            <FontAwesomeIcon icon={faTrashAlt} />
           </td>
+
         </tr>
+
       ))}
     </tbody>
   )

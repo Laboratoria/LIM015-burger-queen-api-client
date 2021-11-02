@@ -12,13 +12,8 @@ const WaiterFirstView = () => {
   const urlProducts = "https://burger-queenn.herokuapp.com/products";
   const [products, setProducts] = useState([]); /* all products */
   const [customerName, setCustomerName] = useState('');
-
   const [selectedProduct, setSelectedProduct] = useState([]);
-
   const [option, setOption] = useState(true);
-
-  //const [total, setTotal] = useState([]);
-
 
   useEffect(() => {
     getProducts();
