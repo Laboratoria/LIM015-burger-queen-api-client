@@ -1,4 +1,5 @@
 import logoutbtn from '../../img/logoutbtn.svg';
+import { Link } from 'react-router-dom';
 
 const NavOpcion = (props) => {
 
@@ -16,10 +17,12 @@ const NavOpcion = (props) => {
                     <strong className=''>{props.option}</strong>
                 </div>
 
-                <div className="flex items-center text-xs sm:text-lg" >
-                    <img className="h-8 sm:h-12" src={logoutbtn} alt="logout icon" />
-                    <strong className='px-2'>LOGOUT</strong>
-                </div>
+                <Link to='/'>
+                    <div className="flex items-center text-xs sm:text-lg">
+                        <img className="h-8 sm:h-12" src={logoutbtn} alt="logout icon" />
+                        <strong className='px-2'>LOGOUT</strong>
+                    </div>
+                </Link>
             </div>
         </nav>
     )

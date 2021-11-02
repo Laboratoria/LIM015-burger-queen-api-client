@@ -2,11 +2,13 @@ import React, { useEffect, useState, Fragment } from "react";
 
 
 //import iconDelete from "../img/iconDelete.svg";
-import iconNegative from "../img/iconNegative.svg";
-import iconAddUser from "../img/iconAddUser.svg";
+import iconNegative from "../../img/iconNegative.svg";
+import iconAddUser from "../../img/iconAddUser.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt,faEdit } from '@fortawesome/free-solid-svg-icons';
 
 //import axios from  "axios";
-import { getUser } from "../Authentication/auth";
+import { getUser } from "../../Authentication/auth";
 //import { addNewUser } from "../Authentication/auth";
 
 import ModalAddUser from './Modal';
@@ -88,19 +90,11 @@ const PAdmi = ({ users, getUsers }) => {
                 <td className=" px-4"> {user.email}</td>
                 {user.roles.name ? <td>{user.roles.name}</td> : <td>admin</td>}
                 <td className="flex flex-row  gap-2 justify-center  ">
-                  <div>
-                    {" "}
-                    <button
-                      onClick={() => userSelection(user, "edit")}>
-                      <img className="" src={iconNegative} alt={""} /> EDIT {" "}
-                    </button>
+                  <div>                          
+                       <FontAwesomeIcon  className="cursor-pointer"  onClick={() => userSelection(user, "edit")} icon={faEdit} />
                   </div>
                   <div>
-                    {" "}
-                    <button onClick={() => userSelection(user, "delete")}>
-                      <img className="" src={iconNegative} alt={""} />DELETE{" "}
-                    </button>
-
+                    <FontAwesomeIcon className="cursor-pointer " onClick={() => userSelection(user, "delete")} icon={faTrashAlt} />
                   </div>
                 </td>
               </tr>
