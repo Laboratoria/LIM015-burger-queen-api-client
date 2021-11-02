@@ -1,11 +1,8 @@
-import Button from "./Button";
+import Button from "../Button";
 import BoxSelectItems from "./BoxSelectItems";
-//import ProductBox from './ProductBox';
-
-import OrderPreview from './OrderPreview'
-
+import OrderPreview from '../WaiterView/OrderPreview'
 import WaiterNav from './WaiterNav';
-import { apiRequestToGetProducts } from '../Authentication/auth'
+import { apiRequestToGetProducts } from '../../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
 import ProductFilter from './ProductFilter';
 //import ProductBreak from './ProductBreak'
@@ -15,8 +12,12 @@ const WaiterFirstView = () => {
   const urlProducts = "https://burger-queenn.herokuapp.com/products";
   const [products, setProducts] = useState([]); /* all products */
   const [customerName, setCustomerName] = useState('');
-  const [selectedProduct,setSelectedProduct]=useState([]);
+
+  const [selectedProduct, setSelectedProduct] = useState([]);
+
   const [option, setOption] = useState(true);
+
+  //const [total, setTotal] = useState([]);
 
 
   useEffect(() => {
@@ -27,7 +28,8 @@ const WaiterFirstView = () => {
     const response = await apiRequestToGetProducts(urlProducts);
     setProducts(response.data);
   };
-  
+
+
   return (
     <Fragment>
       <WaiterNav />
@@ -61,14 +63,20 @@ const WaiterFirstView = () => {
           </div>
 
           <BoxSelectItems>
-            {products.length > 0 && 
+            {products.length > 0 &&
               (option ? (
-                <ProductFilter  products={products} selectedProduct={selectedProduct}
-                setSelectedProduct={setSelectedProduct} productType={["Coffee","Sandwichs","Juices"]}
+                <ProductFilter
+                  products={products}
+                  selectedProduct={selectedProduct}
+                  setSelectedProduct={setSelectedProduct}
+                  productType={["Coffee", "Sandwichs", "Juices"]}
                 />
               ) : (
-                <ProductFilter products={products}  selectedProduct={selectedProduct}
-                setSelectedProduct={setSelectedProduct} productType={["Lunch","Accompaniments","Drinks"]} />
+                <ProductFilter
+                  products={products}
+                  selectedProduct={selectedProduct}
+                  setSelectedProduct={setSelectedProduct}
+                  roductType={["Lunch", "Accompaniments", "Drinks"]} />
               ))}
 
           </BoxSelectItems>
@@ -76,17 +84,19 @@ const WaiterFirstView = () => {
 
         <div>
 
-        {/* lista de ordenes */}
-        <div className="bg-white-200 shadow mt-20 rounded-2xl p-4 ml-10 mx-8">
+          {/* lista de ordenes */}
+          <div className="bg-white-200 shadow mt-20 rounded-2xl p-4 ml-10 mx-8">
             <div></div>
-            <OrderPreview selectedProduct={selectedProduct}
-                setSelectedProduct={setSelectedProduct}  customerName={customerName}  />
+            <OrderPreview
+              selectedProduct={selectedProduct}
+              setSelectedProduct={setSelectedProduct}
+              customerName={customerName} />
             <div>
-                <Button />
-                <Button />
+              <Button />
+              <Button />
             </div>
-        </div>
-            
+          </div>
+
         </div>
       </div>
     </Fragment>
