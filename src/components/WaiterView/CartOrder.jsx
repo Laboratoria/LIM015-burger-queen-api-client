@@ -1,25 +1,25 @@
 import iconAdd from "../../img/iconAdd.svg";
 import iconNegative from "../../img/iconNegative.svg";
-import iconDelete from "../../img/iconDelete.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
+const CartOrder = ({ selectedProduct, handleDeleteProduct, handleIncreaseProduct, handleDecreaseProduct }) => {
 
-const CartOrder = ({ selectedProduct, setSelectedProduct }) => {
 
   return (
+
     <tbody className="tex-center">
-      {selectedProduct.map((list) => (
-        <tr key={list._id}>
-          <td>{list.name} </td>
+      {selectedProduct.map((product) => (
+        <tr key={product._id}>
+          <td>{product.name} </td>
           <td>
-            <img src={iconNegative} alt={""} />{" "}
+            <img onClick={() => handleDecreaseProduct(product._id)} src={iconNegative} alt={""} />
+            {product.qty}
+            <img onClick={() => handleIncreaseProduct(product._id)} src={iconAdd} alt={""} />
           </td>
-          <td>{list.qty} </td>
-          <td className="items-end">
-            <img src={iconAdd} alt={""} />{" "}
-          </td>
-          <td> ${list.price} </td>
+          <td> ${(product.price) * product.qty} </td>
           <td >
-            <img src={iconDelete} alt={""} />{" "}
+            <FontAwesomeIcon onClick={() => handleDeleteProduct(product._id)} icon={faTrashAlt} />
           </td>
         </tr>
       ))}
