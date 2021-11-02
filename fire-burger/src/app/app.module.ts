@@ -15,6 +15,7 @@ import { ProductosComponent } from './vistas/productos/productos.component';
 import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
 import { ActualizarProductoComponent } from './modales/actualizar-producto/actualizar-producto.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListaProductosComponent } from './vistas/menu/lista-productos/lista-productos.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductosComponent,
     UsuariosComponent,
     ActualizarProductoComponent,
+    ListaProductosComponent,
   ],
   imports: [
     BrowserModule,
