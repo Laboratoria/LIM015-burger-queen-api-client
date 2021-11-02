@@ -1,9 +1,41 @@
 import CartOrder from '../WaiterView/CartOrder';
 import Button from '../Button'
 
-const OrderPreview = ({ selectedProduct, setSelectedProduct, customerName, deleteProduct }) => {
+const OrderPreview = ({ selectedProduct, setSelectedProduct, customerName }) => {
 
     const employeeName = localStorage.getItem('namelogged');
+
+    const handleIncreaseProduct = (id) => {
+        const newProduct = selectedProduct.filter(product => product._id === id);
+        if (newProduct[0].qty >= 1) {
+            const newSelectedProducts = selectedProduct.map(product => {
+                if (product._id === id) product.qty++
+                return product;
+            })
+            setSelectedProduct(newSelectedProducts)
+        }
+    }
+
+    const handleDecreaseProduct = (id) => {
+        const newProduct = selectedProduct.filter(product => product._id === id);
+        if (newProduct[0].qty > 1) {
+            const newProducts = selectedProduct.map(product => {
+                if (product._id === id) product.qty--
+                return product;
+            })
+            setSelectedProduct(newProducts);
+        }
+
+    }
+
+    const handleDeleteProduct = (id) => {
+        const newProduct = selectedProduct.filter(product => product._id === id);
+        if (newProduct[0].qty === 1) {
+            const newProducts = selectedProduct.filter(product => product._id !== id)
+            setSelectedProduct(newProducts);
+        }
+    }
+
 
     return (
 
@@ -31,12 +63,15 @@ const OrderPreview = ({ selectedProduct, setSelectedProduct, customerName, delet
                 <CartOrder
                     selectedProduct={selectedProduct}
                     setSelectedProduct={setSelectedProduct}
+                    handleDeleteProduct={handleDeleteProduct}
+                    handleIncreaseProduct={handleIncreaseProduct}
+                    handleDecreaseProduct={handleDecreaseProduct}
                 />
 
             </table>
 
             <form action="">
-                <textarea className="bg-amber-100  p-1 my-2 text-lg"></textarea>
+                <textarea className="bg-amber-100 p-1 my-2 text-lg"></textarea>
             </form>
             <div className=" p-6"> Total:{ }</div>
 

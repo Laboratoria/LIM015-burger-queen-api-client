@@ -4,7 +4,7 @@ import OrderPreview from '../WaiterView/OrderPreview'
 import WaiterNav from './WaiterNav';
 import { apiRequestToGetProducts } from '../../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
-import ProductFilter from './ProductFilter';
+import ProductFilter from './MenuItems';
 //import ProductBreak from './ProductBreak'
 
 
@@ -71,7 +71,7 @@ const WaiterFirstView = () => {
                   products={products}
                   selectedProduct={selectedProduct}
                   setSelectedProduct={setSelectedProduct}
-                  roductType={["Lunch", "Accompaniments", "Drinks"]} />
+                  productType={["Lunch", "Accompaniments", "Drinks"]} />
               ))}
 
           </BoxSelectItems>
@@ -85,7 +85,8 @@ const WaiterFirstView = () => {
             <OrderPreview
               selectedProduct={selectedProduct}
               setSelectedProduct={setSelectedProduct}
-              customerName={customerName} />
+              customerName={customerName}
+            />
             <div>
               <Button />
               <Button />

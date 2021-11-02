@@ -1,10 +1,20 @@
 import ProductBox from './ProductBox';
+import { useState, useEffect } from 'react'
 
-const ProductFilter = ({ products, productType, selectedProduct, setSelectedProduct }) => {
+const MenuItems = ({ products, productType, selectedProduct, setSelectedProduct }) => {
 
-    const productOne = products.filter((prod) => prod.type === productType[0]);
-    const productTwo = products.filter((prod) => prod.type === productType[1]);
-    const productThree = products.filter((prod) => prod.type === productType[2]);
+    const [categoryOneProducts, setCategoryOneProducts] = useState([]);
+    const [categoryTwoProducts, setCategoryTwoProducts] = useState([]);
+    const [categoryThreeProducts, setCategoryThreeProducts] = useState([]);
+
+    useEffect(() => {
+        setCategoryOneProducts(products.filter((prod) => prod.type === productType[0]));
+        setCategoryTwoProducts(products.filter((prod) => prod.type === productType[1]));
+        setCategoryThreeProducts(products.filter((prod) => prod.type === productType[2]));
+        /*se ejecuta 1 vez despues del renderizado y segun el array de dependencias 
+         se ejecuta cada vez que esta cambie */
+
+    }, [productType])
 
     return (
 
@@ -13,7 +23,7 @@ const ProductFilter = ({ products, productType, selectedProduct, setSelectedProd
             <p className="py-4 pl-12 font-normal tracking-widest items center"> {productType[0]}</p>
 
             <div className="grid grid-cols-2 grid-rows-1 items center gap-x-16 pl-28">
-                {productOne.map(product =>
+                {categoryOneProducts.map(product =>
                     <ProductBox
                         key={product._id}
                         products={products}
@@ -31,7 +41,7 @@ const ProductFilter = ({ products, productType, selectedProduct, setSelectedProd
             </div>
 
             <div className=" grid grid-cols-2 grid-rows-1 items center gap-x-16 pl-28">
-                {productTwo.map(product =>
+                {categoryTwoProducts.map(product =>
                     <ProductBox
                         key={product._id}
                         products={products}
@@ -45,7 +55,7 @@ const ProductFilter = ({ products, productType, selectedProduct, setSelectedProd
             <p className="py-4 pl-14 font-normal tracking-widest"> {productType[2]}</p>
 
             <div className=" grid grid-cols-2 grid-rows-1 items center gap-x-16 pl-28">
-                {productThree.map(product =>
+                {categoryThreeProducts.map(product =>
                     <ProductBox
                         key={product._id}
                         products={products}
@@ -64,7 +74,7 @@ const ProductFilter = ({ products, productType, selectedProduct, setSelectedProd
 
 }
 
-export default ProductFilter;
+export default MenuItems;
 
 
 
