@@ -6,8 +6,6 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const CartOrder = ({ selectedProduct, handleDeleteProduct, handleIncreaseProduct, handleDecreaseProduct }) => {
 
-
-
   return (
 
     <tbody className="tex-center">

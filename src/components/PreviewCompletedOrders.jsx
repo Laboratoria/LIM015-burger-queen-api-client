@@ -5,8 +5,26 @@ import burgerimg from '../img/burgerimg.svg'
 
 import React, { Fragment } from 'react';
 import ListOfCompletedOrders from './ListOfCompletedOrders';
+import {getDataApi} from "../Authentication/auth";
+//import PreviewCompletedOrders from './PreviewCompletedOrders';
+import { useState,useEffect } from 'react';
 
 const PreviewCompletedOrders = () => {
+
+    const [dataOrders,setDataOrders]=useState([]);
+
+    const getData=async ()=>{
+         const data= await getDataApi("https://burger-queenn.herokuapp.com/orders");
+         //console.log(data.data);
+         setDataOrders(data.data);
+    }
+
+    useEffect(() => {
+        getData();   
+    },[]);
+    
+    console.log(dataOrders);
+
     return (
         <Fragment>
             <NavOpcion
@@ -28,10 +46,13 @@ const PreviewCompletedOrders = () => {
                         <th className=' border border-green-600'>TIME AND DATE</th>
                         <th className='border-green-600'>STATUS</th>
                     </tr>
-                    <ListOfCompletedOrders />
-                    <ListOfCompletedOrders />
-                    <ListOfCompletedOrders />
-                    <ListOfCompletedOrders />
+                  { (dataOrders.length>0)?
+                      dataOrders.map(order=>
+                        <ListOfCompletedOrders order={order} />
+                        ):" "
+                  }
+
+                    
                 </table>
             </div>
         </Fragment >

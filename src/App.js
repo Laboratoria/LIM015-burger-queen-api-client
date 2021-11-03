@@ -48,6 +48,7 @@ function App() {
         <Route path="/admin">
           <Admi />
         </Route>
+        
 
       </Switch>
     </Router >

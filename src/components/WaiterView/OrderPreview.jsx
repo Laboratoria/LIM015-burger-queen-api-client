@@ -9,14 +9,15 @@ const OrderPreview = ({ selectedProduct, setSelectedProduct, customerName }) => 
     //console.log(selectedProduct);
     const employeeName = localStorage.getItem('namelogged');
 
-   
+
    const [order,SetOrders]=useState({
     userId:(employeeName)?employeeName:"sin nombre",
     products:[ ]
    });
 
-   
-   const createOrder =async()=> {
+
+
+const createOrder =async()=> {
      SetOrders ({
          ...order,
          client:customerName?customerName:"cliente", 
@@ -26,14 +27,14 @@ const OrderPreview = ({ selectedProduct, setSelectedProduct, customerName }) => 
             rObj.qty=el.qty;
             return rObj;
             
-         }):[] })
+    }):[] })
 
-         console.log(order);
-         const url="https://burger-queenn.herokuapp.com/orders";
+    console.log(order);
+    const url="https://burger-queenn.herokuapp.com/orders";
 
     await petitionPostAdd(url,order).then(response=>
-         console.log(response.data));
-   }
+    console.log(response.data));
+}
 
  
 
@@ -51,7 +52,7 @@ const OrderPreview = ({ selectedProduct, setSelectedProduct, customerName }) => 
     }
 
     
-    const handleDecreaseProduct = (id) => {
+const handleDecreaseProduct = (id) => {
         const newProduct = selectedProduct.filter(product => product._id === id);
         if (newProduct[0].qty > 1) {
             const newProducts = selectedProduct.map(product => {
@@ -63,21 +64,19 @@ const OrderPreview = ({ selectedProduct, setSelectedProduct, customerName }) => 
             })
             setSelectedProduct(newProducts);
         }
-    }
+}
 
-    const handleDeleteProduct = (id) => {
+const handleDeleteProduct = (id) => {
         const newProduct = selectedProduct.filter(product => product._id === id);
         if (newProduct[0].qty === 1) {
             const newProducts = selectedProduct.filter(product => product._id !== id)
             setSelectedProduct(newProducts);
-        }
-
-    }
+ }}
 
 
-    const [vSumTotal, setVSumTotal] = useState(0);
- 
- 
+
+const [vSumTotal, setVSumTotal] = useState(0);
+
  useEffect(() => {
     const handlesumar = () => {
       const sumar = selectedProduct.map((prod) => parseFloat(prod.priceNew))

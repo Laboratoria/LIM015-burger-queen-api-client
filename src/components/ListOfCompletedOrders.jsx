@@ -1,13 +1,22 @@
 import Button from './Button';
-const ListOfCompletedOrders = () => {
+const ListOfCompletedOrders = ({order}) => {
     return (
-        <tr>
-            <td className='border border-green-600 px-12'>ORDER N°1 </td>
-            <td className='border border-green-600 px-12'>RACHEL </td>
-            <td className='border border-green-600 px-10'>13/10/2021 11:20 AM</td>
-            <td className='border border-green-600 px-10'><Button type={'primary'} name={'COMPLETED'} /> </td>
-        </tr>
+        
+        <tr key={order._id}>
+            
+            <td className='border border-green-600 px-12'>ORDER N°1:{ } </td>
+            <td className='border border-green-600 px-12'>{order.client} </td>
+            <td className='border border-green-600 px-10'>{order.dateEntry}</td>
 
+            <td className='border border-green-600 px-10'>
+                {(order.status==="pending")?
+                (
+                <Button type={'primary'} name={'PENDING'} /> 
+                ): 
+                <Button type={'primary'} name={'COMPLETE'} />
+                }
+                </td>
+        </tr>
     )
 }
 export default ListOfCompletedOrders;

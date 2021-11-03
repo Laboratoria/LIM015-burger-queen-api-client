@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 
 import iconAddUser from "../../img/iconAddUser.svg";
-import {apiRequestToGetProducts } from "../../Authentication/auth";
+import {getDataApi } from "../../Authentication/auth";
 import ModalProduct from "./ModalProduct";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt,faEdit } from '@fortawesome/free-solid-svg-icons'
@@ -130,7 +130,7 @@ const AdmiProduct= () => {
   const [products, setProducts] = useState([]);
 
   const petitionGet = async () => {
-    const data = await apiRequestToGetProducts(baseUrl);
+    const data = await getDataApi(baseUrl);
     setProducts(data.data);
  
   };

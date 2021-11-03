@@ -38,6 +38,8 @@ export const getUserEmail = async (email) => {
     return response.data;
 };
 
+
+
 //get data of users
 
 export const getUser = async (path) => {
@@ -52,9 +54,10 @@ export const getUser = async (path) => {
         .catch((err) => console.log(err));
 };
 
+
 // get data of products 
 
-export const apiRequestToGetProducts = async (urlProduct) => {
+export const getDataApi = async (urlProduct) => {
     const token = localStorage.getItem("token");
 
     return await axios.get(urlProduct, {
