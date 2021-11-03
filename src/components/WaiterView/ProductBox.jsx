@@ -20,8 +20,8 @@ const ProductBox = ({ products, product, selectedProduct, setSelectedProduct }) 
     }
 
     return (
-        <div className='bg-gray-100 rounded-2xl w-44 h-44 box-border shadow-xl m-2' key={_id}>
-            <div onClick={() => filterId(_id)}>
+        <div className='bg-gray-100 rounded-2xl w-44 h-44 box-border shadow-xl m-2 cursor-pointer  hover:bg-lime-300 text-black focus:bg-lime-300 text-black' key={_id}>
+            <div onClick={() => filterId(_id)} >
                 <div className='flex flex-col items-center py-3'>
                     <img className='h-24 w-24 ' src={image} alt={name} />
                     <p className='text-sm'>{name}</p>

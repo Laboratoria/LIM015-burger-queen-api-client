@@ -7,6 +7,7 @@ const body = {
     password: "changeme",
 };
 
+
 /* Login Authentication */
 export const loginAuth = async (body) => {
     try {
@@ -68,9 +69,7 @@ export const apiRequestToGetProducts = async (urlProduct) => {
 
 
 
-
-
-//add new user or product 
+//add new user or product or orders 
 
 export const petitionPostAdd= async (urlUP,data) => {
     const token = localStorage.getItem("token");

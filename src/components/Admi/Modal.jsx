@@ -9,6 +9,7 @@ const ModalAddUser = ({getUsers,showModal, setShowModal, modalEdit, setModalEdit
   const [form, setForm] = useState({
     email: "",
     password: "",
+    name:""
   });
 
   const [formEdit, setFormEdit] = useState(form);
@@ -17,10 +18,11 @@ const ModalAddUser = ({getUsers,showModal, setShowModal, modalEdit, setModalEdit
 
 //states of edits users 
 
-const [nameEdit,setNameEdit]=useState(userSele.name);
-const [emailEdit,setEmailEdit]=useState(userSele.email);
-const [passwordEdit,setPasswordEdit]=useState(userSele.password);
-const [rolesEdit,setRolesEdit]=useState(userSele.roles.name);
+
+const [nameEdit,setNameEdit]=useState(userSele && userSele.name);
+const [emailEdit,setEmailEdit]=useState( userSele && userSele.email);
+const [passwordEdit,setPasswordEdit]=useState( userSele && userSele.password);
+const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
 
 
 
@@ -47,7 +49,7 @@ const [rolesEdit,setRolesEdit]=useState(userSele.roles.name);
   }, []);
 
 
-  const sendFormEdit = async ( ) => {
+  const sendFormEdit = async ( id) => {
     
     setFormEdit({
       name:nameEdit,
@@ -63,8 +65,8 @@ const [rolesEdit,setRolesEdit]=useState(userSele.roles.name);
    
     const urlUser = "https://burger-queenn.herokuapp.com/users/"
   
-    await petitionPutEdit(urlUser, userSele._id, formEdit);
-    //setModalEdit(false);
+    await petitionPutEdit(urlUser,id, formEdit);
+  setModalEdit(false);
     await getUsers();
   }
 
@@ -100,6 +102,8 @@ const [rolesEdit,setRolesEdit]=useState(userSele.roles.name);
     //console.log(form);
     const urlUser = "https://burger-queenn.herokuapp.com/users";
     await petitionPostAdd(urlUser, form);
+   
+    setShowModal(false)
     await getUsers();
     // console.log("hackerrang");
   };
@@ -254,7 +258,7 @@ const [rolesEdit,setRolesEdit]=useState(userSele.roles.name);
                     </button>
                   </div>
                   {/*body*/}
-                  <form onSubmit={() => sendFormEdit()} className="text-center">
+                  <form onSubmit={() => sendFormEdit(userSele._id)} className="text-center">
                     <div>
                       <input
                         className="input input--email"

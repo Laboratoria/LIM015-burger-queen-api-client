@@ -24,9 +24,6 @@ const Login = () => {
   const employeeName = localStorage.getItem('namelogged');
   console.log(employeeName);
 
-
-
-
   useEffect(() => {
     const isUserMatch = (datauser.email === form.email) && form.password;
 
