@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { ProductI } from '../vistas/productos/productos.model'
 
 @Injectable({
@@ -9,11 +8,8 @@ import { ProductI } from '../vistas/productos/productos.model'
 })
 export class ProductsService {
    
-   
-
   constructor(private http: HttpClient) {
-    
-
+  
   }
 
   getProduct(): Observable<ProductI[]> {

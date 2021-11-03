@@ -12,7 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductosComponent implements OnInit {
   formValue!: FormGroup;
-  public productModal: ProductI = { name: '', price: 0, type: '' };
+  public productModel: ProductI = { name: '', price: 0, type: '' };
   public productsList: ProductI[] = [];
 
   constructor(
@@ -30,11 +30,11 @@ export class ProductosComponent implements OnInit {
     this.setProductsList();
   }
   postProduct() {
-    this.productModal.name = this.formValue.value.name;
-    this.productModal.price = this.formValue.value.price;
-    this.productModal.type = this.formValue.value.type;
+    this.productModel.name = this.formValue.value.name;
+    this.productModel.price = this.formValue.value.price;
+    this.productModel.type = this.formValue.value.type;
 
-    this.api.postProduct(this.productModal).subscribe(
+    this.api.postProduct(this.productModel).subscribe(
       (res) => {
         console.log(res);
         alert('¡Producto agregado!');
@@ -47,7 +47,7 @@ export class ProductosComponent implements OnInit {
         alert('Ups, ocurrió un error');
       }
     );
-    console.log(this.productModal);
+    console.log(this.productModel);
   }
 
   setProductsList() {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/servicios/auth.service';
 import { UserI } from './usuarios.model';
 import { UsersService } from 'src/app/servicios/users.service';
 import { ActualizarUsuarioComponent } from 'src/app/modales/actualizar-usuario/actualizar-usuario.component';
@@ -24,13 +23,14 @@ export class UsuariosComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log(this.usersList)
     this.formValue = this.formbuilder.group({
       email : [''],
       password: [''],
-      rolname:['seleccione la categoria'],
+      rolname:[''],
       admin: false
     })
-    this.setUserList()
+    this.setUserList();
   }
 
   
@@ -53,7 +53,7 @@ export class UsuariosComponent implements OnInit {
         alert("Ups, ocurrió un error");
       })
     console.log(this.userModel);
-    
+
   }
 
     setUserList() {
@@ -65,8 +65,6 @@ export class UsuariosComponent implements OnInit {
   cancelUserDetails(){
     this.formValue.reset();
   }
-
-
 
     openEditModal(userModel: UserI) {
     const modalRef = this.modalService.open(ActualizarUsuarioComponent);

@@ -44,6 +44,7 @@ import { ListaProductosComponent } from './vistas/menu/lista-productos/lista-pro
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ ActualizarProductoComponent ]
+  entryComponents: [ ActualizarProductoComponent, ActualizarUsuarioComponent ]
+  
 })
 export class AppModule { }

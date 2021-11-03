@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-
  import { UsersService } from 'src/app/servicios/users.service';
  import { UserI } from '../../vistas/usuarios/usuarios.model';
  
@@ -14,7 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ActualizarUsuarioComponent implements OnInit {
 
-  @Input() public user! : UserI;
+  @Input() public user : UserI = {email: '', password: '', roles:{name:'', admin: false}};
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   editForm!: FormGroup;
@@ -27,15 +25,28 @@ export class ActualizarUsuarioComponent implements OnInit {
       id: [this.user._id],
       email: [this.user.email],
       password: [this.user.password],
-      rolname: [this.user.roles]
+      rolname: [this.user.roles.name],
+      admin:[this.user.roles.admin]
     })
   }
 
 
   onSubmit() {
-    console.log("onsubmit funcionando")
-    this.api.updateUserService (this.editForm.value).subscribe(x => {
+
+    const userUpdate = {
+      id:this.user._id,
+      email: this.editForm.value.email,
+      password : this.editForm.value.password,
+      roles: {name: this.editForm.value.rolname, admin: this.editForm.value.admin}
+    }
+    // this.user.email = this.editForm.value.email;
+    // this.user.password = this.editForm.value.password;
+    // this.user.roles.name = this.editForm.value.rolname;
+    // this.user.roles.admin = this.editForm.value.admin;
+    // console.log(this.user);
+    this.api.updateUserService (userUpdate).subscribe(x => {
       this.activeModal.close('Yes');
+      console.log(this.user)
     },
       error => {
         console.log(error)
