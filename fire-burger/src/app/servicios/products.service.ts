@@ -49,15 +49,11 @@ export class ProductsService {
     return this.http.delete<ProductI>('https://fireburguer.herokuapp.com/products/'+ uid, config)
     }
 
-  updateOneProduct(uid : any){
-    console.log(uid);
-    
+  updateOneProduct(data:any){
     const token = localStorage.getItem('token');
-    console.log(token);
-    
     const config = {
       headers: { Authorization: `Bearer ${token}`},
     };
-    return this.http.put<ProductI>('https://fireburguer.herokuapp.com/products/'+ uid._id , {price: 100}, config)
+    return this.http.put<ProductI>('https://fireburguer.herokuapp.com/products/'+ data.id ,data, config)
   }  
   }

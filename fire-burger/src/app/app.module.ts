@@ -14,6 +14,7 @@ import { OrdenesPendientesComponent } from './vistas/ordenes-pendientes/ordenes-
 import { ProductosComponent } from './vistas/productos/productos.component';
 import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
 import { ActualizarProductoComponent } from './modales/actualizar-producto/actualizar-producto.component';
+import { ActualizarUsuarioComponent } from './modales/actualizar-usuario/actualizar-usuario.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListaProductosComponent } from './vistas/menu/lista-productos/lista-productos.component';
 
@@ -31,6 +32,7 @@ import { ListaProductosComponent } from './vistas/menu/lista-productos/lista-pro
     UsuariosComponent,
     ActualizarProductoComponent,
     ListaProductosComponent,
+    ActualizarUsuarioComponent
   ],
   imports: [
     BrowserModule,

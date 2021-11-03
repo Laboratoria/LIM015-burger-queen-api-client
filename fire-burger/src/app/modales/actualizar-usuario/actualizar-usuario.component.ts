@@ -1,39 +1,40 @@
 import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
- import { ProductsService } from 'src/app/servicios/products.service';
- import { ProductI } from '../../vistas/productos/productos.model';
 
+
+ import { UsersService } from 'src/app/servicios/users.service';
+ import { UserI } from '../../vistas/usuarios/usuarios.model';
+ 
 
 @Component({
-  selector: 'app-actualizar-producto',
-  templateUrl: './actualizar-producto.component.html',
-  styleUrls: ['./actualizar-producto.component.css'],
+  selector: 'app-actualizar-usuario',
+  templateUrl: './actualizar-usuario.component.html',
+  styleUrls: ['./actualizar-usuario.component.css'],
 })
-export class ActualizarProductoComponent implements OnInit {
+export class ActualizarUsuarioComponent implements OnInit {
 
-  @Input() public product! : ProductI;
+  @Input() public user! : UserI;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   editForm!: FormGroup;
-  public productsList: ProductI[] = [];
+  public UsersList: UserI[] = [];
 
-  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, private api: ProductsService) {}
+  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, private api: UsersService) {}
+  
   ngOnInit(){
-    console.log("Hola",this.product);
     this.editForm = this.formBuilder.group({
-      id:[this.product._id],
-      name: [this.product.name],
-      price: [this.product.price, Validators.required],
-      type:[this.product.type, Validators.required]
+      id: [this.user._id],
+      email: [this.user.email],
+      password: [this.user.password],
+      rolname: [this.user.roles]
     })
-    // this.setProductsList();
   }
 
 
   onSubmit() {
     console.log("onsubmit funcionando")
-    this.api.updateOneProduct (this.editForm.value).subscribe(x => {
+    this.api.updateUserService (this.editForm.value).subscribe(x => {
       this.activeModal.close('Yes');
     },
       error => {
@@ -41,19 +42,6 @@ export class ActualizarProductoComponent implements OnInit {
       });
   }
 
-
-  // updateProduct() {
-  //   this.api.updateOneProduct (this.editForm.value).subscribe((res=>{
-  //     this.activeModal.close(this.product);
-  //     this.setProductsList();
-  //   }));
-  // }
-
-  // setProductsList() {
-  //   this.api.getProduct().subscribe((res) => {
-  //     this.productsList = res;
-  //   });
-  // }
 
 }
 

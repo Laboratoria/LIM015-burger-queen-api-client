@@ -1,31 +1,32 @@
-  <div class="modal-header bg-dark d-flex justify-content-center">
-    <h2 class="modal-title" id="modalEditLabel">EDITAR PRODUCTO</h2>
-    <button type="button" class="btn-close bg-primary"  aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body bg-dark">
-    <form [formGroup]="editForm">
-      <div class="mb-3">
-        <input formControlName="name" class="form-control me-2" type="text" placeholder="Producto" aria-label="Producto"/>
-      </div>
-      <div class="mb-3">
-        <input formControlName="price" class="form-control me-2" type="number" placeholder="Precio" aria-label="Precio"/>
-      </div>
-      <div class="mb-3">
-        <select formControlName="type" class="form-select bg-dark"  aria-label="Categoría">
-          <option selected>Selecciona categoría</option>
-          <option  value="Desayunos">Desayunos</option>
-          <option value="Almuerzos">Almuerzos</option>
-          <option value="Bebidas">Bebidas</option>
-        </select>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer bg-dark">
-    <button (click)="activeModal.dismiss('Cross click')" type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
-      Cancelar
-    </button>
-    <button (click)="updateProduct()" type="button" class="btn btn-primary">
-      Modificar
-    </button>
-  </div>
-
+<div class="modal-header bg-dark d-flex justify-content-center">
+  <h2 class="modal-title" id="modalEditLabel">EDITAR PRODUCTO</h2>
+  <button type="button" class="btn-close bg-primary" aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body bg-dark">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()"  >
+    <div class="mb-3">
+      <input formControlName="name" class="form-control me-2 rounded-0" type="text" placeholder="Producto"
+        aria-label="Producto" />
+    </div>
+    <div class="mb-3">
+      <input formControlName="price" class="form-control me-2 rounded-0" type="number" placeholder="Precio" aria-label="Precio" />
+    </div>
+    <div class="mb-3">
+      <select formControlName="type" class="form-select bg-dark rounded-0" aria-label="Categoría">
+        <option selected>Selecciona categoría</option>
+        <option value="Desayunos">Desayunos</option>
+        <option value="Almuerzos">Almuerzos</option>
+        <option value="Bebidas">Bebidas</option>
+      </select>
+    </div>
+    <div class="modal-footer bg-dark">
+      <button  (click)="activeModal.close('Cancel')" class="btn btn-secondary">
+        Cancelar
+      </button>
+      <button class="btn btn-primary">
+        Modificar
+      </button>
+    </div>
+  </form>
+</div>

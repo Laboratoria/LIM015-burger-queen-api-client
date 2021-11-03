@@ -66,9 +66,18 @@ export class ProductosComponent implements OnInit {
   openEditModal(product: ProductI) {
     const modalRef = this.modalService.open(ActualizarProductoComponent);
     modalRef.componentInstance.product= product;
-    modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
-      console.log(receivedEntry);
-    })
+    // modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
+    //   console.log(receivedEntry);
+    // })
+    modalRef.result.then((yes) => {
+      console.log("Yes Click");
+
+      this.setProductsList();
+    },
+      (cancel) => {
+        console.log("Cancel Click");
+
+      })
   }
 
 }
