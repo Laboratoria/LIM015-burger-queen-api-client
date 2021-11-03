@@ -14,7 +14,7 @@ const WaiterNav = () => {
 
                 <div className="flex items-center text-xs sm:text-lg">
                     <img className="h-10 sm:h-16" src={waiter} alt="waiter icon" />
-                    <strong className=''>WAITER</strong>
+                    <strong>WAITER</strong>
                 </div>
                 <Link to='/'>
                     <div className="flex items-center text-xs sm:text-lg">
