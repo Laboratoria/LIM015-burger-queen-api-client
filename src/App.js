@@ -10,8 +10,8 @@ import {
 import './css/Login.css';
 import './css/Waiter.css'
 import Login from './components/Login';
-import Admi from './components/Admi/Admi';
-import Chef from './components/Chef';
+import Admi from './components/Admi';
+import Chef from './components/ChefView/Chef';
 import WaiterFirstView from './components/WaiterView/WaiterFirstView';
 import PreviewCompletedOrders from './components/PreviewCompletedOrders';
 import DeliveredOrdersPreview from './components/DeliveredOrdersPreview';
@@ -48,7 +48,7 @@ function App() {
         <Route path="/admin">
           <Admi />
         </Route>
-        
+
 
       </Switch>
     </Router >
