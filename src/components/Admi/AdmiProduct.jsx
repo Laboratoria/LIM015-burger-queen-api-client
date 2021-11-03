@@ -18,10 +18,10 @@ const PAdmiProducts = ({products,getProducts}) => {
   const [modalEdit ,setModalEdit]=useState(false);
   const [modalDelete ,setModalDelete]=useState(false);
   
-  const [userSele,setUserSele]=useState([]);  
+  const [productSele,setProductSele]=useState([]);  
 
   const userSelection =(user,option)=>{
-    setUserSele(user);
+    setProductSele(user);
     (option==="edit")?setModalEdit(true):setModalDelete(true)
   }
 
@@ -47,7 +47,7 @@ const PAdmiProducts = ({products,getProducts}) => {
       getProducts={getProducts} 
       modalEdit={modalEdit} 
       setModalEdit={setModalEdit}
-      userSele={userSele}
+      productSele={productSele}
       />
      ):" "
       }
@@ -60,14 +60,13 @@ const PAdmiProducts = ({products,getProducts}) => {
         getProducts={getProducts} 
         modalDelete={modalDelete} 
         setModalDelete={setModalDelete}
-        userSele={userSele}
+        productSele={productSele}
         />
        ):" "
       }
     </div>
 
-    
-
+  
 
       <table className="divide-y divide-blue-300  bg-white-200 shadow mt-2 rounded-2xl  ml-10 mx-4 p-4  ">
         <thead>

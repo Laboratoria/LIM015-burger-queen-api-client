@@ -60,7 +60,7 @@ export const getUser = async (path) => {
 export const getDataApi = async (urlProduct) => {
     const token = localStorage.getItem("token");
 
-    return await axios.get(urlProduct, {
+    return await axios.get(`${urlProduct}?limit=0`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -74,7 +74,7 @@ export const getDataApi = async (urlProduct) => {
 
 //add new user or product or orders 
 
-export const petitionPostAdd= async (urlUP,data) => {
+export const petitionPostAdd= async ( urlUP ,data) => {
     const token = localStorage.getItem("token");
     
     return axios({
@@ -110,14 +110,13 @@ export const petitionDelete= async (urlUP,idUP) => {
 
 
 
-
-
 //edit user or product 
 export const petitionPutEdit= async (urlUP,idUP,newData) => {
     const token = localStorage.getItem("token");
+    console.log(newData,urlUP,idUP);
    
     return axios({
-        url:urlUP+idUP,
+        url:`${urlUP}${idUP}`,
         method:"PUT",
         data:newData,
         headers: {

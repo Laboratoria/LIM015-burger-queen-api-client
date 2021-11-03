@@ -9,7 +9,7 @@ const ModalProduct = ({
   setShowModal,
   modalEdit,
   setModalEdit,
-  userSele,
+  productSele,
   modalDelete,
   setModalDelete,
 }) => {
@@ -17,18 +17,20 @@ const ModalProduct = ({
     
   });
 
-  const [formEdit,setFormEdit]=useState(form);
+
+  
+  const[nameEdit,setNameEdit]=useState( productSele && productSele.name);
+  const[priceEdit,setPriceEdit]=useState( productSele && productSele.price);
+  const[qtyEdit,setQtyEdit]=useState( productSele && productSele.qty);
+  const[imageEdit,setImageEdit]=useState( productSele && productSele.image);
+  const[typeEdit,setTypeEdit]=useState(productSele && productSele.type);
+
+
+  const [formEdit,setFormEdit]=useState({});
 
   const [error, setError] = useState("");
   const [num, setNum] = useState(0);
   const [qty, setQty] = useState(0);
-
-
-  const[nameEdit,setNameEdit]=useState(userSele.name);
-  const[priceEdit,setPriceEdit]=useState(userSele.price);
-  const[qtyEdit,setQtyEdit]=useState(userSele.qty);
-  const[imageEdit,setImageEdit]=useState(userSele.image);
-  const[typeEdit,setTypeEdit]=useState(userSele.name);
 
 
  //add new product  
@@ -43,12 +45,14 @@ const ModalProduct = ({
         
     });
   };
+
+
   const sendForm = async (e) => {
     console.log(num);
       e.preventDefault();
     console.log(form);
-    const urlUser = "https://burger-queenn.herokuapp.com/products";
-    await petitionPostAdd(urlUser, form);
+    const urlProduct = "https://burger-queenn.herokuapp.com/products";
+    await petitionPostAdd(urlProduct, form);
     await getProducts();
     setShowModal(false)
     // console.log("hackerrang");
@@ -77,29 +81,30 @@ useEffect(() => {
   
 }, []);
 
+
+
 const sendFormEdit= async(id) =>{
- 
-  setFormEdit({
+  console.log(id); 
+   const newData={
     ...formEdit,
     name:nameEdit,
     price:priceEdit,
-    qty:qtyEdit,
     image:imageEdit,
-    type:typeEdit,
+    type:typeEdit}
 
-  });
-  console.log(formEdit);
+  setFormEdit(newData);
 
-  const urlUser="https://burger-queenn.herokuapp.com/products/"
-  console.log(id); 
-  await petitionPutEdit(urlUser,id,formEdit);
-  //setModalDelete(false)
+  console.log("data",newData);
+
+  const urlProduct="https://burger-queenn.herokuapp.com/products/"
+  
+  await petitionPutEdit(urlProduct,id,newData);
+  setModalEdit(false);
   await getProducts();
+ 
+
 }
 
-
-
-  
 
   return (
     <Fragment>
@@ -258,14 +263,14 @@ const sendFormEdit= async(id) =>{
                     </button>
                   </div>
                   {/*body*/}
-                  <form onSubmit={()=> sendFormEdit(userSele._id)} className="text-center">
+                  <form onSubmit={(e)=> {e.preventDefault(); sendFormEdit(productSele._id)}} className="text-center">
                    
                   <div>
                       <input
                         className="input input--email"
                         type="text"
                         placeholder="Add Name of product"
-                        name={"name"}
+                        name={"nameEdit"}
                         value={nameEdit}
                         onChange={(e)=>{
                           e.preventDefault();
@@ -283,7 +288,7 @@ const sendFormEdit= async(id) =>{
                       max={1000}
                       className="input input--email"
                       placeholder="Add price"
-                      name={"price"}
+                      name={"priceEdit"}
                       value={priceEdit}
                         onChange={(e)=>{
                           e.preventDefault();
@@ -305,7 +310,7 @@ const sendFormEdit= async(id) =>{
                         setQtyEdit(e.target.value);
                         }}
                         placeholder="Add stock "
-                        name={"qty"}
+                        name={"qtyEdit"}
                         required
                       />
                     </div>
@@ -317,7 +322,7 @@ const sendFormEdit= async(id) =>{
                         className="input input--password"
                         type="text"
                         placeholder=" add url of image"
-                        name={"image"}
+                        name={"imageEdit"}
                         value={imageEdit}
                         onChange={(e)=>{
                           e.preventDefault();
@@ -331,7 +336,7 @@ const sendFormEdit= async(id) =>{
                         className="input input--password"
                         type="text"
                         placeholder=" add type: Lunch, Accompaniments, Drinks, Coffee , Sandwichs , Juices"
-                        name={"type"}
+                        name={"typeEdit"}
                         value={typeEdit}
                         onChange={(e)=>{
                           e.preventDefault();
@@ -409,7 +414,7 @@ const sendFormEdit= async(id) =>{
                   </div>
                   <div className=" flex justify-center items-center  ">
                   
-                   DO YOU WANT TO DELETE THE USER: {userSele && userSele.name} ?
+                   DO YOU WANT TO DELETE THE PRODUCT: {productSele && productSele.name} ?
                 
                   </div>
 
@@ -419,7 +424,7 @@ const sendFormEdit= async(id) =>{
                       type={"submit"}
                       onClick={(e) => {
                         e.preventDefault();
-                        deleteProductId(userSele && userSele._id);
+                        deleteProductId(productSele && productSele._id);
                       }}
                     >
                       YES
