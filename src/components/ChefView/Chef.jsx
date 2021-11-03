@@ -1,9 +1,6 @@
 import Nav from "../WaiterView/Nav";
 import chef from "../../img/chef.svg";
-import TotalTable from "../ChefView/TotalTable";
-import ItemsTable from "./ItemsTable";
-import StatusOrder from "./StatusOrder";
-import Button from "../Button";
+
 import { useState, useEffect } from "react";
 import { getDataApi } from "../../Authentication/auth";
 import OrderDescription from "../ChefView/OrderDescription";
