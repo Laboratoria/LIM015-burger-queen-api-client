@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { UserI } from './usuarios.model';
-
+import { UsersService } from 'src/app/servicios/users.service';
+import { ActualizarUsuarioComponent } from 'src/app/modales/actualizar-usuario/actualizar-usuario.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-usuarios',
@@ -11,12 +13,15 @@ import { UserI } from './usuarios.model';
 })
 export class UsuariosComponent implements OnInit {
   formValue !: FormGroup;
-  userModelObject : UserI = {email: '', password: '', roles:{name:'seleccione la categoria', admin: false}};
-  users: UserI[] = [];
-  prueba: string = "prueba";
+  public userModel : UserI = {email: '', password: '', roles:{name:'seleccione la categoria', admin: false}};
+  public usersList: UserI[] = [];
+  
 
-  constructor(private formbuilder: FormBuilder,
-    private auth : AuthService) { }
+  constructor(
+    private formbuilder: FormBuilder,
+    private api : UsersService,
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit(): void {
     this.formValue = this.formbuilder.group({
@@ -25,43 +30,64 @@ export class UsuariosComponent implements OnInit {
       rolname:['seleccione la categoria'],
       admin: false
     })
-    this.getUsers();
+    this.setUserList()
   }
-  postUserDetails(){
-    this.userModelObject.email = this.formValue.value.email;
-    this.userModelObject.password = this.formValue.value.password;
-    this.userModelObject.roles.name = this.formValue.value.rolname;
-    this.userModelObject.roles.admin = this.formValue.value.admin;
+
   
-    this.auth.postUser(this.userModelObject)
+  postUserDetails(){
+    this.userModel.email = this.formValue.value.email;
+    this.userModel.password = this.formValue.value.password;
+    this.userModel.roles.name = this.formValue.value.rolname;
+    this.userModel.roles.admin = this.formValue.value.admin;
+  
+    this.api.postUserService(this.userModel)
     .subscribe(res=>{
       console.log(res);
       alert("¡Usuario agregado!")
       let ref = document.getElementById('cancel')
       ref?.click();
       this.formValue.reset();
-      this.getUsers();
+      this.setUserList()
     },
       err=>{
         alert("Ups, ocurrió un error");
       })
-    console.log(this.userModelObject);
+    console.log(this.userModel);
     
+  }
+
+    setUserList() {
+    this.api.getUserService().subscribe((res) => {
+      this.usersList = res;
+    });
   }
   
   cancelUserDetails(){
     this.formValue.reset();
   }
 
-  getUsers(){
-    this.auth.getUser().subscribe(res => {
-      this.users = res;
-    })
+
+
+    openEditModal(userModel: UserI) {
+    const modalRef = this.modalService.open(ActualizarUsuarioComponent);
+    modalRef.componentInstance.user= userModel;
+    // modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
+    //   console.log(receivedEntry);
+    // })
+    modalRef.result.then((yes) => {
+      console.log("Yes Click");
+
+      this.setUserList();
+    },
+      (cancel) => {
+        console.log("Cancel Click");
+
+      })
   }
 
   deleteUser(id: any){
-    this.auth.deleteOneUser(id).subscribe(res =>
+    this.api.deleteUserService(id).subscribe(res =>
       alert('Usuario eliminado'));
-      this.getUsers();
+     this.setUserList();
   }
 }

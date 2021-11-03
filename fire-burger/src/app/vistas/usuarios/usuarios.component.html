@@ -23,13 +23,13 @@
       <th></th>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users" class="text-center">
+    <tr *ngFor="let user of usersList" class="text-center">
       <td>{{user.email}}</td>
       <!-- <td>{{user.password}}</td> -->
       <td>{{user.roles.name}}</td>
       <td>{{user.roles.admin}}</td>
       <td>
-        <button class="icons"><i class="far fa-edit fs-4"></i> </button>
+        <button (click)="openEditModal(user)" class="icons"><i class="far fa-edit fs-4"></i> </button>
         <button (click) = "deleteUser(user._id)" class="icons"><i class="fas fa-times-circle fs-4"></i></button> 
       </td>
     </tr>

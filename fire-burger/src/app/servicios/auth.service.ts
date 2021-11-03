@@ -25,44 +25,4 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-  getUser(): Observable<UserI[]> {
-    let token = localStorage.getItem('token');
-    //const headers = new HttpHeaders({'Authorization': `Bearer ${token}`})
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    console.log(token);
-    return this.http.get<UserI[]>(
-      'https://fireburguer.herokuapp.com/users',
-      config
-    );
-  }
-
-  postUser(data: UserI): Observable<any> {
-    console.log(data);
-    let token = localStorage.getItem('token');
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    return this.http.post<any>(
-      'https://fireburguer.herokuapp.com/users',
-      data,
-      config
-    );
-  }
-
-  deleteOneUser(uid : any){
-    let token = localStorage.getItem('token');
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    return this.http.delete<UserI>('https://fireburguer.herokuapp.com/users/'+ uid, config)
-    }
-  }
-  // updateUser(data : any, id : number){
-  //   return this.http.put<any>('https://fireburguer.herokuapp.com/users/'+id, data)
-  //   .pipe(map((res:any)=>{
-  //     return res;
-  //   }))
-  // }
-  
+}
