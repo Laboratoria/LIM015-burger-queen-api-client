@@ -24,21 +24,20 @@ const Chef = () => {
   useEffect(() => {
     getData();
   }, []);
-
   console.log(dataOrders);
 
-
+  
   return (
     <div>
       <div>
         <Nav imgOption={chef} option="CHEF" />
       </div>
 
-      <div className="flex flex-row justify-center mb-4 mt-2 py-4 list-none max-w-md mx-auto">
-        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
-          <a
+      <div className="flex flex-row justify-center mb-8 mt-6">
+        <li className="outline-none list-none">
+          <a 
             className={
-              "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+              "hover:text-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50 " +
               (openTab === 1 ? "text-green-500 " : " ")
             }
             onClick={(e) => {
@@ -52,11 +51,11 @@ const Chef = () => {
             PENDING
           </a>
         </li>
-        <span className="text-teal-500 px-4 text-4xl ">|</span>
-        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <span className="text-teal-500 px-4 text-lg ">|</span>
+        <li className="outline-none list-none">
           <a
             className={
-              "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+              "hover:text-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50 " +
               (openTab === 2 ? "text-green-500" : " ")
             }
             onClick={(e) => {
@@ -77,10 +76,10 @@ const Chef = () => {
         <div className="bg-white-200 shadow rounded-2xl p-4 ml-10 mx-8  px-80 justify-center flex flex-column text-center ">
         
         {
-    (dataOrders.length>0)?(
-        dataOrders.map((order) => 
-                   <OrderDescription order={order}/>
-    )):" nada"}
+        (dataOrders.length>0)?(
+            dataOrders.map((order) => 
+                      <OrderDescription order={order}/>
+        )):" "}
 
 
         </div>

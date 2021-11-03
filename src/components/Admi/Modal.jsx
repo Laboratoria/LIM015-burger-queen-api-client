@@ -25,7 +25,6 @@ const [passwordEdit,setPasswordEdit]=useState( userSele && userSele.password);
 const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
 
 
-
  // add new user 
   const saveChange = (e) => {
     e.preventDefault();
@@ -50,8 +49,8 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
 
 
   const sendFormEdit = async ( id) => {
-    
-    setFormEdit({
+
+    const newData={
       name:nameEdit,
       email:emailEdit,
       password:passwordEdit,
@@ -59,7 +58,9 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
         admin: isAdmin,
         name:rolesEdit
       }
-    })
+    }
+    
+    setFormEdit(newData);
 
     console.log(formEdit);
    

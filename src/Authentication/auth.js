@@ -8,6 +8,7 @@ const body = {
 };
 
 
+
 /* Login Authentication */
 export const loginAuth = async (body) => {
     try {
@@ -21,6 +22,7 @@ export const loginAuth = async (body) => {
         }
     }
 };
+
 
 
 //get data of user with email.
@@ -40,6 +42,7 @@ export const getUserEmail = async (email) => {
 
 
 
+
 //get data of users
 
 export const getUser = async (path) => {
@@ -55,20 +58,18 @@ export const getUser = async (path) => {
 };
 
 
-// get data of products 
+// get data of products and orders 
 
-export const getDataApi = async (urlProduct) => {
+export const getDataApi = async (urlPO) => {
     const token = localStorage.getItem("token");
 
-    return await axios.get(`${urlProduct}?limit=0`, {
+    return await axios.get(`${urlPO}?limit=0`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
         },
     });
 }
-
-//getUser("https://burger-queenn.herokuapp.com/users").then( r => console.log(r))
 
 
 
