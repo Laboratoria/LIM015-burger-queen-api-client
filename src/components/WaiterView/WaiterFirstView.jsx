@@ -2,9 +2,10 @@ import Button from "../Button";
 import BoxSelectItems from "./BoxSelectItems";
 import OrderPreview from '../WaiterView/OrderPreview'
 import WaiterNav from './WaiterNav';
-import { apiRequestToGetProducts } from '../../Authentication/auth'
+import {getDataApi} from '../../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
 import ProductFilter from './MenuItems';
+import { Link } from 'react-router-dom';
 //import ProductBreak from './ProductBreak'
 
 
@@ -20,7 +21,7 @@ const WaiterFirstView = () => {
   }, []);
 
   const getProducts = async () => {
-    const response = await apiRequestToGetProducts(urlProducts);
+    const response = await getDataApi(urlProducts);
     setProducts(response.data);
   };
 
@@ -31,9 +32,12 @@ const WaiterFirstView = () => {
 
       <div className="grid grid-cols-2 h-80">
         <div className="col-span-2 flex flex-row justify-between mx-8">
+
+        <Link to='/completed'>
           <div className="w-full">
-            <Button type={"primary"} name={"VIEW ORDER"} />
+            <Button type={"primary"} name={"VIEW ORDER"}  />
           </div>
+        </Link>
 
           <div className="w-full">
             <div className="pt-16 flex justify-center items-center text-2xl">

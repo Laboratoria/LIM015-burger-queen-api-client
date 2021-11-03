@@ -1,10 +1,10 @@
 import React, { useState, useEffect} from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import { petitionPostAdd,petitionDelete,petitionPutEdit} from "../Authentication/auth";
+import { petitionPostAdd,petitionDelete,petitionPutEdit} from "../../Authentication/auth";
 
 
 const ModalProduct = ({
-  getUsers,
+  getProducts,
   showModal,
   setShowModal,
   modalEdit,
@@ -14,89 +14,92 @@ const ModalProduct = ({
   setModalDelete,
 }) => {
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    
   });
 
   const [formEdit,setFormEdit]=useState(form);
 
   const [error, setError] = useState("");
+  const [num, setNum] = useState(0);
+  const [qty, setQty] = useState(0);
 
-  const [isAdmin, setisAdmin] = useState(false);
+
+  const[nameEdit,setNameEdit]=useState(userSele.name);
+  const[priceEdit,setPriceEdit]=useState(userSele.price);
+  const[qtyEdit,setQtyEdit]=useState(userSele.qty);
+  const[imageEdit,setImageEdit]=useState(userSele.image);
+  const[typeEdit,setTypeEdit]=useState(userSele.name);
 
 
-
+ //add new product  
   const saveChange = (e) => {
     e.preventDefault();
     
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      roles: {
-        admin: isAdmin,
-        name: e.target.name === "roles" ? e.target.value : "",
-      },
+      price:Number(num),
+      qty:Number(qty)
+        
     });
+  };
+  const sendForm = async (e) => {
+    console.log(num);
+      e.preventDefault();
+    console.log(form);
+    const urlUser = "https://burger-queenn.herokuapp.com/products";
+    await petitionPostAdd(urlUser, form);
+    await getProducts();
+    setShowModal(false)
+    // console.log("hackerrang");
   };
 
 
 
-  const saveChangeEdit = (e) => {
-    e.preventDefault();
-      setFormEdit({
-      ...formEdit,
-      [e.target.name]: e.target.value,
-      roles: {
-        admin: isAdmin,
-        name: e.target.name === "roles" ? e.target.value : "",
-      },
-    });
-  };
-
-
-
+  //delete products 
+  
   useEffect(() => {
-    deleteUserId();
+    deleteProductId();
   }, []);
 
-const deleteUserId = async(id) =>{
-  const urlUser="https://burger-queenn.herokuapp.com/users/"
+const deleteProductId = async(id) =>{
+  const url="https://burger-queenn.herokuapp.com/products/"
   console.log(id); 
-  await petitionDelete(urlUser,id);
+  await petitionDelete(url,id);
   setModalDelete(false)
-  await getUsers();
+  await getProducts();
 }
 
 
-useEffect(() => {
-  deleteUserId();
-  
-}, []);
-
+// adit products 
 useEffect(() => {
   sendFormEdit();
   
 }, []);
 
 const sendFormEdit= async(id) =>{
+ 
+  setFormEdit({
+    ...formEdit,
+    name:nameEdit,
+    price:priceEdit,
+    qty:qtyEdit,
+    image:imageEdit,
+    type:typeEdit,
 
-  const urlUser="https://burger-queenn.herokuapp.com/users/"
+  });
+  console.log(formEdit);
+
+  const urlUser="https://burger-queenn.herokuapp.com/products/"
   console.log(id); 
   await petitionPutEdit(urlUser,id,formEdit);
-  setModalDelete(false)
-  await getUsers();
+  //setModalDelete(false)
+  await getProducts();
 }
 
 
 
-  const sendForm = async (e) => {
-    e.preventDefault();
-    //console.log(form);
-    const urlUser = "https://burger-queenn.herokuapp.com/users";
-    await petitionPostAdd(urlUser, form);
-    await getUsers();
-    // console.log("hackerrang");
-  };
+  
 
   return (
     <Fragment>
@@ -128,7 +131,7 @@ const sendFormEdit= async(id) =>{
                       <input
                         className="input input--email"
                         type="text"
-                        placeholder="Add Name"
+                        placeholder="Add Name of product"
                         name={"name"}
                         onChange={saveChange}
                         required
@@ -137,21 +140,41 @@ const sendFormEdit= async(id) =>{
 
                     <div>
                       <input
+                      
+                      type="number"
+                      min={0}
+                      max={1000}
+                      value={num}
+                      onChange={e => setNum(e.target.value)}
+                      className="input input--email"
+                      placeholder="Add price"
+                      name={"price"}
+                      required
+                      />
+                    </div>
+
+                    <div>
+                      <input
                         className="input input--email"
-                        type="text"
-                        placeholder="Add Email"
-                        name={"email"}
-                        onChange={saveChange}
+                        type="number"
+                        min={0}
+                        max={1000}
+                        value={qty}
+                        placeholder="Add stock "
+                        name={"qty"}
+                        onChange={e => setQty(e.target.value)}
                         required
                       />
                     </div>
 
+
+
                     <div>
                       <input
                         className="input input--password"
-                        type="password"
-                        placeholder=" add Password"
-                        name={"password"}
+                        type="text"
+                        placeholder=" add url of image"
+                        name={"image"}
                         onChange={saveChange}
                         required
                       />
@@ -160,27 +183,13 @@ const sendFormEdit= async(id) =>{
                       <input
                         className="input input--password"
                         type="text"
-                        placeholder="roles : chef , admi or waiter "
-                        name={"roles"}
+                        placeholder=" add type: Lunch, Accompaniments, Drinks, Coffee , Sandwichs , Juices"
+                        name={"type"}
                         onChange={saveChange}
                         required
                       />
                     </div>
-                    <div>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="admin"
-                          defaultChecked={isAdmin}
-                          onChange={(e) => {
-                            e.preventDefault();
-                            setisAdmin(!isAdmin);
-                          }}
-                        />{" "}
-                        is admin
-                      </label>
-                    </div>
-
+                  
                     {error ? (
                       <div>
                         <p className="text-red-500 text-sm text-lg pb-2">
@@ -225,7 +234,8 @@ const sendFormEdit= async(id) =>{
         )}
       </div>
 
-      <div>
+     <div>
+
         {modalEdit ? (
           <div>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -249,38 +259,70 @@ const sendFormEdit= async(id) =>{
                   </div>
                   {/*body*/}
                   <form onSubmit={()=> sendFormEdit(userSele._id)} className="text-center">
-                    <div>
+                   
+                  <div>
                       <input
                         className="input input--email"
                         type="text"
-                        placeholder="Add Name"
+                        placeholder="Add Name of product"
                         name={"name"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.name}
+                        value={nameEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                          setNameEdit(e.target.value);
+                          }}
                         required
+                      />
+                    </div>
+
+                    <div>
+                      <input
+                      
+                      type="number"
+                      min={0}
+                      max={1000}
+                      className="input input--email"
+                      placeholder="Add price"
+                      name={"price"}
+                      value={priceEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                          setPriceEdit(e.target.value);
+                         }}
+                      required
                       />
                     </div>
 
                     <div>
                       <input
                         className="input input--email"
-                        type="text"
-                        placeholder="Add Email"
-                        name={"email"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.email}
+                        type="number"
+                        min={0}
+                        max={1000}
+                        value={qtyEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                        setQtyEdit(e.target.value);
+                        }}
+                        placeholder="Add stock "
+                        name={"qty"}
                         required
                       />
                     </div>
 
+
+
                     <div>
                       <input
                         className="input input--password"
-                        type="password"
-                        placeholder=" add Password"
-                        name={"password"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.password}
+                        type="text"
+                        placeholder=" add url of image"
+                        name={"image"}
+                        value={imageEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                          setImageEdit(e.target.value);
+                         }}
                         required
                       />
                     </div>
@@ -288,26 +330,15 @@ const sendFormEdit= async(id) =>{
                       <input
                         className="input input--password"
                         type="text"
-                        placeholder="roles : chef , admi or waiter "
-                        name={"roles"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.roles.name}
+                        placeholder=" add type: Lunch, Accompaniments, Drinks, Coffee , Sandwichs , Juices"
+                        name={"type"}
+                        value={typeEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                          setTypeEdit(e.target.value);
+                         }}
                         required
                       />
-                    </div>
-                    <div>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="admin"
-                          defaultChecked={isAdmin}
-                          onChange={(e) => {
-                            e.preventDefault();
-                            setisAdmin(!isAdmin);
-                          }}
-                        />{" "}
-                        is admin
-                      </label>
                     </div>
 
                     {error ? (
@@ -352,7 +383,7 @@ const sendFormEdit= async(id) =>{
         ) : (
           " "
         )}
-      </div>
+        </div> */
 
       <div>
         {modalDelete ? (
@@ -388,7 +419,7 @@ const sendFormEdit= async(id) =>{
                       type={"submit"}
                       onClick={(e) => {
                         e.preventDefault();
-                        deleteUserId(userSele && userSele._id);
+                        deleteProductId(userSele && userSele._id);
                       }}
                     >
                       YES

@@ -49,6 +49,7 @@ function App() {
           <Admi />
         </Route>
 
+
       </Switch>
     </Router >
 

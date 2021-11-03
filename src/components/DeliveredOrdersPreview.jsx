@@ -1,11 +1,18 @@
 import React, { Fragment } from 'react';
 import WaiterNav from './WaiterView/WaiterNav';
 import ListOfDeliveredOrders from './ListOfDeliveredOrders';
-//import PreviewCompletedOrders from './PreviewCompletedOrders'
+
+
 const DeliveredOrdersPreview = () => {
+
+
+    
+  
+
     return (
         <Fragment>
             <WaiterNav />
+
             <div className='bg-white-200 shadow mt-10 rounded-2xl p-4 ml-10 mx-8 justify-center flex flex-column text-center'>
 
                 <div className='flex flex-row justify-center mb-4 mt-2'>

@@ -7,6 +7,7 @@ const body = {
     password: "changeme",
 };
 
+
 /* Login Authentication */
 export const loginAuth = async (body) => {
     try {
@@ -37,6 +38,8 @@ export const getUserEmail = async (email) => {
     return response.data;
 };
 
+
+
 //get data of users
 
 export const getUser = async (path) => {
@@ -51,9 +54,10 @@ export const getUser = async (path) => {
         .catch((err) => console.log(err));
 };
 
+
 // get data of products 
 
-export const apiRequestToGetProducts = async (urlProduct) => {
+export const getDataApi = async (urlProduct) => {
     const token = localStorage.getItem("token");
 
     return await axios.get(urlProduct, {
@@ -68,7 +72,7 @@ export const apiRequestToGetProducts = async (urlProduct) => {
 
 
 
-//add new user or product 
+//add new user or product or orders 
 
 export const petitionPostAdd= async (urlUP,data) => {
     const token = localStorage.getItem("token");

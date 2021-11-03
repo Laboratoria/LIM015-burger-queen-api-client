@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import { petitionPostAdd, petitionDelete, petitionPutEdit } from "../Authentication/auth";
+import { petitionPostAdd, petitionDelete, petitionPutEdit } from "../../Authentication/auth";
 
 
-const ModalAddUser = ({
-  getUsers,
-  showModal,
-  setShowModal,
-  modalEdit,
-  setModalEdit,
-  userSele,
-  modalDelete,
-  setModalDelete,
+const ModalAddUser = ({getUsers,showModal, setShowModal, modalEdit, setModalEdit,
+  userSele,  modalDelete,  setModalDelete,
 }) => {
   const [form, setForm] = useState({
     email: "",
     password: "",
+    name:""
   });
 
   const [formEdit, setFormEdit] = useState(form);
-
   const [error, setError] = useState("");
-
   const [isAdmin, setisAdmin] = useState(false);
 
+//states of edits users 
 
 
+const [nameEdit,setNameEdit]=useState(userSele && userSele.name);
+const [emailEdit,setEmailEdit]=useState( userSele && userSele.email);
+const [passwordEdit,setPasswordEdit]=useState( userSele && userSele.password);
+const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
+
+
+
+ // add new user 
   const saveChange = (e) => {
     e.preventDefault();
 
@@ -41,23 +42,42 @@ const ModalAddUser = ({
 
 
 
-  const saveChangeEdit = (e) => {
-    e.preventDefault();
+ //Edit users  
+  useEffect(() => {
+    sendFormEdit();
+
+  }, []);
+
+
+  const sendFormEdit = async ( id) => {
+    
     setFormEdit({
-      ...formEdit,
-      [e.target.name]: e.target.value,
+      name:nameEdit,
+      email:emailEdit,
+      password:passwordEdit,
       roles: {
         admin: isAdmin,
-        name: e.target.name === "roles" ? e.target.value : "",
-      },
-    });
-  };
+        name:rolesEdit
+      }
+    })
+
+    console.log(formEdit);
+   
+    const urlUser = "https://burger-queenn.herokuapp.com/users/"
+  
+    await petitionPutEdit(urlUser,id, formEdit);
+  setModalEdit(false);
+    await getUsers();
+  }
 
 
+//delete users 
 
   useEffect(() => {
     deleteUserId();
   }, []);
+
+
 
   const deleteUserId = async (id) => {
     const urlUser = "https://burger-queenn.herokuapp.com/users/"
@@ -73,27 +93,17 @@ const ModalAddUser = ({
 
   }, []);
 
-  useEffect(() => {
-    sendFormEdit();
-
-  }, []);
-
-  const sendFormEdit = async (id) => {
-
-    const urlUser = "https://burger-queenn.herokuapp.com/users/"
-    console.log(id);
-    await petitionPutEdit(urlUser, id, formEdit);
-    setModalDelete(false)
-    await getUsers();
-  }
 
 
+//modals 
 
   const sendForm = async (e) => {
     e.preventDefault();
     //console.log(form);
     const urlUser = "https://burger-queenn.herokuapp.com/users";
     await petitionPostAdd(urlUser, form);
+   
+    setShowModal(false)
     await getUsers();
     // console.log("hackerrang");
   };
@@ -255,8 +265,10 @@ const ModalAddUser = ({
                         type="text"
                         placeholder="Add Name"
                         name={"name"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.name}
+                        value={nameEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                          setNameEdit(e.target.value)}}
                         required
                       />
                     </div>
@@ -267,8 +279,10 @@ const ModalAddUser = ({
                         type="text"
                         placeholder="Add Email"
                         name={"email"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.email}
+                        value={emailEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                          setEmailEdit(e.target.value)}}
                         required
                       />
                     </div>
@@ -279,8 +293,10 @@ const ModalAddUser = ({
                         type="password"
                         placeholder=" add Password"
                         name={"password"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.password}
+                        value={passwordEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                          setPasswordEdit(e.target.value)}}
                         required
                       />
                     </div>
@@ -290,8 +306,10 @@ const ModalAddUser = ({
                         type="text"
                         placeholder="roles : chef , admi or waiter "
                         name={"roles"}
-                        onChange={saveChangeEdit}
-                        value={userSele && userSele.roles.name}
+                        value={rolesEdit}
+                        onChange={(e)=>{
+                          e.preventDefault();
+                        setRolesEdit(e.target.value)}}
                         required
                       />
                     </div>
@@ -305,7 +323,7 @@ const ModalAddUser = ({
                             e.preventDefault();
                             setisAdmin(!isAdmin);
                           }}
-                        />{" "}
+                        />
                         is admin
                       </label>
                     </div>

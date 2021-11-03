@@ -1,8 +1,9 @@
 import React from "react";
-import NavOpcion from "./WaiterView/Nav";
-import admi from "../img/admi.svg";
+import NavOpcion from "../WaiterView/Nav";
+import admi from "../../img/admi.svg";
 import AdmiUser from "./AdmiUser";
 import AdmiProduct from "./AdmiProduct";
+
 
 import { useState, Fragment } from "react";
 
@@ -70,7 +71,7 @@ const Tabs = ({ color }) => {
                   <AdmiUser />
 
 
-                </div>
+                  </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
 
                   <AdmiProduct/>
