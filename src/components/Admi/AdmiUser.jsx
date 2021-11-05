@@ -18,10 +18,8 @@ const PAdmi = ({ users, getUsers }) => {
 
 
   const [showModal, setShowModal] = useState(false);
-
   const [modalEdit, setModalEdit] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
-
   const [userSele, setUserSele] = useState([]);
 
 
@@ -114,9 +112,7 @@ const PAdmi = ({ users, getUsers }) => {
 
 const AdmiUser = () => {
   const baseUrl = "https://burger-queenn.herokuapp.com/users";
-
   const [users, setUsers] = useState([]);
-
   const petitionGet = async () => {
     const data = await getUser(baseUrl);
     setUsers(data.data);

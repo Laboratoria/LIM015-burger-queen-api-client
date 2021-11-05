@@ -6,6 +6,13 @@ const OrderDescription = (order) => {
   let date = new Date(order.dateEntry)
   let settingDateFormat = date.toDateString()
 
+  
+  //console.log(order);
+
+
+  //console.log((order.products.map(pro => pro.productId)));
+
+
   return (
     <div className='bg-white-200 shadow rounded-2xl p-4 ml-10 mx-8 mb-32  px-80 justify-center flex flex-column text-center '>
       <div className=" grid grid-rows-2 grid-flow-col gap-2">
@@ -22,6 +29,7 @@ const OrderDescription = (order) => {
           <tr>
             <th className='border py-2.5'>TOTAL</th>
             {order ? order.products.map(product =>
+              
               <th className=' border border-green-600'>{product.qty}</th>
             ) : null}
           </tr>
@@ -30,10 +38,12 @@ const OrderDescription = (order) => {
         <tbody>
           <tr>
             <td className='border border-green-600 py-3'>{'ITEMS'}</td>
-            {order ? order.products.map(product =>
-              < td className='border border-green-600' >
-                <img src={product.image} alt={product.name} />
-              </td >
+            {order ? order.products.map(produ =>
+              < td className='border border-green-600'  >
+
+             <p className=" ">{produ.productId && produ.productId.name}</p>
+                    
+              </td>
             ) : null}
           </tr>
 

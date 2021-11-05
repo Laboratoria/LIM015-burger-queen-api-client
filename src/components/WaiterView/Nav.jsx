@@ -6,7 +6,7 @@ const NavOpcion = (props) => {
 
     return (
         <nav>
-            <div className="bg-gradient-to-r from-green-200 via-yellow-100 to-green-200 h-14 sm:h-20 flex justify-between items-center py-4" >
+            <div className="bg-gradient-to-r from-green-200 via-yellow-100 to-green-200 h-14 sm:h-20 flex justify-center  items-center py-4" >
                 {props.imgHome ? <div className="flex items-center text-xs sm:text-lg sm:px-5" >
 
                     <img className="px-2 h-15 sm:h-14" src={props.imgHome} alt="burger icon" />
