@@ -5,10 +5,6 @@ import ListOfDeliveredOrders from './ListOfDeliveredOrders';
 
 const DeliveredOrdersPreview = () => {
 
-
-    
-  
-
     return (
         <Fragment>
             <WaiterNav />

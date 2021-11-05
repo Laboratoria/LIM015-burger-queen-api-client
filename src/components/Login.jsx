@@ -5,7 +5,7 @@ import admi from '../img/admi.svg';
 import chef from '../img/chef.svg';
 import waiter from '../img/waiter.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye,faEyeSlash} from '@fortawesome/free-solid-svg-icons'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 
 const Login = () => {
@@ -16,8 +16,6 @@ const Login = () => {
   });
 
   const [shown, setShown] = useState(false);
-   
-
 
   const [option, setOption] = useState('');
 
@@ -29,7 +27,6 @@ const Login = () => {
 
   localStorage.setItem('namelogged', datauser.name);
   const employeeName = localStorage.getItem('namelogged');
-  console.log(employeeName);
 
   useEffect(() => {
     const isUserMatch = (datauser.email === form.email) && form.password;
@@ -131,21 +128,21 @@ const Login = () => {
 
             <div>
               <div >
-              <input className='input w-24 md:w-auto'
-                type={shown ? 'text' : 'password'}
-                placeholder="Password"
-                name="password"
-                onChange={handInputChange}
-                required
-                
-              />
-              <div className="relative">
-              <FontAwesomeIcon className="cursor-pointer text-yellow-500  absolute -inset-y-14 right-20 h-10"  onClick={()=> setShown(!shown)} icon={shown ? faEye:faEyeSlash} />
-              </div>
-             
+                <input className='input w-24 md:w-auto'
+                  type={shown ? 'text' : 'password'}
+                  placeholder="Password"
+                  name="password"
+                  onChange={handInputChange}
+                  required
+
+                />
+                <div className="relative">
+                  <FontAwesomeIcon className="cursor-pointer text-yellow-500  absolute -inset-y-14 right-20 h-10" onClick={() => setShown(!shown)} icon={shown ? faEye : faEyeSlash} />
+                </div>
+
               </div>
 
-                </div>
+            </div>
             {error ? (
               <div>
                 <p className='text-red-500 text-sm text-lg pb-2'>{error}</p>

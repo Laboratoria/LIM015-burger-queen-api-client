@@ -3,29 +3,29 @@ import { Fragment } from "react/cjs/react.production.min";
 import { petitionPostAdd, petitionDelete, petitionPutEdit } from "../../Authentication/auth";
 
 
-const ModalAddUser = ({getUsers,showModal, setShowModal, modalEdit, setModalEdit,
-  userSele,  modalDelete,  setModalDelete,
+const ModalAddUser = ({ getUsers, showModal, setShowModal, modalEdit, setModalEdit,
+  userSele, modalDelete, setModalDelete,
 }) => {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    name:""
+    name: ""
   });
 
   const [formEdit, setFormEdit] = useState(form);
   const [error, setError] = useState("");
   const [isAdmin, setisAdmin] = useState(false);
 
-//states of edits users 
+  //states of edits users 
 
 
-const [nameEdit,setNameEdit]=useState(userSele && userSele.name);
-const [emailEdit,setEmailEdit]=useState( userSele && userSele.email);
-const [passwordEdit,setPasswordEdit]=useState( userSele && userSele.password);
-const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
+  const [nameEdit, setNameEdit] = useState(userSele && userSele.name);
+  const [emailEdit, setEmailEdit] = useState(userSele && userSele.email);
+  const [passwordEdit, setPasswordEdit] = useState(userSele && userSele.password);
+  const [rolesEdit, setRolesEdit] = useState(userSele && userSele.roles.name);
 
 
- // add new user 
+  // add new user 
   const saveChange = (e) => {
     e.preventDefault();
 
@@ -41,38 +41,38 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
 
 
 
- //Edit users  
+  //Edit users  
   useEffect(() => {
     sendFormEdit();
 
   }, []);
 
 
-  const sendFormEdit = async ( id) => {
+  const sendFormEdit = async (id) => {
 
-    const newData={
-      name:nameEdit,
-      email:emailEdit,
-      password:passwordEdit,
+    const newData = {
+      name: nameEdit,
+      email: emailEdit,
+      password: passwordEdit,
       roles: {
         admin: isAdmin,
-        name:rolesEdit
+        name: rolesEdit
       }
     }
-    
+
     setFormEdit(newData);
 
     console.log(formEdit);
-   
+
     const urlUser = "https://burger-queenn.herokuapp.com/users/"
-  
-    await petitionPutEdit(urlUser,id, formEdit);
-  setModalEdit(false);
+
+    await petitionPutEdit(urlUser, id, formEdit);
+    setModalEdit(false);
     await getUsers();
   }
 
 
-//delete users 
+  //delete users 
 
   useEffect(() => {
     deleteUserId();
@@ -82,7 +82,6 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
 
   const deleteUserId = async (id) => {
     const urlUser = "https://burger-queenn.herokuapp.com/users/"
-    console.log(id);
     await petitionDelete(urlUser, id);
     setModalDelete(false)
     await getUsers();
@@ -96,14 +95,14 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
 
 
 
-//modals 
+  //modals 
 
   const sendForm = async (e) => {
     e.preventDefault();
     //console.log(form);
     const urlUser = "https://burger-queenn.herokuapp.com/users";
     await petitionPostAdd(urlUser, form);
-   
+
     setShowModal(false)
     await getUsers();
     // console.log("hackerrang");
@@ -267,9 +266,10 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
                         placeholder="Add Name"
                         name={"name"}
                         value={nameEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
-                          setNameEdit(e.target.value)}}
+                          setNameEdit(e.target.value)
+                        }}
                         required
                       />
                     </div>
@@ -281,9 +281,10 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
                         placeholder="Add Email"
                         name={"email"}
                         value={emailEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
-                          setEmailEdit(e.target.value)}}
+                          setEmailEdit(e.target.value)
+                        }}
                         required
                       />
                     </div>
@@ -295,9 +296,10 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
                         placeholder=" add Password"
                         name={"password"}
                         value={passwordEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
-                          setPasswordEdit(e.target.value)}}
+                          setPasswordEdit(e.target.value)
+                        }}
                         required
                       />
                     </div>
@@ -308,9 +310,10 @@ const [rolesEdit,setRolesEdit]=useState( userSele && userSele.roles.name);
                         placeholder="roles : chef , admi or waiter "
                         name={"roles"}
                         value={rolesEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
-                        setRolesEdit(e.target.value)}}
+                          setRolesEdit(e.target.value)
+                        }}
                         required
                       />
                     </div>
