@@ -1,6 +1,7 @@
 import axios from "axios";
 
 let url = "https://burger-queenn.herokuapp.com/auth"; //endpoint
+let urlOrder = 'https://burger-queenn.herokuapp.com/orders/'
 
 const body = {
     email: "admin@localhost",
@@ -74,13 +75,13 @@ export const getDataApi = async (urlPO) => {
 
 //add new user or product or orders 
 
-export const petitionPostAdd= async ( urlUP ,data) => {
+export const petitionPostAdd = async (urlUP, data) => {
     const token = localStorage.getItem("token");
-    
+
     return axios({
-        url:urlUP,
-        method:"POST",
-        data:data,
+        url: urlUP,
+        method: "POST",
+        data: data,
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -90,17 +91,14 @@ export const petitionPostAdd= async ( urlUP ,data) => {
 
 }
 
-
-
-
 //delete user or product 
 
-export const petitionDelete= async (urlUP,idUP) => {
+export const petitionDelete = async (urlUser, id) => {
     const token = localStorage.getItem("token");
-   
+
     return axios({
-        url:urlUP+idUP,
-        method:"DELETE",
+        url: urlUser + id,
+        method: "DELETE",
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -111,14 +109,13 @@ export const petitionDelete= async (urlUP,idUP) => {
 
 
 //edit user or product 
-export const petitionPutEdit= async (urlUP,idUP,newData) => {
+export const petitionPutEdit = async (urlUP, idUP, newData) => {
     const token = localStorage.getItem("token");
-    console.log(newData,urlUP,idUP);
-   
+
     return axios({
-        url:`${urlUP}${idUP}`,
-        method:"PUT",
-        data:newData,
+        url: urlUP + idUP,
+        method: "PUT",
+        data: newData,
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -126,4 +123,23 @@ export const petitionPutEdit= async (urlUP,idUP,newData) => {
     })
 }
 
+/* mostrar todas las ordenes de la Api*/
 
+export const getAllOrders = async () => {
+    //const token = localStorage.getItem("token");
+    try {
+        const token = localStorage.getItem("token");
+        const apiCallTogetOrders = await axios.get(`${urlOrder}?limit=0`, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        })
+        console.log(apiCallTogetOrders);
+        return apiCallTogetOrders
+    } catch (error) {
+        if (error.response) {
+            throw new Error(error.response.message)
+        }
+    }
+}

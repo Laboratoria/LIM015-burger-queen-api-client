@@ -1,6 +1,6 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import { petitionPostAdd,petitionDelete,petitionPutEdit} from "../../Authentication/auth";
+import { petitionPostAdd, petitionDelete, petitionPutEdit } from "../../Authentication/auth";
 
 
 const ModalProduct = ({
@@ -13,43 +13,39 @@ const ModalProduct = ({
   modalDelete,
   setModalDelete,
 }) => {
-  const [form, setForm] = useState({
-    
-  });
+  const [form, setForm] = useState({});
+
+  const [nameEdit, setNameEdit] = useState(productSele && productSele.name);
+  const [priceEdit, setPriceEdit] = useState(productSele && productSele.price);
+  const [qtyEdit, setQtyEdit] = useState(productSele && productSele.qty);
+  const [imageEdit, setImageEdit] = useState(productSele && productSele.image);
+  const [typeEdit, setTypeEdit] = useState(productSele && productSele.type);
 
 
-  
-  const[nameEdit,setNameEdit]=useState( productSele && productSele.name);
-  const[priceEdit,setPriceEdit]=useState( productSele && productSele.price);
-  const[qtyEdit,setQtyEdit]=useState( productSele && productSele.qty);
-  const[imageEdit,setImageEdit]=useState( productSele && productSele.image);
-  const[typeEdit,setTypeEdit]=useState(productSele && productSele.type);
-
-
-  const [formEdit,setFormEdit]=useState({});
+  const [formEdit, setFormEdit] = useState({});
 
   const [error, setError] = useState("");
   const [num, setNum] = useState(0);
   const [qty, setQty] = useState(0);
 
 
- //add new product  
+  //add new product  
   const saveChange = (e) => {
     e.preventDefault();
-    
+
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      price:Number(num),
-      qty:Number(qty)
-        
+      price: Number(num),
+      qty: Number(qty)
+
     });
   };
 
 
   const sendForm = async (e) => {
     console.log(num);
-      e.preventDefault();
+    e.preventDefault();
     console.log(form);
     const urlProduct = "https://burger-queenn.herokuapp.com/products";
     await petitionPostAdd(urlProduct, form);
@@ -61,49 +57,49 @@ const ModalProduct = ({
 
 
   //delete products 
-  
+
   useEffect(() => {
     deleteProductId();
   }, []);
 
-const deleteProductId = async(id) =>{
-  const url="https://burger-queenn.herokuapp.com/products/"
-  console.log(id); 
-  await petitionDelete(url,id);
-  setModalDelete(false)
-  await getProducts();
-}
+  const deleteProductId = async (id) => {
+    const url = "https://burger-queenn.herokuapp.com/products/"
+    await petitionDelete(url, id);
+    setModalDelete(false)
+    await getProducts();
+  }
 
 
-// adit products 
-useEffect(() => {
-  sendFormEdit();
-  
-}, []);
+  // adit products 
+  useEffect(() => {
+    sendFormEdit();
+
+  }, []);
 
 
 
-const sendFormEdit= async(id) =>{
-  console.log(id); 
-   const newData={
-    ...formEdit,
-    name:nameEdit,
-    price:priceEdit,
-    image:imageEdit,
-    type:typeEdit}
+  const sendFormEdit = async (id) => {
+    console.log(id);
+    const newData = {
+      ...formEdit,
+      name: nameEdit,
+      price: priceEdit,
+      image: imageEdit,
+      type: typeEdit
+    }
 
-  setFormEdit(newData);
+    setFormEdit(newData);
 
-  console.log("data",newData);
+    console.log("data", newData);
 
-  const urlProduct="https://burger-queenn.herokuapp.com/products/"
-  
-  await petitionPutEdit(urlProduct,id,newData);
-  setModalEdit(false);
-  await getProducts();
- 
+    const urlProduct = "https://burger-queenn.herokuapp.com/products/"
 
-}
+    await petitionPutEdit(urlProduct, id, newData);
+    setModalEdit(false);
+    await getProducts();
+
+
+  }
 
 
   return (
@@ -145,16 +141,16 @@ const sendFormEdit= async(id) =>{
 
                     <div>
                       <input
-                      
-                      type="number"
-                      min={0}
-                      max={1000}
-                      value={num}
-                      onChange={e => setNum(e.target.value)}
-                      className="input input--email"
-                      placeholder="Add price"
-                      name={"price"}
-                      required
+
+                        type="number"
+                        min={0}
+                        max={1000}
+                        value={num}
+                        onChange={e => setNum(e.target.value)}
+                        className="input input--email"
+                        placeholder="Add price"
+                        name={"price"}
+                        required
                       />
                     </div>
 
@@ -194,7 +190,7 @@ const sendFormEdit= async(id) =>{
                         required
                       />
                     </div>
-                  
+
                     {error ? (
                       <div>
                         <p className="text-red-500 text-sm text-lg pb-2">
@@ -239,7 +235,7 @@ const sendFormEdit= async(id) =>{
         )}
       </div>
 
-     <div>
+      <div>
 
         {modalEdit ? (
           <div>
@@ -263,38 +259,38 @@ const sendFormEdit= async(id) =>{
                     </button>
                   </div>
                   {/*body*/}
-                  <form onSubmit={(e)=> {e.preventDefault(); sendFormEdit(productSele._id)}} className="text-center">
-                   
-                  <div>
+                  <form onSubmit={(e) => { e.preventDefault(); sendFormEdit(productSele._id) }} className="text-center">
+
+                    <div>
                       <input
                         className="input input--email"
                         type="text"
                         placeholder="Add Name of product"
                         name={"nameEdit"}
                         value={nameEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
                           setNameEdit(e.target.value);
-                          }}
+                        }}
                         required
                       />
                     </div>
 
                     <div>
                       <input
-                      
-                      type="number"
-                      min={0}
-                      max={1000}
-                      className="input input--email"
-                      placeholder="Add price"
-                      name={"priceEdit"}
-                      value={priceEdit}
-                        onChange={(e)=>{
+
+                        type="number"
+                        min={0}
+                        max={1000}
+                        className="input input--email"
+                        placeholder="Add price"
+                        name={"priceEdit"}
+                        value={priceEdit}
+                        onChange={(e) => {
                           e.preventDefault();
                           setPriceEdit(e.target.value);
-                         }}
-                      required
+                        }}
+                        required
                       />
                     </div>
 
@@ -305,9 +301,9 @@ const sendFormEdit= async(id) =>{
                         min={0}
                         max={1000}
                         value={qtyEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
-                        setQtyEdit(e.target.value);
+                          setQtyEdit(e.target.value);
                         }}
                         placeholder="Add stock "
                         name={"qtyEdit"}
@@ -324,10 +320,10 @@ const sendFormEdit= async(id) =>{
                         placeholder=" add url of image"
                         name={"imageEdit"}
                         value={imageEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
                           setImageEdit(e.target.value);
-                         }}
+                        }}
                         required
                       />
                     </div>
@@ -338,10 +334,10 @@ const sendFormEdit= async(id) =>{
                         placeholder=" add type: Lunch, Accompaniments, Drinks, Coffee , Sandwichs , Juices"
                         name={"typeEdit"}
                         value={typeEdit}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           e.preventDefault();
                           setTypeEdit(e.target.value);
-                         }}
+                        }}
                         required
                       />
                     </div>
@@ -388,7 +384,7 @@ const sendFormEdit= async(id) =>{
         ) : (
           " "
         )}
-        </div> */
+      </div> */
 
       <div>
         {modalDelete ? (
@@ -413,12 +409,12 @@ const sendFormEdit= async(id) =>{
                     </button>
                   </div>
                   <div className=" flex justify-center items-center  ">
-                  
-                   DO YOU WANT TO DELETE THE PRODUCT: {productSele && productSele.name} ?
-                
+
+                    DO YOU WANT TO DELETE THE PRODUCT: {productSele && productSele.name} ?
+
                   </div>
 
-                              <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                     <button
                       className="bg-lime-300 rounded w-28 sm:h-10 sm:w-40 h-7 ml-2 my-4 text-xs sm:text-base hover: bg-teal-500 shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type={"submit"}
