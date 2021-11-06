@@ -68,16 +68,16 @@ const PAdmiProducts = ({ products, getProducts }) => {
 
 
 
-      <table className="divide-y divide-blue-300  bg-white-200 shadow mt-2 rounded-2xl  ml-10 mx-4 p-4  ">
+      <table className="divide-y divide-black  divide-opacity-4 bg-white-200  shadow-md  mt-2 rounded-2xl   ">
         <thead>
-          <tr className=" bg-emerald-200  p-4">
-            <th className="flex flex-row  gap-2 px-8 ">
+          <tr className=" font-bold   p-4">
+            <th className="flex flex-row  gap-2 px-12 py-3 ">
               <button onClick={() => setShowModal(true)}>
                 <img className="" src={iconAddUser} alt={""} />
               </button>
               PRODUCT
             </th>
-            <th className="px-2 ">PHOTO</th>
+            <th className="px-10 py-3 ">PHOTO</th>
             <th className="px-2 ">STOCK</th>
             <th className="px-2 ">PRICE</th>
             <th className="px-2 ">CATEGORY</th>
@@ -85,24 +85,24 @@ const PAdmiProducts = ({ products, getProducts }) => {
 
           </tr>
         </thead>
-        <tbody className=" ">
+        <tbody className=" divide-y-2 divide-black divide-opacity-10  mx-4">
           {products.length > 0 ? (
             products.map((prod) => (
-              <tr key={prod.id}>
-                <td className=" px-4">{prod.name} </td>
-                <td className=" px-4">
+              <tr className=" mx-4 my-4" key={prod.id}>
+                <td className=" px-6 py-1">{prod.name} </td>
+                <td className=" px-6 py-1">
                   <img className="h-10 w-10 " src={prod.image} alt=" " />
                 </td>
-                <td className=" px-4">{prod.qty} </td>
-                <td className=" px-4">{prod.price} </td>
-                <td className=" px-4">{prod.type} </td>
+                <td className=" px-6 py-1">{prod.qty} </td>
+                <td className=" px-6 py-1">{prod.price} </td>
+                <td className=" px-6 py-1">{prod.type} </td>
 
-                <td className="flex flex-row  gap-2 justify-center  ">
+                <td className="flex flex-row  gap-2 justify-center py-2 mx-10 px-6 ">
                   <div>
-                    <FontAwesomeIcon className="cursor-pointer text-green-700" onClick={() => userSelection(prod, "edit")} icon={faEdit} />
+                    <FontAwesomeIcon className="cursor-pointer text-lime-400" onClick={() => userSelection(prod, "edit")} icon={faEdit} />
                   </div>
                   <div>
-                    <FontAwesomeIcon className="cursor-pointer text-pink-800" onClick={() => userSelection(prod, "delete")} icon={faTrashAlt} />
+                    <FontAwesomeIcon className="cursor-pointer text-teal-500" onClick={() => userSelection(prod, "delete")} icon={faTrashAlt} />
                   </div>
                 </td>
               </tr>

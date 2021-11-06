@@ -67,32 +67,32 @@ const PAdmi = ({ users, getUsers }) => {
         }
       </div>
 
-      <table className="divide-y divide-blue-300  bg-white-200 shadow mt-2 rounded-2xl  ml-10 mx-4 p-4  ">
+      <table className="divide-y divide-black  divide-opacity-4 bg-white-200  shadow-md  mt-2 rounded-2xl  ">
         <thead>
-          <tr className=" bg-emerald-200  p-4">
-            <th className="flex flex-row  gap-2 px-8 ">
+          <tr className=" font-bold   p-4">
+            <th className="flex flex-row  gap-2 px-12 py-3">
               <button onClick={() => setShowModal(true)}>
                 {" "}
                 <img className="" src={iconAddUser} alt={""} />
               </button>
               USERS
             </th>
-            <th className=" px-4 ">CHARGE</th>
-            <th className="px-4 ">Actions</th>
+            <th className=" px-10 py-3">CHARGE</th>
+            <th className="px-10 py-3 "> </th>
           </tr>
         </thead>
-        <tbody className=" ">
+        <tbody className=" divide-y-2 divide-black divide-opacity-10">
           {users.length > 0 ? (
             users.map((user) => (
               <tr key={user.id}>
-                <td className=" px-4"> {user.email}</td>
-                {user.roles.name ? <td>{user.roles.name}</td> : <td>admin</td>}
-                <td className="flex flex-row  gap-2 justify-center  ">
+                <td className=" px-10"> {user.email}</td>
+                {user.roles.name ? <td  className="px-10 " >{user.roles.name}</td > : <td className="px-10 " >admin</td>}
+                <td className="flex flex-row  gap-2 justify-center py-2 mx-10 ">
                   <div>                          
-                       <FontAwesomeIcon  className="cursor-pointer"  onClick={() => userSelection(user, "edit")} icon={faEdit} />
+                       <FontAwesomeIcon  className="cursor-pointer text-lime-400"  onClick={() => userSelection(user, "edit")} icon={faEdit} />
                   </div>
                   <div>
-                    <FontAwesomeIcon className="cursor-pointer " onClick={() => userSelection(user, "delete")} icon={faTrashAlt} />
+                    <FontAwesomeIcon className="cursor-pointer text-teal-500 " onClick={() => userSelection(user, "delete")} icon={faTrashAlt} />
                   </div>
                 </td>
               </tr>

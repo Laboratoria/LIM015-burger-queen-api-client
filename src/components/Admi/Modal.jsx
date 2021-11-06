@@ -398,9 +398,10 @@ const ModalAddUser = ({ getUsers, showModal, setShowModal, modalEdit, setModalEd
                       Close
                     </button>
                   </div>
-                  <div className=" flex justify-center items-center  ">
+                  <div className=" flex justify-center items-center py-10">
 
-                    DO YOU WANT TO DELETE THE USER: {userSele && userSele.name} ?
+                   <p clasName="px-6" >DO YOU WANT TO DELETE THE USER:    </p>
+                   <p> {userSele && userSele.name} ?</p>
 
                   </div>
 

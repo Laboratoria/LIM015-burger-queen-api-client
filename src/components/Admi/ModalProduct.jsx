@@ -408,9 +408,10 @@ const ModalProduct = ({
                       Close
                     </button>
                   </div>
-                  <div className=" flex justify-center items-center  ">
+                  <div className=" flex justify-center items-center py-10 ">
 
-                    DO YOU WANT TO DELETE THE PRODUCT: {productSele && productSele.name} ?
+                    <p clasName="px-6" >DO YOU WANT TO DELETE THE  PRODUCT:  
+                   {productSele && productSele.name} ?</p>
 
                   </div>
 

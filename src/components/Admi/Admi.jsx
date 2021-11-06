@@ -8,7 +8,7 @@ import AdmiProduct from "./AdmiProduct";
 import { useState, Fragment } from "react";
 
 
-const Tabs = ({ color }) => {
+const Tabs = () => {
 
   const [openTab, setOpenTab] = useState(1);
 
@@ -17,16 +17,16 @@ const Tabs = ({ color }) => {
       <div className="flex flex-wrap mx-4">
         <div className="w-full mx-4">
           <ul
-            className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+            className="flex mb-0 list-none flex-wrap pt-3 pb-1 flex-row"
             role="tablist"
           >
-            <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <li className=" mt-6 flex-auto text-center">
               <a
                 className={
-                  "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                  " font-bold uppercase  shadow-lg  rounded-full py-2 px-1  block mx-2 " +
                   (openTab === 1
-                    ? "text-white bg-" + color + "-600"
-                    : "text-" + color + "-600 bg-white")
+                    ? "text-black  text-lg bg-lime-300 "
+                    : "text-white text-lg bg-teal-500 ")
                 }
                 onClick={e => {
                   e.preventDefault();
@@ -39,13 +39,13 @@ const Tabs = ({ color }) => {
                 USERS
               </a>
             </li>
-            <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <li className=" mt-6 flex-auto text-center">
               <a
                 className={
-                  "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                  " font-bold uppercase  shadow-lg  rounded-full py-2 px-1  block   mx-2 " +
                   (openTab === 2
-                    ? "text-white bg-" + color + "-600"
-                    : "text-" + color + "-600 bg-white")
+                    ? "text-black  text-lg bg-lime-300 "
+                    : "text-white text-lg bg-teal-500 ")
                 }
                 onClick={e => {
                   e.preventDefault();
@@ -62,11 +62,13 @@ const Tabs = ({ color }) => {
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
             </li>
+            <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            </li>
 
           </ul>
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-            <div className="px-4 py-5 flex-auto">
-              <div className="tab-content tab-space">
+          <div className=" min-w-0 break-words justify-start  ">
+            <div className=" ml-0">
+              <div className=" justify-start  flex flex-row">
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
                   <AdmiUser />
 
@@ -95,7 +97,7 @@ const Admi = () => {
       <NavOpcion imgOption={admi} option="ADMI"  linkOption={"/admin"}/>
 
       <div>
-        <Tabs color="teal" />
+        <Tabs  />
       </div>
 
     </Fragment>
