@@ -92,7 +92,7 @@ const Admi = () => {
   return (
 
     <Fragment>
-      <NavOpcion imgOption={admi} option="ADMI" />
+      <NavOpcion imgOption={admi} option="ADMI"  linkOption={"/admin"}/>
 
       <div>
         <Tabs color="teal" />

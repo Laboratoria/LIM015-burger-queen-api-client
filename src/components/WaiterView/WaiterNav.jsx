@@ -1,4 +1,4 @@
-import burgerimg from '../../img/burgerimg.svg'
+/*import burgerimg from '../../img/burgerimg.svg'
 import waiter from '../../img/waiter.svg'
 import logoutbtn from '../../img/logoutbtn.svg'
 import { Link } from 'react-router-dom'
@@ -26,4 +26,4 @@ const WaiterNav = () => {
         </nav >
     )
 }
-export default WaiterNav;
+export default WaiterNav;*/

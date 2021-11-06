@@ -27,12 +27,7 @@ const PreviewCompletedOrders = () => {
 
   return (
     <Fragment>
-      <NavOpcion
-        imgHome={burgerimg}
-        home="ORDERS"
-        imgOption={waiter}
-        option="ADMI"
-      />
+      <NavOpcion imgOption={waiter} option={"WAITER"} linkOption={"/waiter"} imgHome={burgerimg} home={"ORDERS"} linkHome={"/completed"} />
 
       <div className="flex flex-row justify-center mb-4 mt-2 py-4 list-none max-w-md mx-auto">
         <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">

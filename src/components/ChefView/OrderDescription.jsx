@@ -41,8 +41,11 @@ const OrderDescription = (order) => {
             {order ? order.products.map(produ =>
               < td className='border border-green-600'  >
 
-             <p className=" ">{produ.productId && produ.productId.name}</p>
-                    
+              <div><img className="px-0.5 h-6 sm:h-4" src={produ.productId && produ.productId.image} alt="" />
+              <p className=" ">{produ.productId && produ.productId.name}</p>
+
+              </div>
+                                
               </td>
             ) : null}
           </tr>

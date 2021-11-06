@@ -6,6 +6,11 @@ import {getDataApi} from '../../Authentication/auth'
 import { Fragment, useEffect, useState } from 'react';
 import ProductFilter from './MenuItems';
 import { Link } from 'react-router-dom';
+import NavOpcion from './Nav';
+
+import burgerimg from '../../img/burgerimg.svg'
+import waiter from '../../img/waiter.svg'
+
 //import ProductBreak from './ProductBreak'
 
 
@@ -28,7 +33,7 @@ const WaiterFirstView = () => {
 
   return (
     <Fragment>
-      <WaiterNav />
+      <NavOpcion imgOption={waiter} option={"WAITER"}  linkOption={"/waiter"} imgHome={burgerimg} home={"ORDERS"} linkHome={"/completed"} />
 
       <div className="grid grid-cols-2 h-80">
         <div className="col-span-2 flex flex-row justify-between mx-8">

@@ -31,7 +31,7 @@ const Chef = () => {
     return (
         <div>
             <div>
-                <Nav imgOption={chef} option='CHEF' />
+                <Nav imgOption={chef} option='CHEF' linkOption={"/chef"}/>
             </div>
 
             <Options
