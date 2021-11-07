@@ -1,7 +1,7 @@
 import ProductBox from './ProductBox';
 import { useState, useEffect } from 'react'
 
-const MenuItems = ({ products, productType, selectedProduct, setSelectedProduct }) => {
+const MenuItems = ({ products, productType, selectedProduct, setSelectedProduct,setVSumTotal,vSumTotal }) => {
 
     const [categoryOneProducts, setCategoryOneProducts] = useState([]);
     const [categoryTwoProducts, setCategoryTwoProducts] = useState([]);
@@ -18,11 +18,11 @@ const MenuItems = ({ products, productType, selectedProduct, setSelectedProduct 
 
     return (
 
-        <div className="grid text-xl text-center items center">
+        <div className="flex flex-col text-xl text-center justify-center px-4 ">
 
-            <p className="py-4 pl-12 font-normal tracking-widest items center"> {productType[0]}</p>
+            <p className="py-4 pl-4 font-bold  tracking-widest text-center  "> {productType[0]}</p>
 
-            <div className="grid grid-cols-2 grid-rows-1 items center gap-x-16 pl-28">
+            <div className="flex flex-wrap ">
                 {categoryOneProducts.map(product =>
                     <ProductBox
                         key={product._id}
@@ -30,17 +30,19 @@ const MenuItems = ({ products, productType, selectedProduct, setSelectedProduct 
                         product={product}
                         selectedProduct={selectedProduct}
                         setSelectedProduct={setSelectedProduct}
+                        setVSumTotal={setVSumTotal}
+                        vSumTotal={vSumTotal}
 
                     />)}
 
             </div>
             <div>
 
-                <p className="py-4 pl-14 font-normal tracking-widest"> {productType[1]}</p>
+                <p className="py-4 pl-4 font-bold  tracking-widest text-center "> {productType[1]}</p>
 
             </div>
 
-            <div className=" grid grid-cols-2 grid-rows-1 items center gap-x-16 pl-28">
+            <div className="flex flex-wrap ">
                 {categoryTwoProducts.map(product =>
                     <ProductBox
                         key={product._id}
@@ -48,13 +50,15 @@ const MenuItems = ({ products, productType, selectedProduct, setSelectedProduct 
                         product={product}
                         selectedProduct={selectedProduct}
                         setSelectedProduct={setSelectedProduct}
+                        setVSumTotal={setVSumTotal}
+                        vSumTotal={vSumTotal}
                     />)}
 
             </div>
 
-            <p className="py-4 pl-14 font-normal tracking-widest"> {productType[2]}</p>
+            <p className="py-4 pl-4 font-bold tracking-widest text-center "> {productType[2]}</p>
 
-            <div className=" grid grid-cols-2 grid-rows-1 items center gap-x-16 pl-28">
+            <div className=" flex  flex-wrap">
                 {categoryThreeProducts.map(product =>
                     <ProductBox
                         key={product._id}
@@ -62,6 +66,8 @@ const MenuItems = ({ products, productType, selectedProduct, setSelectedProduct 
                         product={product}
                         selectedProduct={selectedProduct}
                         setSelectedProduct={setSelectedProduct}
+                        setVSumTotal={setVSumTotal}
+                        vSumTotal={vSumTotal}
                     />)}
 
             </div>

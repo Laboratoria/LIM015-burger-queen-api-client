@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+/*import PropTypes from 'prop-types';
 const BoxSelectItems = ({ children }) => {
     return (
 
@@ -13,3 +13,5 @@ export default BoxSelectItems;
 BoxSelectItems.propTypes = {
     children: PropTypes.node.isRequired
 }
+*/
+

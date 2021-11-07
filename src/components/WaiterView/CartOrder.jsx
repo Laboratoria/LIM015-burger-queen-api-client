@@ -6,14 +6,19 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const CartOrder = ({ selectedProduct, handleDeleteProduct, handleIncreaseProduct, handleDecreaseProduct }) => {
 
+
+  
+
+
   return (
 
     <tbody className="tex-center">
       {selectedProduct.map((product) => (
+        
         <tr key={product._id}>
           <td>{product.name} </td>
           <td>
-            <div className="inline-flex"> 
+            <div className="inline-flex px-2"> 
             <img className=" p-2 " onClick={() => handleDecreaseProduct(product._id)} src={iconNegative} alt={""} />
             {product.qty}
             <img className=" p-2 " onClick={() => handleIncreaseProduct(product._id)} src={iconAdd} alt={""} />
