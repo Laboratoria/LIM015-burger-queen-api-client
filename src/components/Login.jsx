@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from 'react-router-dom'
+import { /*Routes, Route,*/ Navigate  } from 'react-router-dom'
 import { getUserEmail, loginAuth } from "../Authentication/auth";
 import admi from '../img/admi.svg';
 import chef from '../img/chef.svg';
@@ -75,7 +75,10 @@ const Login = () => {
 
   return (
     redirect ? (
-      <Redirect to={`/${option}`} />
+      // <Redirect to={`/${option}`} />
+      <Navigate replace to={`/${option}`} />
+      // <Route path="/" element={<Navigate replace to="/home" />} />
+
     ) : (
       <div className="App bg-scroll bg-cover h-screen flex px-4 sm:px-0 mx-auto" >
         <section className="sm:mx-auto my-auto bg-gray-900 bg-opacity-60 shadow-xl rounded-3xl py-4">

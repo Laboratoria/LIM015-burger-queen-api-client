@@ -1,12 +1,20 @@
 
 import React from 'react';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   // Link,
+//   // NavLink
+// } from "react-router-dom";
+
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  // Link,
-  // NavLink
 } from "react-router-dom";
+
+
 import './css/Login.css';
 import './css/Waiter.css'
 import Login from './components/Login';
@@ -23,7 +31,7 @@ function App() {
   return (
     <Router>
 
-      <Switch>
+      {/* <Switch>
         <Route path="/" exact>
           <Login />
         </Route>
@@ -50,7 +58,18 @@ function App() {
         </Route>
 
 
-      </Switch>
+      </Switch> */}
+
+
+      <Routes>
+                  <Route path="/" element={ <Login />}/>
+                  <Route path="/waiter" element={<WaiterFirstView />}/>
+                  <Route path="/completed" element={<PreviewCompletedOrders />}/>
+                  <Route path="/delivered" element={<DeliveredOrdersPreview />}/>
+                  <Route path="/chef" element={ <Chef />}/>
+                  <Route path="/admin" element={<Admi />}/>
+                </Routes>
+
     </Router >
 
   );

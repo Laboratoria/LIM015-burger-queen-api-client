@@ -73,6 +73,7 @@ export const getDataApi = async (urlPO) => {
 }
 
 
+
 //add new user or product or orders 
 
 export const petitionPostAdd = async (urlUP, data) => {
@@ -143,3 +144,4 @@ export const getAllOrders = async () => {
         }
     }
 }
+
