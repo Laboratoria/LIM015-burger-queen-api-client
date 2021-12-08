@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 
 
 //import iconDelete from "../img/iconDelete.svg";
-import iconNegative from "../../img/iconNegative.svg";
+
 import iconAddUser from "../../img/iconAddUser.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt,faEdit } from '@fortawesome/free-solid-svg-icons';

@@ -13,6 +13,7 @@ const ModalAddUser = ({ getUsers, showModal, setShowModal, modalEdit, setModalEd
   });
 
   const [formEdit, setFormEdit] = useState(form);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState("");
   const [isAdmin, setisAdmin] = useState(false);
 
@@ -45,6 +46,7 @@ const ModalAddUser = ({ getUsers, showModal, setShowModal, modalEdit, setModalEd
   useEffect(() => {
     sendFormEdit();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -76,6 +78,7 @@ const ModalAddUser = ({ getUsers, showModal, setShowModal, modalEdit, setModalEd
 
   useEffect(() => {
     deleteUserId();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -91,6 +94,7 @@ const ModalAddUser = ({ getUsers, showModal, setShowModal, modalEdit, setModalEd
   useEffect(() => {
     deleteUserId();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

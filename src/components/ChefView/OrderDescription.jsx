@@ -4,13 +4,7 @@ const OrderDescription = (order) => {
 
   const employeeName = localStorage.getItem('namelogged');
   let date = new Date(order.dateEntry)
-  let settingDateFormat = date.toDateString()
-
-  
-  //console.log(order);
-
-
-  //console.log((order.products.map(pro => pro.productId)));
+  // let settingDateFormat = date.toDateString()
 
 
   return (

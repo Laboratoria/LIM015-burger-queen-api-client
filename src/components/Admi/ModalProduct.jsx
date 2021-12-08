@@ -24,6 +24,7 @@ const ModalProduct = ({
 
   const [formEdit, setFormEdit] = useState({});
 
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState("");
   const [num, setNum] = useState(0);
   const [qty, setQty] = useState(0);
@@ -60,6 +61,7 @@ const ModalProduct = ({
 
   useEffect(() => {
     deleteProductId();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteProductId = async (id) => {
@@ -74,6 +76,7 @@ const ModalProduct = ({
   useEffect(() => {
     sendFormEdit();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

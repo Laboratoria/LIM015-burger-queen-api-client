@@ -1,6 +1,6 @@
 import CartOrder from "../WaiterView/CartOrder";
 import Button from "../Button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { petitionPostAdd } from "../../Authentication/auth";
 
 const OrderPreview = ({ selectedProduct, setSelectedProduct,setVSumTotal,vSumTotal}) => {
