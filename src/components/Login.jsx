@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { /*Routes, Route,*/ Navigate  } from 'react-router-dom'
 import { getUserEmail, loginAuth } from "../Authentication/auth";
@@ -26,7 +27,7 @@ const Login = () => {
   const [datauser, setDatauser] = useState({});
 
   localStorage.setItem('namelogged', datauser.name);
-  const employeeName = localStorage.getItem('namelogged');
+  // const employeeName = localStorage.getItem('namelogged');
 
   useEffect(() => {
     const isUserMatch = (datauser.email === form.email) && form.password;

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import ProductBox from './ProductBox';
 import { useState, useEffect } from 'react'
 
